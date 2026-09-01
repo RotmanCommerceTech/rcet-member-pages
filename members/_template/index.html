@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Change this: it shows up on the member directory page. -->
+  <title>Your Name</title>
+
+  <style>
+    /* Everything here is yours. Delete it all and start over if you like. */
+    :root { --bg: #0b1220; --fg: #e8eef5; --accent: #7da8cc; }
+
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      background: var(--bg); color: var(--fg);
+      font: 16px/1.6 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+      text-align: center; padding: 24px;
+    }
+    h1 { font-size: clamp(32px, 8vw, 64px); margin: 0 0 8px; letter-spacing: -.02em; }
+    p  { color: #8ea3ba; max-width: 50ch; margin: 0 auto 24px; }
+    button {
+      font: inherit; color: var(--bg); background: var(--accent);
+      border: 0; border-radius: 8px; padding: 10px 20px; cursor: pointer;
+    }
+    button:hover { filter: brightness(1.1); }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1>Your Name</h1>
+    <p>
+      One or two lines about you — what you study, what you are building,
+      what you want to be asked about.
+    </p>
+
+    <button id="hello">Say hi</button>
+    <p id="out" aria-live="polite"></p>
+
+    <p><a href="/">← All member pages</a></p>
+  </main>
+
+  <script>
+    // Inline JavaScript works. So do <script src="./your-file.js"> files
+    // in your own folder, and libraries from cdnjs / jsDelivr / unpkg.
+    const lines = ['hi there', 'hello!', 'welcome', 'nice to meet you'];
+    document.getElementById('hello').addEventListener('click', () => {
+      document.getElementById('out').textContent =
+        lines[Math.floor(Math.random() * lines.length)];
+    });
+  </script>
+
+</body>
+</html>
