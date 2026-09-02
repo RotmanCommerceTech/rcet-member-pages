@@ -1,0 +1,9 @@
+# Only the people listed here can give the approval that unblocks a merge.
+# Workshop participants are collaborators (so they can push branches and run
+# CI) but their approvals do NOT count — otherwise they could green-light
+# each other's pages and skip review entirely.
+#
+# Add your TAs here before the workshop so approvals aren't bottlenecked on
+# one person. Any single listed reviewer is enough.
+
+*  @Slimebro1231
