@@ -1,0 +1,5 @@
+# One GitHub username per line. @handles and profile URLs are tolerated.
+# Lines starting with # are ignored.
+octocat
+@defunkt
+https://github.com/mojombo
