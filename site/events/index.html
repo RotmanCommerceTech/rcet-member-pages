@@ -28,6 +28,8 @@
     .wip p { margin: 0; color: var(--rcet-muted); }
     .event { display: grid; gap: 32px; grid-template-columns: .9fr 1.1fr; align-items: start; padding: 40px 0; border-top: 1px solid var(--rcet-line); }
     .event:last-child { border-bottom: 1px solid var(--rcet-line); }
+    .event:nth-of-type(even) { grid-template-columns: 1.1fr .9fr; }
+    .event:nth-of-type(even) img { order: 2; justify-self: end; }
     .event img { width: 100%; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); aspect-ratio: 4 / 3; object-fit: cover; }
     .event img.poster { aspect-ratio: 4 / 5; max-width: 420px; }
     .event time { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--rcet-accent); }
@@ -56,7 +58,7 @@
       </div>
     </section>
 
-    <section class="rcet-section" id="upcoming">
+    <section class="rcet-section rcet-section--alt" id="upcoming">
       <div class="rcet-container">
         <div class="rcet-section-head">
           <div><p class="rcet-eyebrow">Upcoming</p><h2>This year</h2></div>
@@ -84,7 +86,7 @@
       </div>
     </section>
 
-    <section class="rcet-section rcet-section--alt" id="past">
+    <section class="rcet-section" id="past">
       <div class="rcet-container">
         <div class="rcet-section-head">
           <div><p class="rcet-eyebrow">Past events</p><h2>What we've run</h2></div>

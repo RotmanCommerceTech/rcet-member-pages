@@ -19,8 +19,11 @@
   <script src="/shared/rcet.js" defer></script>
   <style>
     /* Home page. Admins edit this file; the TEAMS_GRID and PARTNERS_STRIP comments are filled in at build time. */
-    .home-hero { display: grid; gap: 48px; grid-template-columns: 1.1fr .9fr; align-items: center; }
-    .home-hero__art { border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+    .home-hero { display: grid; gap: 48px; grid-template-columns: 1.2fr .8fr; align-items: center; }
+    .home-hero h1 { font-size: clamp(40px, 6vw, 74px); }
+    .home-hero .rcet-lede { max-width: 42ch; }
+    .home-hero__frame { overflow: hidden; aspect-ratio: 4 / 3; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+    .home-hero__art { width: 100%; height: 100%; object-fit: cover; object-position: 42% 55%; transform: scale(1.35); }
     .pillar h3 { font-size: 19px; margin: 14px 0 6px; }
     .pillar p { color: var(--rcet-muted); margin: 0; font-size: 15px; }
     .pillar .rcet-tag { margin-top: 12px; }
@@ -34,7 +37,7 @@
     .event-card time { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--rcet-accent); }
     .event-card h3 { font-size: 18px; margin: 6px 0 4px; }
     .event-card p { margin: 0; color: var(--rcet-muted); font-size: 15px; }
-    @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; } .home-hero__art { aspect-ratio: 16 / 10; } }
+    @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; } .home-hero__frame { aspect-ratio: 16 / 10; } }
   </style>
 </head>
 <body>
@@ -48,24 +51,23 @@
         <div>
           <p class="rcet-eyebrow">Rotman Commerce · University of Toronto</p>
           <h1>Empowering with technologies</h1>
-          <p class="rcet-lede">Rotman Commerce Emerging Technologies gives business students the research,
-          industry exposure and hands-on events to build careers in tech, not only in finance,
-          consulting and accounting.</p>
+          <p class="rcet-lede">Research, industry exposure and hands-on events for Rotman Commerce
+          students who want a career in tech.</p>
           <div class="rcet-btn-row">
             <a class="rcet-btn rcet-btn--primary" href="/teams/">Meet the teams</a>
             <a class="rcet-btn rcet-btn--ghost" href="/events/">See past events</a>
           </div>
         </div>
-        <img class="home-hero__art" src="/shared/assets/brand/hero-bigbang.jpg" alt="Earth seen from orbit as the sun rises over the horizon" width="1000" height="750">
+        <div class="home-hero__frame rcet-cinematic"><img class="home-hero__art" src="/shared/assets/brand/hero-bigbang.jpg" alt="Earth seen from orbit as the sun rises over the horizon" width="1000" height="750"></div>
       </div>
     </section>
 
     <!-- Numbers. Followers as of September 2026; attendees from the previous site. -->
     <section class="rcet-section rcet-section--alt">
       <div class="rcet-container rcet-grid rcet-grid--3">
-        <div class="rcet-stat"><b>300+</b><span>Event attendees</span></div>
-        <div class="rcet-stat"><b>1.8k+</b><span>Followers on @rotman.tech</span></div>
-        <div class="rcet-stat"><b>20+</b><span>Companies in the room</span></div>
+        <div class="rcet-stat"><b data-count="300" data-suffix="+">300+</b><span>Event attendees</span></div>
+        <div class="rcet-stat"><b data-count="1884" data-format="k" data-suffix="+">1.8k+</b><span>Followers on @rotman.tech</span></div>
+        <div class="rcet-stat"><b data-count="20" data-suffix="+">20+</b><span>Companies in the room</span></div>
       </div>
     </section>
 
@@ -77,7 +79,7 @@
           <div><p class="rcet-eyebrow">Five pillars</p><h2>What we mean by emerging technology</h2></div>
           <p>Every event, research brief and case competition maps to one of these.</p>
         </div>
-        <div class="rcet-grid rcet-grid--3">
+        <div class="rcet-grid rcet-grid--3 rcet-grid--wrap-center">
           <div class="rcet-card pillar" data-reveal style="--i:0">
             <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#brain-circuit"/></svg></span>
             <h3>Data &amp; Artificial Intelligence</h3>

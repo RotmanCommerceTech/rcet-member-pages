@@ -77,8 +77,12 @@ loops. If a choice feels loud, it is wrong for this site.
 What that rules out: gradient text, glassmorphism, neon glows, emoji as icons,
 decorative borders, more than one accent, badges everywhere, autoplaying
 video, parallax that moves faster than the page, and dense grids of small
-cards. Personality comes from photography, copy, a strong statement and one
-well-made interaction per page.
+cards. Also: one job per section (a statement, or a photo, or an essay, not
+all three); no multi-column body text; never a lede taller than its headline
+(cut it if it wraps past three lines); five cards in a three-column grid get
+`.rcet-grid--wrap-center` so the last row sits centred, not orphaned; and no
+two-colour gradient blob as "art". Personality comes from photography, copy,
+a strong statement and one well-made interaction per page.
 
 ## Design system — how to look like the rest of the site
 

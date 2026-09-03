@@ -134,6 +134,9 @@ All optional, all in `shared/rcet.css` + `rcet.js`, all off unless you use them:
 - **Scroll-lit statement** — put `data-words` on a big heading; its words brighten one by one
   as the reader scrolls. Best once per page, in a dark section (see the About page).
 - **Marquee** — `.rcet-marquee > .rcet-marquee__track` with the logos repeated twice; pauses on hover.
+- **Count-up numbers** — `<b data-count="130" data-suffix="+">130+</b>` inside `.rcet-stat`; `data-format="k"` shows 1.8k.
+- **`.rcet-cinematic`** on any image for the bigger radius and soft shadow; `.rcet-grid--wrap-center` on a
+  grid whose last row would otherwise sit alone on the left.
 - **Skip link and print styles** come with `<rcet-header>`; give your `<main>` the id `main`.
 
 More ideas, libraries and free illustration sources, all licence-checked and CSP-compatible:

@@ -21,11 +21,10 @@
        will match the rest of the site. Prefer a dark page? Add data-theme="dark" to <html>. */
     .hero-grid { display: grid; gap: 48px; grid-template-columns: 1.15fr .85fr; align-items: center; }
     .hero-art {
-      aspect-ratio: 1; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow);
-      background:
-        radial-gradient(circle at 28% 30%, var(--rcet-cyan) 0, transparent 52%),
-        radial-gradient(circle at 74% 72%, var(--rcet-blue) 0, transparent 55%),
-        var(--rcet-navy);
+      aspect-ratio: 1; border-radius: 20px; box-shadow: var(--rcet-shadow);
+      background-color: var(--rcet-navy);
+      background-image: radial-gradient(circle at 30% 30%, rgba(26, 215, 255, .35), transparent 55%), radial-gradient(rgba(26, 215, 255, .55) 1px, transparent 1px);
+      background-size: auto, 20px 20px;
     }
     .highlight { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid var(--rcet-line); }
     .highlight:last-of-type { border-bottom: 1px solid var(--rcet-line); }
@@ -72,6 +71,14 @@
       </div>
     </section>
 
+    <!-- ONE LINE: the team in a sentence. Words light up as the page scrolls. Delete if you'd rather not. -->
+    <section class="rcet-section rcet-section--dark rcet-center">
+      <div class="rcet-container">
+        <p class="rcet-eyebrow" style="display: inline-flex">In one line</p>
+        <h2 style="max-width: 16ch; margin-inline: auto; font-size: clamp(30px, 4.4vw, 56px)" data-words>What Business Development does for RCET, in one sentence.</h2>
+      </div>
+    </section>
+
     <!-- WHAT WE DO ------------------------------------------------------------ -->
     <section class="rcet-section">
       <div class="rcet-container">
@@ -111,7 +118,7 @@
             <h2>Who we are</h2>
           </div>
         </div>
-        <div class="rcet-grid rcet-grid--3">
+        <div class="rcet-grid rcet-grid--3 rcet-grid--wrap-center">
           <!-- Use initials, or replace the <span> with <img class="rcet-avatar" src="./name.jpg" alt=""> -->
           <div class="rcet-card rcet-person"><span class="rcet-avatar">AB</span><div><b>Person Name</b><span>Director</span></div></div>
           <div class="rcet-card rcet-person"><span class="rcet-avatar">CD</span><div><b>Person Name</b><span>Director</span></div></div>
@@ -162,25 +169,6 @@
 
   <rcet-footer team="Business Development"></rcet-footer>
 
-  <script>
-    // Counts the numbers up when they scroll into view. Plain JS, no libraries.
-    // Delete this block if you don't want it.
-    const counters = document.querySelectorAll('.rcet-stat b[data-count]');
-    const io = new IntersectionObserver((entries) => {
-      for (const { isIntersecting, target } of entries) {
-        if (!isIntersecting) continue;
-        io.unobserve(target);
-        const end = Number(target.dataset.count), suffix = target.dataset.suffix || '', t0 = performance.now();
-        const tick = (t) => {
-          const p = Math.min(1, (t - t0) / 900), eased = 1 - Math.pow(1 - p, 3);
-          target.textContent = Math.round(end * eased) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }
-    }, { threshold: .6 });
-    counters.forEach((c) => io.observe(c));
-  </script>
 
 </body>
 </html>

@@ -95,7 +95,7 @@ async function copySite(teams) {
     if (file.startsWith('teams/') || file.startsWith('u/') || file.startsWith('shared/')) return text;
     if (!/\.html?$/i.test(file)) return text;
     return rebase(text
-      .replace(/<!--\s*TEAMS_GRID\s*-->/g, `<div class="rcet-grid rcet-grid--3">\n${teamCards(teams)}\n      </div>`)
+      .replace(/<!--\s*TEAMS_GRID\s*-->/g, `<div class="rcet-grid rcet-grid--3 rcet-grid--wrap-center">\n${teamCards(teams)}\n      </div>`)
       .replace(/<!--\s*PARTNERS_STRIP\s*-->/g, partnersStrip())
       .replace(/\{\{SITE_URL\}\}/g, `${SITE_URL}${BASE}`));
   });
@@ -230,7 +230,7 @@ ${partnersStrip()}
         <div><p class="rcet-eyebrow">Teams</p><h2>${teams.length} teams, ${built} page${built === 1 ? '' : 's'} live</h2></div>
         <p>Each team owns one folder in the repo and nothing else. That is the whole rule.</p>
       </div>
-      <div class="rcet-grid rcet-grid--3">
+      <div class="rcet-grid rcet-grid--3 rcet-grid--wrap-center">
 ${cards}
       </div>
     </div>

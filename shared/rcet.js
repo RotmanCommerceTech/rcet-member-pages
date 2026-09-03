@@ -143,6 +143,24 @@
     addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); update();
   };
 
-  const init = () => { reveal(); document.querySelectorAll('[data-constellation]').forEach(constellation); document.querySelectorAll('[data-words]').forEach(words); };
+  // Count-up numbers: <div class="rcet-stat"><b data-count="130" data-suffix="+">0</b>…  (data-format="k" → 1.8k)
+  const counters = () => {
+    const els = document.querySelectorAll('.rcet-stat b[data-count]');
+    if (!els.length) return;
+    const fmt = (el, n) => (el.dataset.format === 'k' ? `${Math.floor(n / 100) / 10}k` : String(Math.round(n))) + (el.dataset.suffix || '');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { els.forEach((el) => { el.textContent = fmt(el, +el.dataset.count); }); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const { isIntersecting, target } of entries) {
+        if (!isIntersecting) continue;
+        io.unobserve(target);
+        const end = +target.dataset.count, t0 = performance.now();
+        const tick = (t) => { const p = Math.min(1, (t - t0) / 900); target.textContent = fmt(target, end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: .6 });
+    els.forEach((el) => io.observe(el));
+  };
+
+  const init = () => { reveal(); counters(); document.querySelectorAll('[data-constellation]').forEach(constellation); document.querySelectorAll('[data-words]').forEach(words); };
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();
