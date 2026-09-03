@@ -19,6 +19,10 @@
   <script src="/shared/rcet.js" defer></script>
   <style>
     /* Events page. Admins edit this file. Newest event first. Upcoming events go in the WIP block until the calendar is final. */
+    .upcoming { display: grid; gap: 8px; align-content: start; }
+    .upcoming .rcet-tag { justify-self: start; }
+    .upcoming h3 { margin: 6px 0 0; font-size: 24px; }
+    .upcoming p { margin: 0; }
     .wip { border-style: dashed; box-shadow: none; background: transparent; display: grid; gap: 8px; }
     .wip .rcet-tag { justify-self: start; }
     .wip p { margin: 0; color: var(--rcet-muted); }
@@ -55,13 +59,26 @@
       <div class="rcet-container">
         <div class="rcet-section-head">
           <div><p class="rcet-eyebrow">Upcoming</p><h2>This year</h2></div>
+          <p>Dates go out on <a href="https://www.instagram.com/rotman.tech/" rel="noopener">@rotman.tech</a> first.</p>
         </div>
-        <div class="rcet-card wip">
-          <span class="rcet-tag">Work in progress</span>
-          <h3>The 2026–27 calendar is being finalized</h3>
-          <p>Northbound, RCET's flagship technology conference, and the next round of case competitions are in planning.
-          Follow <a href="https://www.instagram.com/rotman.tech/" rel="noopener">@rotman.tech</a> for dates, or
-          <a href="mailto:rotmancommercetech@gmail.com">email us</a> to partner on an event.</p>
+        <div class="rcet-grid rcet-grid--2">
+          <div class="rcet-card upcoming" id="build-series" data-reveal style="--i:0">
+            <span class="rcet-tag">Workshop series · 2026–27</span>
+            <h3>The Build Series</h3>
+            <p>Eight hands-on workshops across the year on vibe coding: describe what you want, and build real, working software with AI tools. No computer science background needed. Come with an idea, leave with something that runs.</p>
+            <p class="rcet-muted">Hosted by Max Li, Director of Research &amp; Development. Bring a laptop.</p>
+          </div>
+          <div class="rcet-card upcoming" id="tech-and-tonic" data-reveal style="--i:1">
+            <span class="rcet-tag">Social · 2026–27</span>
+            <h3>Tech &amp; Tonic</h3>
+            <p>An evening mixer with the people building Toronto's tech scene: students, founders and the folks who hire them. Date and venue to come.</p>
+          </div>
+        </div>
+        <div class="rcet-card wip" style="margin-top: 20px">
+          <span class="rcet-tag">In planning</span>
+          <h3>Northbound and the next case competitions</h3>
+          <p>RCET's flagship technology conference and this year's corporate case competitions are being scheduled.
+          <a href="mailto:rotmancommercetech@gmail.com">Email us</a> to partner on one.</p>
         </div>
       </div>
     </section>

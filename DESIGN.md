@@ -6,6 +6,14 @@ purpose: a stylesheet, two web components, and a handful of rules. Everything
 here lives in [`shared/rcet.css`](shared/rcet.css) and
 [`shared/rcet.js`](shared/rcet.js); this document explains it.
 
+## The aesthetic in one paragraph
+
+Think Apple product page, scaled to a student club: calm, confident, spacious.
+One idea per section. An oversized headline, one short muted line, then air.
+Real photos, wide, rounded, softly shadowed. The page's big statement lives in
+a dark navy section. Small mono labels introduce sections, one accent colour
+does all the pointing, and motion is scroll-driven and quiet. Loud is wrong.
+
 ## The look
 
 It follows the main RCET site: **white background**, deep navy, an electric
@@ -123,6 +131,8 @@ All optional, all in `shared/rcet.css` + `rcet.js`, all off unless you use them:
 - **Constellation** — `<section class="rcet-hero rcet-hero--art" data-constellation>` draws a slow
   network of dots behind the hero. Off under reduced motion; pauses off-screen.
 - **Reveal on scroll** — add `data-reveal` to cards; `style="--i:2"` staggers siblings.
+- **Scroll-lit statement** — put `data-words` on a big heading; its words brighten one by one
+  as the reader scrolls. Best once per page, in a dark section (see the About page).
 - **Marquee** — `.rcet-marquee > .rcet-marquee__track` with the logos repeated twice; pauses on hover.
 - **Skip link and print styles** come with `<rcet-header>`; give your `<main>` the id `main`.
 

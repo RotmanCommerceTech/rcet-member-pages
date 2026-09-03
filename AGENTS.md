@@ -61,6 +61,25 @@ GitHub account).
    names. No impersonation, no login-style forms, nothing the team would not
    show a recruiter. Admins can revert any page without warning.
 
+## The aesthetic — read this before you design anything
+
+The site takes its cues from an Apple product page, scaled to a student club:
+**calm, confident, spacious.** One idea per section. An oversized display
+headline (tight tracking, 700–800 weight), one short supporting line in muted
+grey, then air. Imagery is cinematic: real photos, wide, rounded corners
+(12–20px), a soft shadow, never a stock-illustration collage. The important
+statement of a page sits in a dark navy section with white type. Small
+monospace eyebrow labels introduce sections. One accent colour (blue on light,
+cyan on dark) used sparingly for links, buttons and eyebrows. Motion is
+scroll-driven and subtle: things settle into place; nothing bounces, spins or
+loops. If a choice feels loud, it is wrong for this site.
+
+What that rules out: gradient text, glassmorphism, neon glows, emoji as icons,
+decorative borders, more than one accent, badges everywhere, autoplaying
+video, parallax that moves faster than the page, and dense grids of small
+cards. Personality comes from photography, copy, a strong statement and one
+well-made interaction per page.
+
 ## Design system — how to look like the rest of the site
 
 The main RCET site is white with navy, electric blue and cyan; big tight
@@ -128,6 +147,9 @@ Guidance:
   highlights (dated list) → contact (dark section). Reorder, drop or add
   sections freely, but keep a hero at the top and a way to contact the team
   at the bottom.
+- The site's own pages are the reference: study `site/about/index.html` (the
+  "How it started" section: dark, one big statement with `data-words`, one
+  wide photo) and `site/index.html` before inventing a new layout.
 - **Real content beats lorem ipsum.** Ask the user for: what the team does
   (1–2 lines), members with roles, 3–6 things they shipped, what they are
   looking for (recruits, sponsors, speakers), any photos. Leave no

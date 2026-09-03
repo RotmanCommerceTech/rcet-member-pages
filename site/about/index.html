@@ -19,11 +19,14 @@
   <script src="/shared/rcet.js" defer></script>
   <style>
     /* About page. Admins edit this file. Leadership names are in the LEADERSHIP section below. */
-    .story { display: grid; gap: 48px; grid-template-columns: 1.2fr .8fr; align-items: center; }
-    .story blockquote { margin: 0; font-family: var(--rcet-font-display); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.3; letter-spacing: -.01em; font-weight: 600; }
-    .story blockquote p { margin: 0 0 .8em; }
-    .story blockquote p:last-child { margin: 0; }
-    .story img { width: 100%; max-width: 420px; justify-self: center; }
+    .story { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(72px, 10vw, 128px); background: linear-gradient(180deg, var(--rcet-navy), #0b1220 70%); }
+    .story .rcet-eyebrow { justify-content: center; display: flex; }
+    .story__statement { font-size: clamp(30px, 5vw, 62px); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; max-width: 22ch; margin: 0 auto 56px; text-align: center; }
+    .story__photo { margin: 0 auto; max-width: 720px; }
+    .story__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 28%; border-radius: 20px; box-shadow: 0 40px 90px -30px rgba(26, 215, 255, .35), 0 20px 50px -20px rgba(0, 0, 0, .6); }
+    .story__photo figcaption { margin-top: 14px; text-align: center; font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--rcet-muted); }
+    .story__text { columns: 2; column-gap: 40px; max-width: 900px; margin: 56px auto 0; color: var(--rcet-muted); font-size: 17px; }
+    .story__text p { margin: 0 0 1em; break-inside: avoid; }
     .poster-card { padding: 0; overflow: hidden; }
     .poster-card img { aspect-ratio: 1; object-fit: cover; width: 100%; }
     .poster-card div { padding: 16px 20px 20px; }
@@ -36,7 +39,7 @@
     .dept b { font-weight: 600; }
     .contact-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
     .contact-grid p { margin: 4px 0 0; }
-    @media (max-width: 760px) { .story { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .story__text { columns: 1; } .story__photo img { border-radius: 14px; } }
   </style>
 </head>
 <body>
@@ -55,16 +58,18 @@
       </div>
     </section>
 
-    <section class="rcet-section">
-      <div class="rcet-container story">
-        <div>
-          <p class="rcet-eyebrow">How it started</p>
-          <blockquote>
-            <p>The mission is simple. We want to create the number one business technology talent pipeline in Canada. Not one of. The number one.</p>
-            <p>For the ones who want to work for the Microsofts, Apples and Googles of the world. For the ones who want to build and create, whether technical or non-technical. For the ones who will build the startups that create tech innovation in Canada, and the investors who will fund them.</p>
-          </blockquote>
+    <section class="rcet-section rcet-section--dark story" id="story">
+      <div class="rcet-container">
+        <p class="rcet-eyebrow">How it started</p>
+        <h2 class="story__statement" data-words>The mission is simple. Create the number one business-technology talent pipeline in Canada. Not one of. The number one.</h2>
+        <figure class="story__photo">
+          <img src="/shared/assets/events/event-crowd-1.jpg" alt="Sixty students and mentors on the staircase at Microsoft Canada after the AI Transformation Case Competition" width="1067" height="1600" loading="lazy">
+          <figcaption>Microsoft Canada, November 2024 · the AI Transformation Case Competition</figcaption>
+        </figure>
+        <div class="story__text">
+          <p>We started RCET so that when Rotman Commerce students choose a career, they are no longer confined to three core streams around finance, consulting and accounting. Now there is tech.</p>
+          <p>For the ones who want to work for the Microsofts, Apples and Googles of the world. For the ones who want to build and create, whether technical or non-technical. For the ones who will build the startups that create tech innovation in Canada, and the investors who will fund them.</p>
         </div>
-        <img src="/shared/assets/decor/render-2.png" alt="" aria-hidden="true">
       </div>
     </section>
 

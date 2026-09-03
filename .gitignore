@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 participants.txt
 .claude/
+ADMIN.md

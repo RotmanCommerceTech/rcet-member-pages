@@ -25,8 +25,9 @@ About us:
 - People: <Name — role; Name — role; …>
 - What we've shipped: <3–6 things, with dates if you know them>
 - What we're looking for: <new members / sponsors / speakers / …>
-- Vibe: <clean and corporate / playful / bold / minimal / …> — but keep the
-  shared header, footer and colour tokens.
+- Vibe: <optional> — the default is the site's own look (calm, big type, lots of
+  air, real photos, one accent). Keep it unless we want a deliberate twist, and
+  keep the shared header, footer and colour tokens either way.
 - Photos: <none / attached / paths>
 
 Preview it with `node scripts/serve.mjs`, check the browser console for CSP
@@ -66,7 +67,7 @@ About us:
 - People: <Name — role; Name — role; …>
 - What we've shipped: <3–6 things, with dates if you know them>
 - What we're looking for: <new members / sponsors / speakers / …>
-- Vibe: <clean and corporate / playful / bold / minimal / …>
+- Vibe: <optional; default is the site's own calm, spacious look>
 
 Give me every file in full, with its file name, ready to upload.
 ```

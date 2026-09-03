@@ -124,6 +124,25 @@
     new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop())).observe(host);
   };
 
-  const init = () => { reveal(); document.querySelectorAll('[data-constellation]').forEach(constellation); };
+  // Scroll-lit statement: <h2 data-words>…</h2> — words brighten one by one as the block moves up the viewport.
+  const words = (el) => {
+    const parts = el.textContent.trim().split(/\s+/);
+    el.innerHTML = parts.map((w) => `<span class="rcet-word">${esc(w)}</span>`).join(' ');
+    const spans = el.querySelectorAll('.rcet-word');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { spans.forEach((sp) => sp.classList.add('on')); return; }
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = el.getBoundingClientRect(), vh = innerHeight;
+      const start = vh * 0.9, end = vh * 0.3;                 // lights from 10% in view to 70% up
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end + r.height * 0.6)));
+      const n = Math.round(p * spans.length);
+      spans.forEach((sp, i) => sp.classList.toggle('on', i < n));
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); update();
+  };
+
+  const init = () => { reveal(); document.querySelectorAll('[data-constellation]').forEach(constellation); document.querySelectorAll('[data-words]').forEach(words); };
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();

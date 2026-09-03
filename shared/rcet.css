@@ -252,6 +252,11 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
 @keyframes rcet-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .rcet-marquee { mask-image: none; -webkit-mask-image: none; } .rcet-marquee__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; } }
 
+/* Scroll-lit statement: add data-words to a heading (rcet.js splits it into words) */
+.rcet-word { opacity: .22; transition: opacity .35s ease; }
+.rcet-word.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .rcet-word { opacity: 1; transition: none; } }
+
 /* ------------------------------------------ team cards, partner strip */
 .team-card { display: grid; gap: 10px; align-content: start; min-height: 100%; }
 .team-card .rcet-icon-badge { margin-bottom: 6px; }

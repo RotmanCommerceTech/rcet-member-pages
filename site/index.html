@@ -24,6 +24,10 @@
     .pillar h3 { font-size: 19px; margin: 14px 0 6px; }
     .pillar p { color: var(--rcet-muted); margin: 0; font-size: 15px; }
     .pillar .rcet-tag { margin-top: 12px; }
+    .upcoming-mini { display: grid; gap: 6px; align-content: start; }
+    .upcoming-mini .rcet-tag { justify-self: start; }
+    .upcoming-mini h3 { margin: 6px 0 0; }
+    .upcoming-mini p { margin: 0; color: var(--rcet-muted); font-size: 15px; }
     .event-card { padding: 0; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
     .event-card img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
     .event-card div { padding: 18px 20px 20px; }
@@ -117,8 +121,23 @@
     <section class="rcet-section" id="events">
       <div class="rcet-container">
         <div class="rcet-section-head">
-          <div><p class="rcet-eyebrow">Events</p><h2>Where we've been</h2></div>
+          <div><p class="rcet-eyebrow">Events</p><h2>This year</h2></div>
           <p><a href="/events/">All events →</a></p>
+        </div>
+        <div class="rcet-grid rcet-grid--2 upcoming-row">
+          <a class="rcet-card upcoming-mini" href="/events/#build-series" data-reveal style="--i:0">
+            <span class="rcet-tag">Upcoming · 8 workshops</span>
+            <h3>The Build Series</h3>
+            <p>Vibe coding, taught hands-on across the year. Build real software with AI, no CS background needed.</p>
+          </a>
+          <a class="rcet-card upcoming-mini" href="/events/#tech-and-tonic" data-reveal style="--i:1">
+            <span class="rcet-tag">Upcoming · Social</span>
+            <h3>Tech &amp; Tonic</h3>
+            <p>An evening mixer with the people building Toronto's tech scene.</p>
+          </a>
+        </div>
+        <div class="rcet-section-head" style="margin-top: 48px">
+          <div><p class="rcet-eyebrow">Recently</p><h2>Where we've been</h2></div>
         </div>
         <div class="rcet-grid rcet-grid--3">
           <a class="rcet-card event-card" href="/events/#aws-blueprint" data-reveal style="--i:0">
