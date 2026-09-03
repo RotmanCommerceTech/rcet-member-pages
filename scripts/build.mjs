@@ -14,6 +14,8 @@ const REPO = 'https://github.com/Slimebro1231/rcet-member-pages';
 // Set BASE_PATH="/rcet-member-pages" to build for a project GitHub Pages URL
 // (https://<user>.github.io/rcet-member-pages/). Leave unset for a real domain.
 const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
+// Absolute origin for Open Graph tags (og:image must be absolute). deploy.yml sets it.
+const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -106,6 +108,14 @@ function shell({ title, description, body, headerAttrs = '' }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
+<link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rotman Commerce Emerging Technologies">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:image" content="${SITE_URL}${BASE}/shared/assets/brand/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/shared/rcet.css">
 <script src="/shared/rcet.js" defer></script>
 <style>
