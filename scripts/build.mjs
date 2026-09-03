@@ -17,12 +17,15 @@ const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 // Absolute origin for Open Graph tags (og:image must be absolute). deploy.yml sets it.
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
 
-// Partner logos for the directory strip (from the old site's events pages).
+// "Previously with" strip on the directory. Only organizations the old site named as
+// partners of a past event: Microsoft + BDO (AI Transformation, Nov 2024), Meta (Commerce &
+// Connection, Oct 2024), AWS Canada (Blueprint to the Cloud, Feb 2025), and the universities on
+// the VR panels. SAP, Cohere and Vanguard only appeared on the not-yet-held Northbound page, so
+// they are left out; add them here once those partnerships are real (logos are in shared/assets/partners/).
 // A third field of 'invert' flips a white-on-transparent logo to dark for the grayscale strip.
 const PARTNERS = [
-  ['Microsoft', 'microsoft-white.png', 'invert'], ['Meta', 'meta.png'], ['AWS', 'aws.png'], ['BDO', 'bdo.png'], ['SAP', 'sap.png'],
-  ['Cohere', 'cohere.png'], ['Vanguard', 'vanguard.png'], ['Harvard', 'harvard.png'], ['Columbia', 'columbia.png'],
-  ['Stanford', 'stanford.png'], ['Yale', 'yale.png'],
+  ['Microsoft', 'microsoft-white.png', 'invert'], ['Meta', 'meta.png'], ['AWS', 'aws.png'], ['BDO', 'bdo.png'],
+  ['Harvard', 'harvard.png'], ['Columbia', 'columbia.png'], ['Stanford', 'stanford.png'], ['Yale', 'yale.png'],
 ];
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
