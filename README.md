@@ -4,7 +4,7 @@ The website of **Rotman Commerce Emerging Technologies**: the club's own pages
 plus one page per team, each built by the team itself and published through
 this repository. A pull request is the publish button.
 
-Live at **https://about.rotmancommercetech.com/**
+Live at **https://rotmancommercetech.com/**
 
 ```
 site/index.html                  ← home            (admins edit)
@@ -199,13 +199,15 @@ starter page into `teams/<slug>/`. Commit both.
 gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/pages -f build_type=workflow
 ```
 
-The site appears at https://about.rotmancommercetech.com/ about a minute
+The site appears at https://rotmancommercetech.com/ about a minute
 after every push to `main`.
 
-**Custom domain (done).** `about.rotmancommercetech.com` is a CNAME in Wix DNS
-pointing at `rotmancommercetech.github.io`; the `CNAME` file in the repo root
-tells the workflow to build for `/`, and the Pages settings carry the domain
-with HTTPS enforced. If the DNS record ever changes, re-check
+**Domain (done).** `rotmancommercetech.com` points at GitHub Pages: four `A`
+records (185.199.108–111.153) on the apex and a CNAME `www` →
+`rotmancommercetech.github.io`, all managed in the Wix DNS panel (Wix still
+holds the registration). The `CNAME` file in the repo root tells the workflow
+to build for `/`, and *Settings → Pages* carries the domain with HTTPS
+enforced. `www` redirects to the bare domain. If DNS ever changes, re-check
 *Settings → Pages*, and add the domain under *Verified domains* on the
 organization so nobody else can claim it.
 
@@ -218,21 +220,10 @@ reference in the docs and scripts.
 **Cloudflare Pages (optional).** Build command `node scripts/build.mjs`,
 output `dist`. `_headers` is honoured there for real HTTP headers.
 
-**Replacing the Wix site.** This repo already has the home, about and events
-pages. To make it *the* site, point the main domain here: in Wix DNS, replace
-the apex `A` records with GitHub Pages' four addresses (185.199.108.153,
-185.199.109.153, 185.199.110.153, 185.199.111.153), add a CNAME `www` →
-`rotmancommercetech.github.io`, change the custom domain in *Settings → Pages*
-to `rotmancommercetech.com`, and put that in the `CNAME` file. Wix will warn
-that its site disconnects; that is the point. Keep `about.` as a redirect or
-drop it. Until then, the Wix site can link here, or embed a page:
-
-```html
-<iframe src="https://about.rotmancommercetech.com/teams/marketing/"
-        style="width:100%;height:100vh;border:0" loading="lazy" title="Marketing team"></iframe>
-```
-
-The headers allow embedding from `rotmancommercetech.com` and Wix domains only.
+**The Wix site is retired.** The domain now serves this repo; the Wix site
+still exists in the Wix dashboard but is unreachable. The old `about.`
+subdomain is no longer served (one custom domain per Pages site); delete
+its DNS record, or point it at a tiny redirect site if old links matter.
 
 ### Security
 
