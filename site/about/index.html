@@ -99,8 +99,8 @@
       </div>
     </section>
 
-    <!-- LEADERSHIP: put the current President and Vice President here. Replace the initials or use
-         <img class="rcet-avatar" src="/shared/assets/people/….jpg" alt=""> for a photo. -->
+    <!-- LEADERSHIP. Photos: drop forest-li.jpg and jeffrey-zhang.jpg into shared/assets/people/ (square crops,
+         ≤ 800px). Until a file exists, the script at the bottom shows initials instead of a broken image. -->
     <section class="rcet-section rcet-section--alt" id="leadership">
       <div class="rcet-container">
         <div class="rcet-section-head">
@@ -108,12 +108,12 @@
         </div>
         <div class="rcet-grid rcet-grid--2">
           <div class="rcet-card rcet-person lead-card" data-reveal style="--i:0">
-            <span class="rcet-avatar">P</span>
-            <div><b>President</b><span>Name to be confirmed</span><p>Sets the direction of the club and represents RCET to partners and the university.</p></div>
+            <img class="rcet-avatar" src="/shared/assets/people/forest-li.jpg" alt="Forest Li" width="72" height="72" data-initials="FL">
+            <div><b>Forest Li</b><span>President</span><p>Sets the direction of the club and represents RCET to partners and the university.</p></div>
           </div>
           <div class="rcet-card rcet-person lead-card" data-reveal style="--i:1">
-            <span class="rcet-avatar">VP</span>
-            <div><b>Vice President</b><span>Name to be confirmed</span><p>Runs the five departments day to day and keeps the calendar moving.</p></div>
+            <img class="rcet-avatar" src="/shared/assets/people/jeffrey-zhang.jpg" alt="Jeffrey Zhang" width="72" height="72" data-initials="JZ">
+            <div><b>Jeffrey Zhang</b><span>Vice President</span><p>Runs the five departments day to day and keeps the calendar moving.</p></div>
           </div>
         </div>
 
@@ -140,6 +140,14 @@
   </main>
 
   <rcet-footer></rcet-footer>
+
+  <script>
+    // A missing portrait becomes an initials badge instead of a broken image.
+    for (const img of document.querySelectorAll('img.rcet-avatar[data-initials]')) {
+      const swap = () => { const s = document.createElement('span'); s.className = 'rcet-avatar'; s.textContent = img.dataset.initials; img.replaceWith(s); };
+      img.complete && img.naturalWidth === 0 ? swap() : img.addEventListener('error', swap, { once: true });
+    }
+  </script>
 
 </body>
 </html>

@@ -54,7 +54,7 @@ export async function build({ quiet = false } = {}) {
     const index = path.join(ROOT, 'members', login, 'index.html');
     if (!existsSync(index)) { log(`  skip members/${login} — no index.html`); continue; }
     const meta = pageMeta(await readFile(index, 'utf8'));
-    members.push({ login, title: meta.title || login });
+    members.push({ login, title: meta.title || login, link: meta.link });
   }
 
   for (let i = 0; ; i++) { // a concurrent rebuild (serve.mjs) can race the delete
@@ -207,9 +207,9 @@ function directoryPage(teams, members) {
   const built = teams.filter((t) => t.built).length;
   const cards = teamCards(teams);
 
-  const memberCards = members.map((m, i) => `      <a class="rcet-card member-card" href="/u/${esc(m.login)}/" data-reveal style="--i:${i}">
+  const memberCards = members.map((m, i) => `      <a class="rcet-card member-card" href="${m.link ? esc(m.link) : `/u/${esc(m.login)}/`}"${m.link ? ' rel="noopener"' : ''} data-reveal style="--i:${i}">
         <span class="rcet-mono">@${esc(m.login)}</span>
-        <span class="t">${esc(m.title)}</span>
+        <span class="t">${esc(m.title)}</span>${m.link ? `\n        <span class="rcet-muted" style="font-size:13px">${esc(m.link.replace(/^https?:\/\//, '').replace(/\/$/, ''))} ↗</span>` : ''}
       </a>`).join('\n');
 
   const body = `

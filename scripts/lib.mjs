@@ -91,8 +91,9 @@ export function pageMeta(html) {
   const t = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   const d = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i)
          || html.match(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
+  const l = html.match(/<meta\s+name=["']rcet-link["']\s+content=["'](https?:\/\/[^"']+)["']/i);
   const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
-  return { title: clean(t && t[1]).replace(/\s*\|\s*RCET\s*$/i, ''), description: clean(d && d[1]) };
+  return { title: clean(t && t[1]).replace(/\s*\|\s*RCET\s*$/i, ''), description: clean(d && d[1]), link: l ? l[1] : '' };
 }
 
 // Folders under members/ or teams/ that are real pages (skip _template etc.).
