@@ -6,7 +6,7 @@ absolute path, e.g. `<img src="/shared/assets/pillars/data-ai.jpg" alt="…">`.
 
 | Folder | What | Notes |
 |---|---|---|
-| `brand/` | `logo.png` (1024), `logo-256.png`, `hero-bigbang.jpg` | The blue circuit-head mark is the logo; the header uses `logo-256.png`. The old site had no image wordmark — the name is always set in type. |
+| `brand/` | `logo.png` (1024), `logo-256.png`, `hero-toronto.jpg`, `og-image.jpg`, `hero-bigbang.jpg` | The blue circuit-head mark is the logo; the header uses `logo-256.png`. `hero-toronto.jpg` (home hero and share image) is Frank Huang's blue-hour Toronto skyline, Unsplash licence, https://unsplash.com/photos/KJWcpt41ayw. `hero-bigbang.jpg` is the old site's hero, no longer used. The old site had no image wordmark — the name is always set in type. |
 | `pillars/` | One poster per pillar (1080×1080) | RCET-made: Data & AI, Extended Reality, Sustainable Technologies, Computing & Connectivity, Information & Security. |
 | `events/` | Photos and posters from past events | Commerce & Connection (Oct 2024), AI Transformation Competition + workshops (Nov 2024), Northbound (poster, venue, white pixel banner), Tech & Tonic (Nov 2025, from Instagram), Ship & Sip and the mentorship program posters (2026, from Instagram). |
 | `partners/` | Partner and academic logos | Microsoft, Meta, AWS, SAP, Vanguard, Cohere, BDO, Harvard, Columbia, Stanford, Yale; `-white` variants of Meta and Microsoft for dark backgrounds. Use only where a real partnership applies. |

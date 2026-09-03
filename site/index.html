@@ -23,7 +23,7 @@
     .home-hero h1 { font-size: clamp(40px, 6vw, 74px); }
     .home-hero .rcet-lede { max-width: 42ch; }
     .home-hero__frame { overflow: hidden; aspect-ratio: 4 / 3; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
-    .home-hero__art { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+    .home-hero__art { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
     .pillar h3 { font-size: 19px; margin: 14px 0 6px; }
     .pillar p { color: var(--rcet-muted); margin: 0; font-size: 15px; }
     .pillar .rcet-tag { margin-top: 12px; }
@@ -37,7 +37,7 @@
     .event-card time { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--rcet-accent); }
     .event-card h3 { font-size: 18px; margin: 6px 0 4px; }
     .event-card p { margin: 0; color: var(--rcet-muted); font-size: 15px; }
-    @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; } .home-hero__frame { display: none; } }
+    @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; } .home-hero__frame { aspect-ratio: 16 / 10; } }
   </style>
 </head>
 <body>
@@ -58,7 +58,7 @@
             <a class="rcet-btn rcet-btn--ghost" href="/events/">See past events</a>
           </div>
         </div>
-        <div class="home-hero__frame rcet-cinematic"><img class="home-hero__art" src="/shared/assets/events/2025-11-tech-and-tonic-1.jpg" alt="A full room at Tech &amp; Tonic, RCET's evening mixer" width="1000" height="750"></div>
+        <div class="home-hero__frame rcet-cinematic"><img class="home-hero__art" src="/shared/assets/brand/hero-toronto.jpg" alt="The Toronto skyline and CN Tower at blue hour, seen across the water" width="1000" height="750"></div>
       </div>
     </section>
 
