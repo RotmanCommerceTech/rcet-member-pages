@@ -1,0 +1,48 @@
+name: Deploy site
+
+# Publishes dist/ to GitHub Pages on every push to main.
+# With a CNAME file in the repo root (custom domain) the site is served from /;
+# without one it lives at https://<owner>.github.io/<repo>/ and BASE_PATH handles the prefix.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/configure-pages@v5
+      - name: Build
+        run: |
+          if [ -f CNAME ]; then export BASE_PATH=""; else export BASE_PATH="/${GITHUB_REPOSITORY#*/}"; fi
+          echo "BASE_PATH=${BASE_PATH:-/}"
+          node scripts/build.mjs
+          [ -f CNAME ] && cp CNAME dist/CNAME
+          touch dist/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

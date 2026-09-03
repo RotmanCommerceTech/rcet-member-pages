@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Bulk-invite workshop participants as repo collaborators.
 #
-#   scripts/add-collaborators.sh participants.txt          # invite
-#   DRY_RUN=1 scripts/add-collaborators.sh participants.txt # preview only
+#   scripts/add-collaborators.sh --from-teams               # everyone in teams.json
+#   scripts/add-collaborators.sh participants.txt          # a plain list
+#   DRY_RUN=1 scripts/add-collaborators.sh --from-teams     # preview only
 #
 # participants.txt: one GitHub username per line. Blank lines and lines
 # starting with # are ignored. Re-running is safe — existing collaborators
@@ -13,10 +14,15 @@
 set -uo pipefail
 
 REPO="${REPO:-Slimebro1231/rcet-member-pages}"
-FILE="${1:?usage: $0 <file-with-usernames>}"
+FILE="${1:?usage: $0 <file-with-usernames> | --from-teams}"
 PERM="${PERM:-push}"
 
 command -v gh >/dev/null || { echo "gh CLI not found"; exit 1; }
+if [ "$FILE" = "--from-teams" ]; then
+  FILE="$(mktemp)"
+  node -e "const r=JSON.parse(require('fs').readFileSync('$(dirname "$0")/../teams.json','utf8'));console.log([...new Set(r.teams.flatMap(t=>t.members))].join('\n'))" > "$FILE"
+  [ -s "$FILE" ] || { echo "No members listed in teams.json yet."; exit 1; }
+fi
 [ -f "$FILE" ] || { echo "No such file: $FILE"; exit 1; }
 
 invited=0; skipped=0; failed=0

@@ -1,0 +1,5 @@
+---
+description: RCET team pages — folder ownership, CI rules and the shared design system
+alwaysApply: true
+---
+Read and follow @AGENTS.md before changing anything. Only edit inside the user's own team folder (teams/<slug>/) or member folder (members/<github-login>/). Keep the shared header/footer and use the var(--rcet-*) tokens.

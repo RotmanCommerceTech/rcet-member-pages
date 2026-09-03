@@ -1,0 +1,1 @@
+Read and follow AGENTS.md in the repository root before making changes. Only edit inside the user's own team folder (`teams/<slug>/`) or member folder (`members/<github-login>/`). Keep the shared `<rcet-header>` / `<rcet-footer>` and use the `var(--rcet-*)` design tokens from `shared/rcet.css`.

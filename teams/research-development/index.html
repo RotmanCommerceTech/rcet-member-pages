@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The title and description show up on the team directory at / -->
+  <title>Research & Development | RCET</title>
+  <meta name="description" content="Research briefs, the blog, and the technical depth behind each of the five pillars.">
+
+  <!-- Shared RCET design system: colours, type, header and footer. Keep these two lines. -->
+  <link rel="stylesheet" href="/shared/rcet.css">
+  <script src="/shared/rcet.js" defer></script>
+
+  <style>
+    /* Page-specific styles live here. Build on the tokens (var(--rcet-*)) and the page
+       will match the rest of the site. Prefer a dark page? Add data-theme="dark" to <html>. */
+    .hero-grid { display: grid; gap: 48px; grid-template-columns: 1.15fr .85fr; align-items: center; }
+    .hero-art {
+      aspect-ratio: 1; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow);
+      background:
+        radial-gradient(circle at 28% 30%, var(--rcet-cyan) 0, transparent 52%),
+        radial-gradient(circle at 74% 72%, var(--rcet-blue) 0, transparent 55%),
+        var(--rcet-navy);
+    }
+    .highlight { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid var(--rcet-line); }
+    .highlight:last-of-type { border-bottom: 1px solid var(--rcet-line); }
+    .highlight time { font-family: var(--rcet-font-mono); font-size: 13px; color: var(--rcet-muted); padding-top: 4px; }
+    .highlight h3 { font-size: 19px; margin-bottom: 4px; }
+    .highlight p  { margin: 0; color: var(--rcet-muted); }
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art  { max-width: 320px; }
+      .highlight { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <rcet-header team="Research & Development"></rcet-header>
+
+  <main>
+
+    <!-- HERO: who you are in one breath ----------------------------------- -->
+    <section class="rcet-hero">
+      <div class="rcet-container hero-grid">
+        <div>
+          <p class="rcet-eyebrow">RCET · Research & Development</p>
+          <h1>Research & Development</h1>
+          <p class="rcet-lede">Research briefs, the blog, and the technical depth behind each of the five pillars.</p>
+          <div class="rcet-btn-row">
+            <a class="rcet-btn rcet-btn--primary" href="#team">Meet the team</a>
+            <a class="rcet-btn rcet-btn--ghost" href="#contact">Work with us</a>
+          </div>
+        </div>
+        <!-- Swap this for a real photo: <img class="hero-art" src="./team.jpg" alt="The team at ..."> -->
+        <div class="hero-art" role="img" aria-label="Abstract gradient in RCET colours"></div>
+      </div>
+    </section>
+
+    <!-- NUMBERS: three or four figures you are proud of ---------------------- -->
+    <section class="rcet-section rcet-section--alt">
+      <div class="rcet-container rcet-grid rcet-grid--4">
+        <div class="rcet-stat"><b data-count="12">0</b><span>Events this year</span></div>
+        <div class="rcet-stat"><b data-count="6">0</b><span>Team members</span></div>
+        <div class="rcet-stat"><b data-count="3">0</b><span>Partner companies</span></div>
+        <div class="rcet-stat"><b data-count="200" data-suffix="+">0</b><span>Students reached</span></div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO ------------------------------------------------------------ -->
+    <section class="rcet-section">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div>
+            <p class="rcet-eyebrow">What we do</p>
+            <h2>Three things we own</h2>
+          </div>
+          <p>Replace these with the real responsibilities of your team, in plain language.</p>
+        </div>
+        <div class="rcet-grid rcet-grid--3">
+          <div class="rcet-card">
+            <span class="rcet-tag">01</span>
+            <h3>First responsibility</h3>
+            <p>One or two sentences on what this involves and why a member should care.</p>
+          </div>
+          <div class="rcet-card">
+            <span class="rcet-tag">02</span>
+            <h3>Second responsibility</h3>
+            <p>Concrete beats abstract: name the event, the deck, the sponsor, the tool.</p>
+          </div>
+          <div class="rcet-card">
+            <span class="rcet-tag">03</span>
+            <h3>Third responsibility</h3>
+            <p>If you only did one thing this year that mattered, this is where it goes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM: real names, real roles ----------------------------------------- -->
+    <section class="rcet-section rcet-section--alt" id="team">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div>
+            <p class="rcet-eyebrow">The team</p>
+            <h2>Who we are</h2>
+          </div>
+        </div>
+        <div class="rcet-grid rcet-grid--3">
+          <!-- Use initials, or replace the <span> with <img class="rcet-avatar" src="./name.jpg" alt=""> -->
+          <div class="rcet-card rcet-person"><span class="rcet-avatar">AB</span><div><b>Person Name</b><span>Director</span></div></div>
+          <div class="rcet-card rcet-person"><span class="rcet-avatar">CD</span><div><b>Person Name</b><span>Director</span></div></div>
+          <div class="rcet-card rcet-person"><span class="rcet-avatar">EF</span><div><b>Person Name</b><span>Manager</span></div></div>
+          <div class="rcet-card rcet-person"><span class="rcet-avatar">GH</span><div><b>Person Name</b><span>Manager</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS: a short, dated list of things you shipped ----------------- -->
+    <section class="rcet-section">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div>
+            <p class="rcet-eyebrow">Highlights</p>
+            <h2>What we've shipped</h2>
+          </div>
+        </div>
+        <div class="highlight">
+          <time datetime="2026-09">Sep 2026</time>
+          <div><h3>Something you did</h3><p>What it was, who it was for, what came out of it.</p></div>
+        </div>
+        <div class="highlight">
+          <time datetime="2026-03">Mar 2026</time>
+          <div><h3>Something else you did</h3><p>Link to it if it lives somewhere: <a href="https://www.rotmancommercetech.com/">rotmancommercetech.com</a>.</p></div>
+        </div>
+        <div class="highlight">
+          <time datetime="2025-11">Nov 2025</time>
+          <div><h3>And one more</h3><p>Three to six of these is the sweet spot.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT ----------------------------------------------------------------- -->
+    <section class="rcet-section rcet-section--dark" id="contact">
+      <div class="rcet-container rcet-center">
+        <p class="rcet-eyebrow">Get involved</p>
+        <h2>Want to work with Research & Development?</h2>
+        <p class="rcet-lede" style="margin-inline: auto">Tell people what you are looking for: new members, sponsors, speakers, collaborators.</p>
+        <div class="rcet-btn-row" style="justify-content: center">
+          <a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com?subject=Research & Development%20team">Email us</a>
+          <a class="rcet-btn" href="https://www.rotmancommercetech.com/">Main RCET site</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <rcet-footer team="Research & Development"></rcet-footer>
+
+  <script>
+    // Counts the numbers up when they scroll into view. Plain JS, no libraries.
+    // Delete this block if you don't want it.
+    const counters = document.querySelectorAll('.rcet-stat b[data-count]');
+    const io = new IntersectionObserver((entries) => {
+      for (const { isIntersecting, target } of entries) {
+        if (!isIntersecting) continue;
+        io.unobserve(target);
+        const end = Number(target.dataset.count), suffix = target.dataset.suffix || '', t0 = performance.now();
+        const tick = (t) => {
+          const p = Math.min(1, (t - t0) / 900), eased = 1 - Math.pow(1 - p, 3);
+          target.textContent = Math.round(end * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: .6 });
+    counters.forEach((c) => io.observe(c));
+  </script>
+
+</body>
+</html>

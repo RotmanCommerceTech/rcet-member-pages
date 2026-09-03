@@ -1,4 +1,4 @@
-name: Validate member page
+name: Validate page
 
 on:
   pull_request:
@@ -20,13 +20,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Run checks
         env:
           AUTHOR: ${{ github.event.pull_request.user.login }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: bash scripts/validate-pr.sh
+        run: node scripts/validate-pr.mjs
 
   build:
     name: Site builds

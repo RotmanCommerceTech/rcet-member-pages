@@ -1,18 +1,27 @@
 # Cloudflare Pages headers.
-# Participant code is untrusted by design: it runs on this origin only, which is
-# deliberately separate from the main club site so it can never touch its cookies
-# or storage. The CSP below is the second line of defence.
+# Team and member code is untrusted by design: it runs on this origin only, which
+# is deliberately separate from the main club site so it can never touch its
+# cookies or storage. The CSP below is the second line of defence.
 #
 #   'unsafe-inline' for scripts/styles is intentional — people write inline
-#   <script> and that is the whole point of the event.
+#   <script> and that is the whole point.
 #   The rules doing real work are connect-src (no exfiltration), form-action
-#   (no credential-harvesting posts), and base-uri / object-src.
+#   (no credential-harvesting posts), frame-src, base-uri and object-src.
+#   frame-ancestors lets the main Wix site embed these pages in an iframe, and
+#   nobody else. build.mjs also injects each page's CSP as a <meta> tag, so the
+#   sandbox holds on hosts that ignore this file (GitHub Pages).
 
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
-  X-Frame-Options: SAMEORIGIN
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Content-Security-Policy: frame-ancestors 'self' https://rotmancommercetech.com https://*.rotmancommercetech.com https://*.wixsite.com https://*.wix.com
+
+/teams/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'
 
 /u/*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'
+
+/shared/*
+  Cache-Control: public, max-age=300

@@ -1,0 +1,214 @@
+/* ==========================================================================
+   RCET shared design system  —  served at /shared/rcet.css
+   Every team page loads this so the site reads as one site.
+   It is the source of truth for colour, type, spacing and the shared
+   header/footer. Team pages override things in their own <style>;
+   nobody edits this file from a team folder (CI will reject it).
+
+   Order: tokens → base → layout → components → utilities
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap");
+
+/* ------------------------------------------------------------------ tokens */
+:root {
+  /* Brand colours (from the main RCET site) */
+  --rcet-navy: #192e4f;
+  --rcet-blue: #1a6aff;
+  --rcet-cyan: #1ad7ff;
+  --rcet-pale: #d3e4ff;
+  --rcet-ink:  #0f172a;
+
+  /* Surfaces — light theme is the default and matches rotmancommercetech.com */
+  --rcet-bg:        #ffffff;
+  --rcet-bg-alt:    #f3f6fb;
+  --rcet-surface:   #ffffff;
+  --rcet-line:      #e2e8f0;
+  --rcet-fg:        var(--rcet-ink);
+  --rcet-muted:     #5b6577;
+  --rcet-accent:    var(--rcet-blue);
+  --rcet-accent-fg: #ffffff;
+  --rcet-link:      var(--rcet-blue);
+
+  /* Type */
+  --rcet-font-display: "Inter Tight", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --rcet-font-body:    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --rcet-font-mono:    "Azeret Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Shape & rhythm */
+  --rcet-radius:    12px;
+  --rcet-radius-sm: 8px;
+  --rcet-shadow:    0 1px 2px rgba(15, 23, 42, .05), 0 10px 28px -14px rgba(25, 46, 79, .22);
+  --rcet-container: 1120px;
+  --rcet-gutter:    24px;
+  --rcet-section-y: clamp(56px, 8vw, 96px);
+}
+
+/* Opt in with <html data-theme="dark"> */
+[data-theme="dark"] {
+  --rcet-bg:        #0b1220;
+  --rcet-bg-alt:    #101a2e;
+  --rcet-surface:   #121e33;
+  --rcet-line:      #223252;
+  --rcet-fg:        #e8eef8;
+  --rcet-muted:     #9aa8bd;
+  --rcet-accent:    var(--rcet-cyan);
+  --rcet-accent-fg: #06101f;
+  --rcet-link:      #7cc4ff;
+  --rcet-shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 14px 36px -14px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+/* -------------------------------------------------------------------- base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--rcet-bg);
+  color: var(--rcet-fg);
+  font: 400 17px/1.65 var(--rcet-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 {
+  font-family: var(--rcet-font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 .5em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 800; }
+h2 { font-size: clamp(28px, 3.6vw, 40px); }
+h3 { font-size: 22px; letter-spacing: -0.01em; }
+h4 { font-size: 17px; }
+p  { margin: 0 0 1em; }
+a  { color: var(--rcet-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+img, video { max-width: 100%; height: auto; display: block; }
+::selection { background: var(--rcet-cyan); color: var(--rcet-navy); }
+:focus-visible { outline: 3px solid var(--rcet-cyan); outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ layout */
+.rcet-container { max-width: var(--rcet-container); margin: 0 auto; padding: 0 var(--rcet-gutter); }
+.rcet-section   { padding: var(--rcet-section-y) 0; }
+.rcet-section--alt  { background: var(--rcet-bg-alt); }
+.rcet-section--dark {
+  background: var(--rcet-navy); color: #fff;
+  --rcet-fg: #fff; --rcet-muted: #b7c5dc;
+  --rcet-surface: rgba(255, 255, 255, .06); --rcet-line: rgba(255, 255, 255, .14);
+  --rcet-link: var(--rcet-cyan); --rcet-accent: var(--rcet-cyan); --rcet-accent-fg: var(--rcet-navy);
+}
+.rcet-hero  { padding: clamp(64px, 10vw, 128px) 0 var(--rcet-section-y); }
+.rcet-lede  { font-size: clamp(18px, 2vw, 22px); color: var(--rcet-muted); max-width: 60ch; }
+.rcet-prose { max-width: 68ch; }
+.rcet-grid    { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.rcet-grid--2 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
+.rcet-grid--3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.rcet-grid--4 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.rcet-section-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+.rcet-section-head h2 { margin: 0; }
+.rcet-section-head p  { margin: 0; color: var(--rcet-muted); max-width: 48ch; }
+
+/* -------------------------------------------------------------- components */
+/* Small mono label above a heading: <p class="rcet-eyebrow">What we do</p> */
+.rcet-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; margin: 0 0 14px;
+  font-family: var(--rcet-font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--rcet-accent);
+}
+.rcet-eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
+
+/* Card. Use <a class="rcet-card"> for a clickable one. */
+.rcet-card {
+  background: var(--rcet-surface); border: 1px solid var(--rcet-line);
+  border-radius: var(--rcet-radius); padding: 24px; box-shadow: var(--rcet-shadow);
+}
+.rcet-card h3 { margin-top: 0; }
+.rcet-card > :last-child { margin-bottom: 0; }
+a.rcet-card { display: block; color: inherit; text-decoration: none; transition: transform .15s ease, border-color .15s ease; }
+a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent); }
+
+/* Buttons: .rcet-btn (outline) .rcet-btn--primary (filled) .rcet-btn--ghost (quiet) */
+.rcet-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 15px/1 var(--rcet-font-body); padding: 14px 22px; border-radius: 999px;
+  border: 1.5px solid var(--rcet-accent); color: var(--rcet-accent); background: transparent;
+  text-decoration: none; cursor: pointer; transition: background .15s, color .15s, transform .15s, filter .15s;
+}
+.rcet-btn:hover { transform: translateY(-1px); text-decoration: none; }
+.rcet-btn--primary { background: var(--rcet-accent); color: var(--rcet-accent-fg); }
+.rcet-btn--primary:hover { filter: brightness(1.08); }
+.rcet-btn--ghost { border-color: var(--rcet-line); color: var(--rcet-fg); }
+.rcet-btn--ghost:hover { border-color: var(--rcet-accent); }
+.rcet-btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* Pill tag: <span class="rcet-tag">Data & AI</span> */
+.rcet-tag {
+  display: inline-block; font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .04em;
+  padding: 4px 10px; border-radius: 999px; background: var(--rcet-pale); color: var(--rcet-navy);
+}
+[data-theme="dark"] .rcet-tag, .rcet-section--dark .rcet-tag { background: rgba(26, 215, 255, .14); color: var(--rcet-cyan); }
+
+/* Big number: <div class="rcet-stat"><b>27</b><span>events</span></div> */
+.rcet-stat { display: grid; gap: 4px; }
+.rcet-stat b    { font: 800 clamp(40px, 5vw, 56px)/1 var(--rcet-font-display); letter-spacing: -.03em; color: var(--rcet-accent); }
+.rcet-stat span { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--rcet-muted); }
+
+/* Person row: avatar (initials or <img>) + name + role */
+.rcet-person { display: flex; gap: 16px; align-items: center; }
+.rcet-avatar {
+  flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover;
+  display: grid; place-items: center; background: var(--rcet-navy); color: #fff;
+  font: 700 18px/1 var(--rcet-font-display); letter-spacing: -.02em;
+}
+.rcet-person b    { display: block; font-weight: 600; }
+.rcet-person span { color: var(--rcet-muted); font-size: 15px; }
+
+/* Site header — rendered by <rcet-header> from /shared/rcet.js */
+.rcet-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--rcet-bg);
+  background: color-mix(in srgb, var(--rcet-bg) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--rcet-line);
+}
+.rcet-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; }
+.rcet-brand { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.rcet-brand__logo { flex: none; width: 36px; height: 36px; object-fit: contain; }
+.rcet-brand__text   { font: 600 13px/1.15 var(--rcet-font-body); letter-spacing: .01em; color: var(--rcet-muted); }
+.rcet-brand__text b { display: block; font-weight: 700; color: var(--rcet-fg); }
+.rcet-header__nav { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; }
+.rcet-header__nav a { color: var(--rcet-fg); text-decoration: none; opacity: .85; }
+.rcet-header__nav a:hover { opacity: 1; color: var(--rcet-accent); }
+.rcet-header__current {
+  font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--rcet-accent); padding-left: 20px; border-left: 1px solid var(--rcet-line);
+}
+@media (max-width: 560px) {
+  .rcet-header__current { display: none; }
+  .rcet-brand__text { font-size: 12px; }
+  .rcet-header__nav { gap: 14px; }
+}
+
+/* Site footer — rendered by <rcet-footer> from /shared/rcet.js */
+.rcet-footer {
+  border-top: 1px solid var(--rcet-line); margin-top: var(--rcet-section-y);
+  padding: 48px 0 40px; font-size: 14px; color: var(--rcet-muted);
+}
+.rcet-footer__inner { display: grid; gap: 24px; grid-template-columns: 1fr auto; align-items: start; }
+.rcet-footer__inner p { margin: 8px 0 0; }
+.rcet-footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.rcet-footer a   { color: inherit; }
+.rcet-footer__note { grid-column: 1 / -1; padding-top: 20px; border-top: 1px dashed var(--rcet-line); font-size: 13px; }
+@media (max-width: 640px) { .rcet-footer__inner { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------------- utilities */
+.rcet-muted  { color: var(--rcet-muted); }
+.rcet-accent { color: var(--rcet-accent); }
+.rcet-mono   { font-family: var(--rcet-font-mono); }
+.rcet-center { text-align: center; }
+.rcet-visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

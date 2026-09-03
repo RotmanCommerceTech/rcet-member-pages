@@ -1,0 +1,36 @@
+{
+  "$comment": "Admin-owned. Lists every team and the GitHub logins allowed to publish to teams/<slug>/. Logins are case-insensitive. A team with no members can only be edited by admins.",
+  "admins": ["Slimebro1231"],
+  "teams": [
+    {
+      "slug": "marketing",
+      "name": "Marketing",
+      "blurb": "Brand, content and the channels that put RCET in front of Rotman Commerce students.",
+      "members": []
+    },
+    {
+      "slug": "research-development",
+      "name": "Research & Development",
+      "blurb": "Research briefs, the blog, and the technical depth behind each of the five pillars.",
+      "members": []
+    },
+    {
+      "slug": "operations",
+      "name": "Operations",
+      "blurb": "Logistics, venues and the run-of-show behind every event RCET hosts.",
+      "members": []
+    },
+    {
+      "slug": "business-development",
+      "name": "Business Development",
+      "blurb": "Sponsors, partners and the companies that show up for our members.",
+      "members": []
+    },
+    {
+      "slug": "finance",
+      "name": "Finance",
+      "blurb": "Budgets, funding and keeping the club sustainable year over year.",
+      "members": []
+    }
+  ]
+}
