@@ -178,37 +178,18 @@ gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/pages -f build_type=wo
 The site appears at https://about.rotmancommercetech.com/ about a minute
 after every push to `main`.
 
-**Custom domain (do this before linking from the main site).** Nobody should
-see a personal GitHub username in the club's URL.
+**Custom domain (done).** `about.rotmancommercetech.com` is a CNAME in Wix DNS
+pointing at `rotmancommercetech.github.io`; the `CNAME` file in the repo root
+tells the workflow to build for `/`, and the Pages settings carry the domain
+with HTTPS enforced. If the DNS record ever changes, re-check
+*Settings → Pages*, and add the domain under *Verified domains* on the
+organization so nobody else can claim it.
 
-1. In Wix → Domains → *rotmancommercetech.com* → Manage DNS records, add a
-   **CNAME** record: host `about`, value `rotmancommercetech.github.io` (the current
-   Pages host; check the Pages settings after any repo move).
-2. Wait until `dig +short about.rotmancommercetech.com` returns something.
-3. Add a file named `CNAME` at the repo root containing
-   `about.rotmancommercetech.com`, then tell GitHub:
-
-   ```bash
-   gh api -X PUT repos/RotmanCommerceTech/rcet-member-pages/pages -f cname=about.rotmancommercetech.com -F https_enforced=true
-   ```
-
-   The workflow sees the file and builds for `/` instead of `/rcet-member-pages/`.
-   HTTPS provisions itself within about an hour. Also add the domain under
-   GitHub *Settings → Pages → Verified domains* so nobody else can claim it.
-
-**Move the repo to a club organization (recommended).** The site should
-belong to RCET, not to whoever set it up. Create a free GitHub organization
-(*New organization → Free*, e.g. `RotmanCommerceTech`), then:
-
-```bash
-gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/transfer -f new_owner=<OrgName>
-scripts/set-repo.sh <OrgName>/rcet-member-pages
-```
-
-The transfer keeps history, PRs, branch protection and redirects the old URLs.
-`scripts/set-repo.sh` rewrites every reference in the docs and scripts; commit
-and push the result. Make the current execs organization owners so admin
-access survives graduation.
+**Organization.** The repo lives in the `RotmanCommerceTech` organization so
+it belongs to the club, not to a person. Keep at least two current execs as
+organization owners so admin access survives graduation. If the repo is ever
+moved or renamed again, `scripts/set-repo.sh <owner/repo>` rewrites every
+reference in the docs and scripts.
 
 **Cloudflare Pages (optional).** Build command `node scripts/build.mjs`,
 output `dist`. `_headers` is honoured there for real HTTP headers.
