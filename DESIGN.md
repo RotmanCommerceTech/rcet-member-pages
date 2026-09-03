@@ -132,7 +132,8 @@ All optional, all in `shared/rcet.css` + `rcet.js`, all off unless you use them:
   network of dots behind the hero. Off under reduced motion; pauses off-screen.
 - **Reveal on scroll** — add `data-reveal` to cards; `style="--i:2"` staggers siblings.
 - **Scroll-lit statement** — put `data-words` on a big heading; its words brighten one by one
-  as the reader scrolls. Best once per page, in a dark section (see the About page).
+  as the reader scrolls. Best once per page, in a dark section (see the About page). If the
+  heading is pinned with `position: sticky`, add `data-words-track` to its section.
 - **Marquee** — `.rcet-marquee > .rcet-marquee__track` with the logos repeated twice; pauses on hover.
 - **Count-up numbers** — `<b data-count="130" data-suffix="+">130+</b>` inside `.rcet-stat`; `data-format="k"` shows 1.8k.
 - **`.rcet-cinematic`** on any image for the bigger radius and soft shadow; `.rcet-grid--wrap-center` on a

@@ -125,17 +125,28 @@
   };
 
   // Scroll-lit statement: <h2 data-words>…</h2> — words brighten one by one as the block moves up the viewport.
+  // If the heading is pinned (position: sticky), put data-words-track on the section so progress follows the
+  // section instead of the heading, which stops moving once it sticks.
   const words = (el) => {
     const parts = el.textContent.trim().split(/\s+/);
     el.innerHTML = parts.map((w) => `<span class="rcet-word">${esc(w)}</span>`).join(' ');
     const spans = el.querySelectorAll('.rcet-word');
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { spans.forEach((sp) => sp.classList.add('on')); return; }
     let ticking = false;
+    const track = el.closest('[data-words-track]');
     const update = () => {
       ticking = false;
-      const r = el.getBoundingClientRect(), vh = innerHeight;
-      const start = vh * 0.9, end = vh * 0.3;                 // lights from 10% in view to 70% up
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end + r.height * 0.6)));
+      const vh = innerHeight;
+      let p;
+      if (track) {                                            // section-driven: fully lit by the time the section top reaches ~12% of the viewport
+        const t = track.getBoundingClientRect().top;
+        p = (vh * 0.85 - t) / (vh * 0.73);
+      } else {
+        const r = el.getBoundingClientRect();
+        const start = vh * 0.9, end = vh * 0.3;               // lights from 10% in view to 70% up
+        p = (start - r.top) / (start - end + r.height * 0.6);
+      }
+      p = Math.min(1, Math.max(0, p));
       const n = Math.round(p * spans.length);
       spans.forEach((sp, i) => sp.classList.toggle('on', i < n));
     };
