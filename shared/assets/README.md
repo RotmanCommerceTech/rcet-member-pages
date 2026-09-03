@@ -12,7 +12,7 @@ absolute path, e.g. `<img src="/shared/assets/pillars/data-ai.jpg" alt="…">`.
 | `partners/` | Partner and academic logos | Microsoft, Meta, AWS, SAP, Vanguard, Cohere, BDO, Harvard, Columbia, Stanford, Yale; `-white` variants of Meta and Microsoft for dark backgrounds. Use only where a real partnership applies. |
 | `decor/` | Abstract blue renders, Toronto map, CN Tower timeline | The old site's decorative art; on-brand backgrounds and accents. |
 | `icons.svg` | Lucide icon sprite (ISC) | `<svg class="rcet-icon"><use href="/shared/assets/icons.svg#megaphone"/></svg>`; symbol ids are the Lucide names. |
-| `people/` | `portrait-about-page.jpg` | Portrait from the old About page — confirm who it is before using. |
+| `people/` | `forest-li.jpg` (President), `jeffrey-zhang.jpg` (Vice President), `portrait-about-page.jpg` | Leadership portraits used on the About page; the last one is from the old site, identity unconfirmed. |
 
 Keep additions small (photos ≤ 1600px, ≈ 300 KB). Admins edit this folder;
 team folders can't.
