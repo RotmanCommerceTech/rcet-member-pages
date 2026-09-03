@@ -68,6 +68,8 @@ encode that. Load them in `<head>` (the starter page already does):
 <script src="/shared/rcet.js" defer></script>
 ```
 
+The starter page's `<head>` also carries the site favicon links; keep them.
+
 Keep the shared header and footer as the first and last elements in `<body>`,
 with the team's display name:
 

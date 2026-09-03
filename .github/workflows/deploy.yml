@@ -28,8 +28,8 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Build
         run: |
-          if [ -f CNAME ]; then export BASE_PATH=""; else export BASE_PATH="/${GITHUB_REPOSITORY#*/}"; fi
-          echo "BASE_PATH=${BASE_PATH:-/}"
+          if [ -f CNAME ]; then export BASE_PATH="" SITE_URL="https://$(cat CNAME)"; else export BASE_PATH="/${GITHUB_REPOSITORY#*/}" SITE_URL="https://${GITHUB_REPOSITORY_OWNER,,}.github.io"; fi
+          echo "BASE_PATH=${BASE_PATH:-/}  SITE_URL=${SITE_URL}"
           node scripts/build.mjs
           [ -f CNAME ] && cp CNAME dist/CNAME
           touch dist/.nojekyll
