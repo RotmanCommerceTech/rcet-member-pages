@@ -42,6 +42,25 @@ Studio*, interactive workshops and an info session.
 Technology architect breakdown, "Day in the Life", and the Blueprint to the Cloud
 case.
 
+## Tech & Tonic — 21 November 2025, Chefs Hall
+*Evening networking mixer (source: @rotman.tech, 21 Nov 2025)*
+
+130+ attendees, 31 industry guests, 20+ companies represented. Returns in 2026–27.
+
+## First-Year Mentorship Program — January 2026
+*Applications closed 16 January 2026 (source: @rotman.tech, 12 Jan 2026)*
+
+Insights, technical sessions, career talks and networking for first-year students.
+
+## Ship & Sip — 19 March 2026, Chefs Hall (111 Richmond St W), 6–8:30 PM
+*Networking mixer presented by RCET × RCEO, open to all universities and the public (source: @rotman.tech, 9–16 Mar 2026)*
+
+Founders, VCs, startup operators and students. Guests: Front Row Ventures, IBM, Microsoft, Fidelity,
+BDC, Scotiabank, Shopify, RBC Borealis, RBCx, MaRS, Mastercard, kama.ai. Tickets $20 early bird / $30 / $50 bring-a-friend.
+
+## The Build Series — 2026–27 (upcoming)
+Eight hands-on vibe-coding workshops across the year, hosted by Max Li (Director of R&D).
+
 ## Northbound — RCET's flagship technology conference (announced for January 2026)
 *Partners page listed SAP, Cohere, Vanguard and others · "25+ partners" · "500+ attendees"*
 

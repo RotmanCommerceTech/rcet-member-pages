@@ -29,6 +29,7 @@
     .event { display: grid; gap: 32px; grid-template-columns: .9fr 1.1fr; align-items: start; padding: 40px 0; border-top: 1px solid var(--rcet-line); }
     .event:last-child { border-bottom: 1px solid var(--rcet-line); }
     .event img { width: 100%; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); aspect-ratio: 4 / 3; object-fit: cover; }
+    .event img.poster { aspect-ratio: 4 / 5; max-width: 420px; }
     .event time { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--rcet-accent); }
     .event h3 { font-size: clamp(22px, 2.6vw, 28px); margin: 8px 0 12px; }
     .event .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
@@ -70,8 +71,8 @@
           </div>
           <div class="rcet-card upcoming" id="tech-and-tonic" data-reveal style="--i:1">
             <span class="rcet-tag">Social · 2026–27</span>
-            <h3>Tech &amp; Tonic</h3>
-            <p>An evening mixer with the people building Toronto's tech scene: students, founders and the folks who hire them. Date and venue to come.</p>
+            <h3>Tech &amp; Tonic is back</h3>
+            <p>Our evening mixer returns for a second year. The first one brought 130+ people, 31 industry guests and 20+ companies to Chefs Hall. Date and venue to come.</p>
           </div>
         </div>
         <div class="rcet-card wip" style="margin-top: 20px">
@@ -89,6 +90,40 @@
           <div><p class="rcet-eyebrow">Past events</p><h2>What we've run</h2></div>
           <p>Newest first.</p>
         </div>
+
+        <article class="event" id="ship-and-sip">
+          <img class="poster" src="/shared/assets/events/2026-03-ship-and-sip-poster.jpg" alt="Ship &amp; Sip networking mixer poster" loading="lazy">
+          <div>
+            <time datetime="2026-03-19">19 March 2026 · Chefs Hall</time>
+            <h3>Ship &amp; Sip</h3>
+            <div class="tags"><span class="rcet-tag">RCET × RCEO</span><span class="rcet-tag">Networking</span></div>
+            <p>A networking mixer for founders, VCs, startup operators and students, built with the Rotman Commerce
+            Entrepreneurship Organization and open to every university and the public. Guests came from Front Row
+            Ventures, IBM, Microsoft, Fidelity, BDC, Scotiabank, Shopify, RBC Borealis, RBCx, MaRS, Mastercard and kama.ai.</p>
+          </div>
+        </article>
+
+        <article class="event" id="mentorship">
+          <img class="poster" src="/shared/assets/events/2026-01-mentorship-poster.jpg" alt="RCET first-year mentorship program poster" loading="lazy">
+          <div>
+            <time datetime="2026-01">January 2026 · Program</time>
+            <h3>First-Year Mentorship Program</h3>
+            <div class="tags"><span class="rcet-tag">Mentorship</span><span class="rcet-tag">First years</span></div>
+            <p>A first step into tech for first-year students: insights sessions, technical workshops, career talks and
+            networking with the RCET team, over the winter term.</p>
+          </div>
+        </article>
+
+        <article class="event" id="tech-and-tonic-2025">
+          <img src="/shared/assets/events/2025-11-tech-and-tonic-1.jpg" alt="A full room at Tech &amp; Tonic, with the RCET banner in the background" loading="lazy">
+          <div>
+            <time datetime="2025-11-21">21 November 2025 · Chefs Hall</time>
+            <h3>Tech &amp; Tonic</h3>
+            <div class="tags"><span class="rcet-tag">Networking</span><span class="rcet-tag">Industry</span></div>
+            <p>RCET's first evening mixer: students, people working in tech and the companies that hire them, in one room.</p>
+            <div class="nums"><div><b>130+</b><span>Attendees</span></div><div><b>31</b><span>Industry guests</span></div><div><b>20+</b><span>Companies</span></div></div>
+          </div>
+        </article>
 
         <article class="event" id="aws-blueprint">
           <img src="/shared/assets/events/2025-02-aws-office.jpg" alt="The Amazon office reception in Toronto" loading="lazy">
