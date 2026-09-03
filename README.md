@@ -4,8 +4,7 @@ The teams behind **Rotman Commerce Emerging Technologies**, each with a page
 built by the team itself and published through this repository. Every team
 owns one folder; a pull request is the publish button.
 
-- Live site: https://rotmancommercetech.github.io/rcet-member-pages/ (moving to
-  `about.rotmancommercetech.com` — see [Hosting](#hosting))
+- Live site: https://about.rotmancommercetech.com/
 - Main club site: https://www.rotmancommercetech.com/ (stays on Wix)
 
 ```
@@ -176,8 +175,8 @@ starter page into `teams/<slug>/`. Commit both.
 gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/pages -f build_type=workflow
 ```
 
-The site appears at https://rotmancommercetech.github.io/rcet-member-pages/ a minute
-after the next push.
+The site appears at https://about.rotmancommercetech.com/ about a minute
+after every push to `main`.
 
 **Custom domain (do this before linking from the main site).** Nobody should
 see a personal GitHub username in the club's URL.
@@ -219,7 +218,7 @@ it can link to them or embed them. Add a nav item pointing at the directory,
 or drop an *Embed HTML* element on a Wix page with:
 
 ```html
-<iframe src="https://rotmancommercetech.github.io/rcet-member-pages/teams/marketing/"
+<iframe src="https://about.rotmancommercetech.com/teams/marketing/"
         style="width:100%;height:100vh;border:0" loading="lazy" title="Marketing team"></iframe>
 ```
 

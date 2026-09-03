@@ -244,7 +244,7 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
 .rcet-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .rcet-marquee__track { display: flex; align-items: center; gap: 64px; width: max-content; padding: 8px 0; animation: rcet-marquee 45s linear infinite; }
 .rcet-marquee:hover .rcet-marquee__track { animation-play-state: paused; }
-.rcet-marquee__track img { height: 30px; width: auto; max-width: 150px; object-fit: contain; opacity: .65; filter: grayscale(1) contrast(1.15); transition: opacity .2s, filter .2s; }
+.rcet-marquee__track img { height: 30px; width: auto; max-width: 150px; object-fit: contain; opacity: .75; filter: grayscale(1) brightness(.55) contrast(1.25); transition: opacity .2s, filter .2s; }
 .rcet-marquee__track img:hover { opacity: 1; filter: none; }
 @keyframes rcet-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .rcet-marquee { mask-image: none; -webkit-mask-image: none; } .rcet-marquee__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; } }
