@@ -26,14 +26,23 @@
 <a class="rcet-skip" href="#main">Skip to content</a>
 <header class="rcet-header">
   <div class="rcet-container rcet-header__inner">
-    <a class="rcet-brand" href="${SITE}"><img class="rcet-brand__logo" src="/shared/assets/brand/logo-256.png" alt="" width="36" height="36">${wordmark()}</a>
+    <a class="rcet-brand" href="/"><img class="rcet-brand__logo" src="/shared/assets/brand/logo-256.png" alt="" width="36" height="36">${wordmark()}</a>
     <nav class="rcet-header__nav" aria-label="Site">
-      <a href="/">All teams</a>
-      <a href="${SITE}">Main site</a>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/events/">Events</a>
+      <a href="/teams/">Teams</a>
       ${team ? `<span class="rcet-header__current">${esc(team)}</span>` : ''}
     </nav>
   </div>
 </header>`;
+      // Mark the current section so it can be styled.
+      const here = location.pathname.replace(/index\.html$/, '');
+      for (const a of this.querySelectorAll('.rcet-header__nav a')) {
+        const to = new URL(a.getAttribute('href'), location.href).pathname;
+        const current = to === '/' || to.endsWith('/rcet-member-pages/') ? here === to : here.startsWith(to);
+        if (current) a.setAttribute('aria-current', 'page');
+      }
     }
   }
 
@@ -48,8 +57,8 @@
       ${wordmark()}
       <p>${ADDRESS}<br><a href="mailto:${EMAIL}">${EMAIL}</a></p>
     </div>
-    <nav aria-label="RCET links">${links}<a href="${SITE}">rotmancommercetech.com</a><a href="/">All teams</a></nav>
-    <p class="rcet-footer__note">${team ? `This page was written by the ${esc(team)} team. ` : ''}Every page here is authored by the people named on it and served separately from the main RCET site. Views are their own.</p>
+    <nav aria-label="RCET links">${links}<a href="mailto:${EMAIL}">Email</a><a href="/about/">About</a><a href="/events/">Events</a><a href="/teams/">Teams</a></nav>
+    <p class="rcet-footer__note">${team ? `This page was written by the ${esc(team)} team. ` : ''}Team and member pages are written by the people named on them. Views are their own.</p>
   </div>
 </footer>`;
     }

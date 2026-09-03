@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | RCET</title>
+  <meta name="description" content="Why Rotman Commerce Emerging Technologies exists, what the five pillars are, and who runs the club.">
+  <meta property="og:title" content="About RCET">
+  <meta property="og:description" content="Why Rotman Commerce Emerging Technologies exists, what the five pillars are, and who runs the club.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rotman Commerce Emerging Technologies">
+  <meta property="og:image" content="{{SITE_URL}}/shared/assets/brand/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/shared/rcet.css">
+  <script src="/shared/rcet.js" defer></script>
+  <style>
+    /* About page. Admins edit this file. Leadership names are in the LEADERSHIP section below. */
+    .story { display: grid; gap: 48px; grid-template-columns: 1.2fr .8fr; align-items: center; }
+    .story blockquote { margin: 0; font-family: var(--rcet-font-display); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.3; letter-spacing: -.01em; font-weight: 600; }
+    .story blockquote p { margin: 0 0 .8em; }
+    .story blockquote p:last-child { margin: 0; }
+    .story img { width: 100%; max-width: 420px; justify-self: center; }
+    .poster-card { padding: 0; overflow: hidden; }
+    .poster-card img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+    .poster-card div { padding: 16px 20px 20px; }
+    .poster-card h3 { font-size: 18px; margin: 0 0 4px; }
+    .poster-card p { margin: 0; color: var(--rcet-muted); font-size: 15px; }
+    .lead-card { align-items: start; }
+    .lead-card .rcet-avatar { width: 72px; height: 72px; font-size: 22px; }
+    .lead-card p { margin: 8px 0 0; color: var(--rcet-muted); font-size: 15px; }
+    .dept { display: flex; align-items: center; gap: 14px; }
+    .dept b { font-weight: 600; }
+    .contact-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+    .contact-grid p { margin: 4px 0 0; }
+    @media (max-width: 760px) { .story { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <rcet-header></rcet-header>
+
+  <main id="main">
+
+    <section class="rcet-hero rcet-bg-dots">
+      <div class="rcet-container">
+        <p class="rcet-eyebrow">About RCET</p>
+        <h1>The number one business-technology talent pipeline in Canada. That's the goal.</h1>
+        <p class="rcet-lede">Rotman Commerce Emerging Technologies exists so that when Rotman Commerce students
+        choose a career, they are no longer confined to three core streams. Finance, consulting, accounting,
+        and now tech.</p>
+      </div>
+    </section>
+
+    <section class="rcet-section">
+      <div class="rcet-container story">
+        <div>
+          <p class="rcet-eyebrow">How it started</p>
+          <blockquote>
+            <p>The mission is simple. We want to create the number one business technology talent pipeline in Canada. Not one of. The number one.</p>
+            <p>For the ones who want to work for the Microsofts, Apples and Googles of the world. For the ones who want to build and create, whether technical or non-technical. For the ones who will build the startups that create tech innovation in Canada, and the investors who will fund them.</p>
+          </blockquote>
+        </div>
+        <img src="/shared/assets/decor/render-2.png" alt="" aria-hidden="true">
+      </div>
+    </section>
+
+    <section class="rcet-section rcet-section--alt">
+      <div class="rcet-container rcet-grid rcet-grid--2">
+        <div class="rcet-card" data-reveal style="--i:0">
+          <p class="rcet-eyebrow">Mission</p>
+          <h3>Research, industry exposure, experiential learning</h3>
+          <p>To empower Rotman Commerce students with cutting-edge research, industry exposure and experiential learning, and create the number one business-technology talent pipeline in Canada.</p>
+        </div>
+        <div class="rcet-card" data-reveal style="--i:1">
+          <p class="rcet-eyebrow">Vision</p>
+          <h3>Silicon Valley of the North</h3>
+          <p>To leverage and expand Toronto's tech ecosystem and embrace its reputation as one of the largest and fastest-growing tech hubs in the world.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rcet-section" id="pillars">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Five pillars</p><h2>The map we work from</h2></div>
+          <p>Every event and research brief sits under one of these.</p>
+        </div>
+        <div class="rcet-grid rcet-grid--3">
+          <div class="rcet-card poster-card" data-reveal style="--i:0"><img src="/shared/assets/pillars/data-ai.jpg" alt="Data and Artificial Intelligence poster" loading="lazy"><div><h3>Data &amp; Artificial Intelligence</h3><p>Analytics, machine learning and intelligent systems that change how companies compete and grow.</p></div></div>
+          <div class="rcet-card poster-card" data-reveal style="--i:1"><img src="/shared/assets/pillars/extended-reality.jpg" alt="Extended Reality poster" loading="lazy"><div><h3>Extended Reality</h3><p>VR, AR and the metaverse reshaping customer experience, training and collaboration.</p></div></div>
+          <div class="rcet-card poster-card" data-reveal style="--i:2"><img src="/shared/assets/pillars/sustainable-technologies.jpg" alt="Sustainable Technologies poster" loading="lazy"><div><h3>Sustainable Technologies</h3><p>Clean tech, health tech and the innovations that reduce environmental impact.</p></div></div>
+          <div class="rcet-card poster-card" data-reveal style="--i:3"><img src="/shared/assets/pillars/computing-connectivity.jpg" alt="Computing and Connectivity poster" loading="lazy"><div><h3>Computing &amp; Connectivity</h3><p>Cloud computing and connectivity that make business smarter, faster and more integrated.</p></div></div>
+          <div class="rcet-card poster-card" data-reveal style="--i:4"><img src="/shared/assets/pillars/information-security.jpg" alt="Information and Security poster" loading="lazy"><div><h3>Information &amp; Security</h3><p>Cybersecurity, data privacy and risk management for a digital-first world.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP: put the current President and Vice President here. Replace the initials or use
+         <img class="rcet-avatar" src="/shared/assets/people/….jpg" alt=""> for a photo. -->
+    <section class="rcet-section rcet-section--alt" id="leadership">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Leadership</p><h2>Who runs RCET</h2></div>
+        </div>
+        <div class="rcet-grid rcet-grid--2">
+          <div class="rcet-card rcet-person lead-card" data-reveal style="--i:0">
+            <span class="rcet-avatar">P</span>
+            <div><b>President</b><span>Name to be confirmed</span><p>Sets the direction of the club and represents RCET to partners and the university.</p></div>
+          </div>
+          <div class="rcet-card rcet-person lead-card" data-reveal style="--i:1">
+            <span class="rcet-avatar">VP</span>
+            <div><b>Vice President</b><span>Name to be confirmed</span><p>Runs the five departments day to day and keeps the calendar moving.</p></div>
+          </div>
+        </div>
+
+        <div class="rcet-section-head" style="margin-top: 56px">
+          <div><p class="rcet-eyebrow">Departments</p><h2>Five teams</h2></div>
+          <p>Directors and managers run each one. Every team has its own page.</p>
+        </div>
+        <!-- TEAMS_GRID -->
+      </div>
+    </section>
+
+    <section class="rcet-section rcet-section--dark" id="contact">
+      <div class="rcet-container">
+        <p class="rcet-eyebrow">Contact</p>
+        <h2>Find us</h2>
+        <div class="contact-grid">
+          <div><b>Email</b><p><a href="mailto:rotmancommercetech@gmail.com">rotmancommercetech@gmail.com</a></p></div>
+          <div><b>Instagram</b><p><a href="https://www.instagram.com/rotman.tech/" rel="noopener">@rotman.tech</a></p></div>
+          <div><b>Campus</b><p>Rotman Commerce, University of Toronto<br>105 St. George St, Toronto, ON M5S 3E6</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <rcet-footer></rcet-footer>
+
+</body>
+</html>

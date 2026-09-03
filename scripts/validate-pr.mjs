@@ -1,6 +1,7 @@
 // Validates that a pull request only adds/edits pages its author is allowed to edit.
 //   members/<login>/   only that GitHub user
-//   teams/<slug>/      anyone listed under that team in teams.json
+//   teams/<slug>/      anyone listed under that team in teams.json — or, while the
+//                      team's list is empty, any GitHub user (admins review every PR)
 //   anything else      admins only (teams.json "admins")
 // Env: AUTHOR (GitHub login), BASE_SHA, HEAD_SHA. Runs in CI; locally:
 //   AUTHOR=you BASE_SHA=origin/main HEAD_SHA=HEAD node scripts/validate-pr.mjs
@@ -17,7 +18,7 @@ const fail = (msg) => { console.log(`::error::${msg}`); failed = true; };
 let registry;
 try { registry = loadRegistry(); } catch (e) { fail(e.message); finish(); }
 const isAdmin = registry.admins.includes(author);
-const myTeams = registry.teams.filter((t) => t.members.includes(author)).map((t) => t.slug);
+const myTeams = registry.teams.filter((t) => !t.members.length || t.members.includes(author)).map((t) => t.slug);
 
 console.log(`PR author: ${AUTHOR}${isAdmin ? '  (admin)' : ''}`);
 console.log(`May edit:  members/${author}/${myTeams.map((s) => `  teams/${s}/`).join('')}${isAdmin ? '  (and everything else)' : ''}`);
@@ -45,7 +46,7 @@ for (const f of changed) {
   if (kind === 'teams') {
     const team = registry.teams.find((t) => t.slug === slug);
     if (!team) fail(`teams/${slug}/ is not a registered team. Ask an admin to add it to teams.json (the folder name must match the slug exactly).`);
-    else if (!team.members.includes(author)) fail(`You (${AUTHOR}) are not listed under "${slug}" in teams.json, so you cannot publish to teams/${slug}/. Ask an admin to add your GitHub username to the team.`);
+    else if (team.members.length && !team.members.includes(author)) fail(`You (${AUTHOR}) are not listed under "${slug}" in teams.json, so you cannot publish to teams/${slug}/. Ask an admin to add your GitHub username to the team.`);
   }
 }
 if (outside.length) {

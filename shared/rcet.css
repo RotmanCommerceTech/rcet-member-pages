@@ -180,14 +180,15 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
 .rcet-header__nav { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; }
 .rcet-header__nav a { color: var(--rcet-fg); text-decoration: none; opacity: .85; }
 .rcet-header__nav a:hover { opacity: 1; color: var(--rcet-accent); }
+.rcet-header__nav a[aria-current="page"] { opacity: 1; color: var(--rcet-accent); }
 .rcet-header__current {
   font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
   color: var(--rcet-accent); padding-left: 20px; border-left: 1px solid var(--rcet-line);
 }
 @media (max-width: 560px) {
   .rcet-header__current { display: none; }
-  .rcet-brand__text { font-size: 12px; }
-  .rcet-header__nav { gap: 14px; }
+  .rcet-brand__text { display: none; }
+  .rcet-header__nav { gap: 16px; }
 }
 
 /* Site footer — rendered by <rcet-footer> from /shared/rcet.js */
@@ -250,6 +251,17 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
 .rcet-marquee__track img.rcet-invert:hover { filter: invert(1); }
 @keyframes rcet-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .rcet-marquee { mask-image: none; -webkit-mask-image: none; } .rcet-marquee__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; } }
+
+/* ------------------------------------------ team cards, partner strip */
+.team-card { display: grid; gap: 10px; align-content: start; min-height: 100%; }
+.team-card .rcet-icon-badge { margin-bottom: 6px; }
+.team-card h3 { margin: 4px 0 0; }
+.team-card p { color: var(--rcet-muted); margin: 0; }
+.team-card .go { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 600; color: var(--rcet-accent); }
+.team-card--soon { border-style: dashed; box-shadow: none; background: transparent; }
+.team-card--soon .go { color: var(--rcet-muted); font-weight: 500; }
+.partners { padding: 28px 0 8px; }
+.partners .rcet-eyebrow { margin-bottom: 8px; }
 
 /* -------------------------------------------------- skip link, print */
 .rcet-skip { position: absolute; left: 16px; top: -100px; z-index: 100; padding: 10px 16px; border-radius: 999px; background: var(--rcet-navy); color: #fff; font-weight: 600; text-decoration: none; }

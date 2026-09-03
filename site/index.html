@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rotman Commerce Emerging Technologies</title>
+  <meta name="description" content="RCET is the Rotman Commerce club for students who want to work in, build with and invest in technology: research, industry exposure and hands-on events across five pillars of emerging tech.">
+  <meta property="og:title" content="Rotman Commerce Emerging Technologies">
+  <meta property="og:description" content="Building the number one business-technology talent pipeline in Canada, at Rotman Commerce.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rotman Commerce Emerging Technologies">
+  <meta property="og:image" content="{{SITE_URL}}/shared/assets/brand/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/shared/rcet.css">
+  <script src="/shared/rcet.js" defer></script>
+  <style>
+    /* Home page. Admins edit this file; the TEAMS_GRID and PARTNERS_STRIP comments are filled in at build time. */
+    .home-hero { display: grid; gap: 48px; grid-template-columns: 1.1fr .9fr; align-items: center; }
+    .home-hero__art { border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+    .pillar h3 { font-size: 19px; margin: 14px 0 6px; }
+    .pillar p { color: var(--rcet-muted); margin: 0; font-size: 15px; }
+    .pillar .rcet-tag { margin-top: 12px; }
+    .event-card { padding: 0; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+    .event-card img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+    .event-card div { padding: 18px 20px 20px; }
+    .event-card time { font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--rcet-accent); }
+    .event-card h3 { font-size: 18px; margin: 6px 0 4px; }
+    .event-card p { margin: 0; color: var(--rcet-muted); font-size: 15px; }
+    @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; } .home-hero__art { aspect-ratio: 16 / 10; } }
+  </style>
+</head>
+<body>
+
+  <rcet-header></rcet-header>
+
+  <main id="main">
+
+    <section class="rcet-hero rcet-hero--art rcet-bg-mesh" data-constellation>
+      <div class="rcet-container home-hero">
+        <div>
+          <p class="rcet-eyebrow">Rotman Commerce · University of Toronto</p>
+          <h1>Empowering with technologies</h1>
+          <p class="rcet-lede">Rotman Commerce Emerging Technologies gives business students the research,
+          industry exposure and hands-on events to build careers in tech, not only in finance,
+          consulting and accounting.</p>
+          <div class="rcet-btn-row">
+            <a class="rcet-btn rcet-btn--primary" href="/teams/">Meet the teams</a>
+            <a class="rcet-btn rcet-btn--ghost" href="/events/">See past events</a>
+          </div>
+        </div>
+        <img class="home-hero__art" src="/shared/assets/brand/hero-bigbang.jpg" alt="Earth seen from orbit as the sun rises over the horizon" width="1000" height="750">
+      </div>
+    </section>
+
+    <!-- Numbers from the previous site. Update them when you have fresh ones. -->
+    <section class="rcet-section rcet-section--alt">
+      <div class="rcet-container rcet-grid rcet-grid--3">
+        <div class="rcet-stat"><b>200+</b><span>Event attendees</span></div>
+        <div class="rcet-stat"><b>1.5k+</b><span>Followers</span></div>
+        <div class="rcet-stat"><b>27</b><span>Members on the team</span></div>
+      </div>
+    </section>
+
+    <!-- PARTNERS_STRIP -->
+
+    <section class="rcet-section" id="pillars">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Five pillars</p><h2>What we mean by emerging technology</h2></div>
+          <p>Every event, research brief and case competition maps to one of these.</p>
+        </div>
+        <div class="rcet-grid rcet-grid--3">
+          <div class="rcet-card pillar" data-reveal style="--i:0">
+            <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#brain-circuit"/></svg></span>
+            <h3>Data &amp; Artificial Intelligence</h3>
+            <p>How analytics, machine learning and intelligent systems drive efficiency, unlock insight and change the way companies compete.</p>
+          </div>
+          <div class="rcet-card pillar" data-reveal style="--i:1">
+            <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#layers"/></svg></span>
+            <h3>Extended Reality</h3>
+            <p>How XR is reshaping customer experience, training and collaboration, and how businesses can use it to innovate and engage.</p>
+          </div>
+          <div class="rcet-card pillar" data-reveal style="--i:2">
+            <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#globe"/></svg></span>
+            <h3>Sustainable Technologies</h3>
+            <p>The role of technology in a more responsible future: innovations that cut environmental impact and drive a greener economy.</p>
+          </div>
+          <div class="rcet-card pillar" data-reveal style="--i:3">
+            <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#cpu"/></svg></span>
+            <h3>Computing &amp; Connectivity</h3>
+            <p>How cloud, connectivity and raw computational power enable smarter, faster and more integrated business solutions.</p>
+          </div>
+          <div class="rcet-card pillar" data-reveal style="--i:4">
+            <span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#shield"/></svg></span>
+            <h3>Information &amp; Security</h3>
+            <p>Protecting and managing data in a digital-first world: cybersecurity, privacy and risk management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rcet-section rcet-section--alt" id="teams">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">The club</p><h2>Five teams, one pipeline</h2></div>
+          <p>Each team builds and publishes its own page on this site.</p>
+        </div>
+        <!-- TEAMS_GRID -->
+        <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--ghost" href="/teams/">All teams and member pages</a></div>
+      </div>
+    </section>
+
+    <section class="rcet-section" id="events">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Events</p><h2>Where we've been</h2></div>
+          <p><a href="/events/">All events →</a></p>
+        </div>
+        <div class="rcet-grid rcet-grid--3">
+          <a class="rcet-card event-card" href="/events/#aws-blueprint" data-reveal style="--i:0">
+            <img src="/shared/assets/events/2025-02-aws-office.jpg" alt="The Amazon office reception in Toronto" loading="lazy">
+            <div><time datetime="2025-02-14">Feb 2025 · AWS Canada</time><h3>Blueprint to the Cloud</h3><p>A case competition on cloud architecture, with technology architects breaking down how the work is really done.</p></div>
+          </a>
+          <a class="rcet-card event-card" href="/events/#ai-transformation" data-reveal style="--i:1">
+            <img src="/shared/assets/events/2024-11-ai-transformation-group.jpg" alt="Participants of the AI Transformation Case Competition at Microsoft Canada" loading="lazy">
+            <div><time datetime="2024-11-27">Nov 2024 · Microsoft × BDO</time><h3>AI Transformation Case Competition</h3><p>65 students built AI agents with Copilot Studio at Microsoft Canada's headquarters, no code required.</p></div>
+          </a>
+          <a class="rcet-card event-card" href="/events/#commerce-connection" data-reveal style="--i:2">
+            <img src="/shared/assets/events/2024-10-commerce-connection-vr.jpg" alt="A student trying a Meta Quest headset" loading="lazy">
+            <div><time datetime="2024-10-11">Oct 2024 · Meta</time><h3>Commerce &amp; Connection</h3><p>Our inaugural event: VR panels with Meta and researchers from Yale, Stanford and Columbia, then headsets on.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rcet-section rcet-section--dark" id="join">
+      <div class="rcet-container rcet-center">
+        <p class="rcet-eyebrow">Get involved</p>
+        <h2>Build Canada's business-technology talent pipeline with us</h2>
+        <p class="rcet-lede" style="margin-inline: auto">Students who want to work at the Microsofts, Apples and Googles of the world, build something of their own, or fund the people who do. Recruitment, partnerships and speaking: one address.</p>
+        <div class="rcet-btn-row" style="justify-content: center">
+          <a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com">Email us</a>
+          <a class="rcet-btn" href="https://www.instagram.com/rotman.tech/" rel="noopener">Instagram @rotman.tech</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <rcet-footer></rcet-footer>
+
+</body>
+</html>

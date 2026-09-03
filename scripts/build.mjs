@@ -1,8 +1,9 @@
 // Builds dist/ — no framework, no dependencies.
-//   dist/index.html          generated directory of teams (and members)
-//   dist/teams/<slug>/...    each team page, verbatim
-//   dist/u/<login>/...       each member page, verbatim
-//   dist/shared/...          the shared design system
+//   dist/index.html, about/, events/   the club's own pages, from site/ (admin-owned)
+//   dist/teams/index.html              generated directory of teams (and members)
+//   dist/teams/<slug>/...              each team page, verbatim
+//   dist/u/<login>/...                 each member page, verbatim
+//   dist/shared/...                    the shared design system and assets
 import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -69,8 +70,10 @@ export async function build({ quiet = false } = {}) {
     await writeFile(path.join(DIST, 'teams', t.slug, 'index.html'), rebase(comingSoonPage(t)));
   }
   for (const m of members) await copyPage(path.join(ROOT, 'members', m.login), path.join(DIST, 'u', m.login), `/u/${m.login}/`);
-  await writeFile(path.join(DIST, 'index.html'), rebase(directoryPage(teams, members)));
+  await mkdir(path.join(DIST, 'teams'), { recursive: true });
+  await writeFile(path.join(DIST, 'teams', 'index.html'), rebase(directoryPage(teams, members)));
   await writeFile(path.join(DIST, '404.html'), rebase(notFoundPage()));
+  await copySite(teams);
   if (existsSync(path.join(ROOT, '_headers'))) await cp(path.join(ROOT, '_headers'), path.join(DIST, '_headers'));
 
   const built = teams.filter((t) => t.built);
@@ -78,6 +81,24 @@ export async function build({ quiet = false } = {}) {
   for (const t of teams) log(`  ${t.built ? '/teams/' + t.slug + '/' : '(no page yet)'.padEnd(14)}  ${t.name}`);
   for (const m of members) log(`  /u/${m.login}/  ${m.title}`);
   return { teams, members };
+}
+
+// The club's own pages: site/ → dist root. Static HTML with a few build-time snippets:
+//   <!-- TEAMS_GRID -->       cards for every registered team
+//   <!-- PARTNERS_STRIP -->   the "previously with" marquee
+//   {{SITE_URL}}              absolute origin (+ base path) for Open Graph tags
+async function copySite(teams) {
+  const src = path.join(ROOT, 'site');
+  if (!existsSync(src)) return;
+  await cp(src, DIST, { recursive: true });
+  await rewriteTree(DIST, (file, text) => {
+    if (file.startsWith('teams/') || file.startsWith('u/') || file.startsWith('shared/')) return text;
+    if (!/\.html?$/i.test(file)) return text;
+    return rebase(text
+      .replace(/<!--\s*TEAMS_GRID\s*-->/g, `<div class="rcet-grid rcet-grid--3">\n${teamCards(teams)}\n      </div>`)
+      .replace(/<!--\s*PARTNERS_STRIP\s*-->/g, partnersStrip())
+      .replace(/\{\{SITE_URL\}\}/g, `${SITE_URL}${BASE}`));
+  });
 }
 
 // Copy a page folder verbatim, then (a) inject the production CSP as a <meta> tag so the
@@ -109,12 +130,12 @@ function injectMeta(html, tag) {
   const at = m.index + m[0].length;
   return `${html.slice(0, at)}\n${tag}${html.slice(at)}`;
 }
-// Absolute site paths → BASE-prefixed. Only the paths this site owns: /shared/ /teams/ /u/ and "/".
+// Absolute site paths → BASE-prefixed. Only the paths this site owns: /shared/ /teams/ /u/ /about/ /events/ and "/".
 function rebase(text) {
   if (!BASE) return text;
   return text
-    .replace(/((?:src|href|content)=["'])\/(shared|teams|u)\//g, `$1${BASE}/$2/`)
-    .replace(/(url\(["']?)\/(shared|teams|u)\//g, `$1${BASE}/$2/`)
+    .replace(/((?:src|href|content)=["'])\/(shared|teams|u|about|events)\//g, `$1${BASE}/$2/`)
+    .replace(/(url\(["']?)\/(shared|teams|u|about|events)\//g, `$1${BASE}/$2/`)
     .replace(/(href=["'])\/(["'#?])/g, `$1${BASE}/$2`);
 }
 
@@ -139,15 +160,6 @@ function shell({ title, description, body, headerAttrs = '' }) {
 <link rel="stylesheet" href="/shared/rcet.css">
 <script src="/shared/rcet.js" defer></script>
 <style>
-  .team-card { display: grid; gap: 10px; align-content: start; min-height: 100%; }
-  .team-card .rcet-icon-badge { margin-bottom: 6px; }
-  .team-card h3 { margin: 4px 0 0; }
-  .partners { padding: 28px 0 8px; }
-  .partners .rcet-eyebrow { margin-bottom: 8px; }
-  .team-card p { color: var(--rcet-muted); margin: 0; }
-  .team-card .go { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 600; color: var(--rcet-accent); }
-  .team-card--soon { border-style: dashed; box-shadow: none; background: transparent; }
-  .team-card--soon .go { color: var(--rcet-muted); font-weight: 500; }
   .member-card .rcet-mono { font-size: 13px; color: var(--rcet-accent); display: block; margin-bottom: 6px; }
   .member-card .t { overflow-wrap: anywhere; }
   .howto { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); counter-reset: step; }
@@ -169,40 +181,48 @@ ${body}
 `;
 }
 
-const words = (n) => (['No teams', 'One team', 'Two teams', 'Three teams', 'Four teams', 'Five teams', 'Six teams', 'Seven teams', 'Eight teams', 'Nine teams', 'Ten teams'][n] || `${n} teams`);
-
-function directoryPage(teams, members) {
-  const built = teams.filter((t) => t.built).length;
-  const icon = (t) => `<span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#${esc(t.icon)}"/></svg></span>`;
-  const teamCards = teams.map((t, i) => `      <a class="rcet-card team-card${t.built ? '' : ' team-card--soon'}" href="/teams/${esc(t.slug)}/" data-reveal style="--i:${i}">
-        ${icon(t)}
+const teamIcon = (t) => `<span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#${esc(t.icon)}"/></svg></span>`;
+function teamCards(teams) {
+  return teams.map((t, i) => `      <a class="rcet-card team-card${t.built ? '' : ' team-card--soon'}" href="/teams/${esc(t.slug)}/" data-reveal style="--i:${i}">
+        ${teamIcon(t)}
         <h3>${esc(t.name)}</h3>
         <p>${esc(t.blurb)}</p>
         <span class="go">${t.built ? 'Visit the page →' : 'Page coming soon'}</span>
       </a>`).join('\n');
+}
+function partnersStrip() {
+  const logos = PARTNERS.map(([name, file, mode]) => `<img src="/shared/assets/partners/${file}" alt="${esc(name)}" loading="lazy"${mode === 'invert' ? ' class="rcet-invert"' : ''}>`).join('');
+  return `
+  <section class="partners" aria-label="Partners">
+    <div class="rcet-container">
+      <p class="rcet-eyebrow">Previously with</p>
+      <div class="rcet-marquee"><div class="rcet-marquee__track">${logos}${logos}</div></div>
+    </div>
+  </section>`;
+}
+
+const words = (n) => (['No teams', 'One team', 'Two teams', 'Three teams', 'Four teams', 'Five teams', 'Six teams', 'Seven teams', 'Eight teams', 'Nine teams', 'Ten teams'][n] || `${n} teams`);
+
+function directoryPage(teams, members) {
+  const built = teams.filter((t) => t.built).length;
+  const cards = teamCards(teams);
 
   const memberCards = members.map((m, i) => `      <a class="rcet-card member-card" href="/u/${esc(m.login)}/" data-reveal style="--i:${i}">
         <span class="rcet-mono">@${esc(m.login)}</span>
         <span class="t">${esc(m.title)}</span>
       </a>`).join('\n');
 
-  const logos = PARTNERS.map(([name, file, mode]) => `<img src="/shared/assets/partners/${file}" alt="${esc(name)}" loading="lazy"${mode === 'invert' ? ' class="rcet-invert"' : ''}>`).join('');
   const body = `
   <section class="rcet-hero rcet-hero--art rcet-bg-mesh" data-constellation>
     <div class="rcet-container">
       <p class="rcet-eyebrow">Rotman Commerce Emerging Technologies</p>
       <h1>Our teams</h1>
-      <p class="rcet-lede">${words(teams.length)} run RCET. Each one built its own page — written, designed and
+      <p class="rcet-lede">${words(teams.length)} run RCET. Each one builds its own page here — written, designed and
       published by the people on it, straight from this site's GitHub repository.</p>
     </div>
   </section>
 
-  <section class="partners" aria-label="Partners">
-    <div class="rcet-container">
-      <p class="rcet-eyebrow">Previously with</p>
-      <div class="rcet-marquee"><div class="rcet-marquee__track">${logos}${logos}</div></div>
-    </div>
-  </section>
+${partnersStrip()}
 
   <section class="rcet-section rcet-section--alt" id="teams">
     <div class="rcet-container">
@@ -211,7 +231,7 @@ function directoryPage(teams, members) {
         <p>Each team owns one folder in the repo and nothing else. That is the whole rule.</p>
       </div>
       <div class="rcet-grid rcet-grid--3">
-${teamCards}
+${cards}
       </div>
     </div>
   </section>
@@ -241,7 +261,7 @@ ${memberCards}
       </div>
       <div class="rcet-btn-row">
         <a class="rcet-btn rcet-btn--primary" href="${REPO}#readme">Read the instructions</a>
-        <a class="rcet-btn rcet-btn--ghost" href="${REPO}">Open the repository</a>
+        <a class="rcet-btn rcet-btn--ghost" href="${REPO}/blob/main/PROMPT.md">Copy the prompt</a>
       </div>
     </div>
   </section>`;
@@ -265,7 +285,7 @@ function comingSoonPage(t) {
       <h1>${esc(t.name)}</h1>
       <p class="rcet-lede">${esc(t.blurb || 'This team has not published its page yet.')}</p>
       <p class="rcet-muted">The ${esc(t.name)} team is building this page. Check back soon.</p>
-      <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/">All teams</a></div>
+      <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/teams/">All teams</a></div>
     </div>
   </section>`,
   });
@@ -281,7 +301,7 @@ function notFoundPage() {
       <p class="rcet-eyebrow">404 · Signal lost</p>
       <h1>Nothing here</h1>
       <p class="rcet-lede">That page does not exist, or it has not been published yet.</p>
-      <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/">All teams</a></div>
+      <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/">Home</a><a class="rcet-btn rcet-btn--ghost" href="/teams/">All teams</a></div>
     </div>
   </section>`,
   });

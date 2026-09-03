@@ -1,8 +1,9 @@
 # AGENTS.md — instructions for AI coding assistants
 
-You are helping a team at **Rotman Commerce Emerging Technologies (RCET)** build
-their team's page on the RCET team-pages site. Read this whole file before
-writing code. (Humans: `README.md` is the friendlier version of the same thing.)
+You are helping someone at **Rotman Commerce Emerging Technologies (RCET)** build
+a page on the RCET website — usually their team's page, sometimes a personal
+member page. Read this whole file before writing code. (Humans: `README.md` is
+the friendlier version of the same thing.)
 
 ## What you are building
 
@@ -28,9 +29,11 @@ GitHub account).
 
 ## Hard rules — CI rejects anything else
 
-1. **Only touch files inside the user's own folder.** Not `shared/`, not
-   `teams.json`, not other teams, not `scripts/` or `.github/`. If something
-   there needs changing, say so; an admin does it.
+1. **Only touch files inside the user's own folder.** Not `site/` (the club's
+   home/about/events pages), not `shared/`, not `teams.json`, not other teams,
+   not `scripts/` or `.github/`. If something there needs changing, say so; an
+   admin does it. Nobody has to be pre-registered: any GitHub account can open
+   a pull request to a team folder, and an admin reviews it before it goes live.
 2. `index.html` must exist. Limits: 40 files, 2 MB per file, 10 MB per folder.
    Allowed types: `.html .htm .css .js .mjs .json .md .txt`, images
    (`png jpg jpeg gif webp avif svg ico`), fonts (`woff woff2 ttf otf`), media
@@ -38,7 +41,8 @@ GitHub account).
 3. **Relative paths** for the folder's own assets: `./photo.jpg`, `./app.js`.
    The page is served at `/teams/<slug>/`, so an absolute `/photo.jpg` breaks.
    The only absolute paths you should write are `/shared/rcet.css`,
-   `/shared/rcet.js`, `/shared/assets/…` and `/` (the directory).
+   `/shared/rcet.js`, `/shared/assets/…`, and site links: `/` (home),
+   `/about/`, `/events/`, `/teams/` (the directory of teams).
 4. **Static only.** No server, database, environment variables, secrets, or
    build step in CI. Frameworks with a build step are fine only if the built
    output is what gets committed (see below).
@@ -178,9 +182,10 @@ Node 18+, no `npm install`.
 
 ## Publish
 
-Pick whichever the user can do. The user's GitHub username must be listed
-under their team in `teams.json` for A and B; that list is the only
-credential — there are no tokens or keys to ask for.
+Pick whichever the user can do. There are no tokens or keys to ask for: a
+GitHub account is enough for A and B. (If an admin has listed usernames under
+the team in `teams.json`, only those accounts can publish to it; the CI
+message says so if that is the case.)
 
 - **A. Pull request** (you have git and the user is on the roster):
   `git checkout -b teams/<slug>`, commit only the team folder, push, open a PR

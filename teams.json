@@ -1,5 +1,5 @@
 {
-  "$comment": "Admin-owned. Lists every team and the GitHub logins allowed to publish to teams/<slug>/. Logins are case-insensitive. A team with no members can only be edited by admins. \"icon\" is a symbol id from shared/assets/icons.svg, shown on the directory card.",
+  "$comment": "Admin-owned. Lists every team and the GitHub logins allowed to publish to teams/<slug>/. Logins are case-insensitive. While a team's list is empty, any GitHub user may open a pull request to its folder; admins review every PR before it goes live. Fill the list to lock a team down. \"icon\" is a symbol id from shared/assets/icons.svg, shown on the directory card.",
   "admins": [
     "Slimebro1231"
   ],

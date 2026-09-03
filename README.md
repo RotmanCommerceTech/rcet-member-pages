@@ -1,24 +1,25 @@
-# RCET Team Pages
+# RCET website
 
-The teams behind **Rotman Commerce Emerging Technologies**, each with a page
-built by the team itself and published through this repository. Every team
-owns one folder; a pull request is the publish button.
+The website of **Rotman Commerce Emerging Technologies**: the club's own pages
+plus one page per team, each built by the team itself and published through
+this repository. A pull request is the publish button.
 
-- Live site: https://about.rotmancommercetech.com/
-- Main club site: https://www.rotmancommercetech.com/ (stays on Wix)
+Live at **https://about.rotmancommercetech.com/**
 
 ```
-teams/marketing/                 ← one folder per team, index.html required
-teams/research-development/
-teams/operations/
-teams/business-development/
-teams/finance/
-members/<github-username>/       ← optional personal pages
+site/index.html                  ← home            (admins edit)
+site/about/index.html            ← about, leadership, pillars
+site/events/index.html           ← past events, upcoming = work in progress
+teams/<slug>/                    ← one folder per team, index.html required (teams edit)
+members/<github-username>/       ← optional personal pages (anyone edits their own)
 shared/rcet.css, shared/rcet.js  ← the design system every page loads
 shared/assets/                   ← logo, hero art, pillar posters, event photos, partner logos
-content/                         ← text exported from the old Wix site, for the main-site redo
-teams.json                       ← who may publish to which team (admins edit)
+content/                         ← text exported from the old Wix site, plus vetted design ideas
+teams.json                       ← the teams, and who may publish to each (admins edit)
 ```
+
+The directory of teams is generated at `/teams/`; team pages live at
+`/teams/<slug>/`, member pages at `/u/<github-username>/`.
 
 ---
 
@@ -45,9 +46,10 @@ About ten minutes with an AI tool. No coding, no Git and no install required.
 A bot checks the pull request in about 30 seconds (green tick = fine). An
 admin merges; your page is live a minute later. Change it as often as you like.
 
-**One thing to do first:** your GitHub username has to be on your team's list
-in [`teams.json`](teams.json). Send it to an admin. That list is the only
-"key" — nobody needs a password, token or invite code.
+**No sign-up, no keys.** Any GitHub account can open a pull request to a team
+folder; an admin reads it and merges. (Once an admin lists usernames under a
+team in [`teams.json`](teams.json), only those people can publish to it. Until
+then the folder is open, and review is the control.)
 
 ---
 
@@ -56,8 +58,9 @@ in [`teams.json`](teams.json). Send it to an admin. That list is the only
 There is one hard rule, and CI enforces it:
 
 > **You may only add or change files inside your own folder** —
-> `teams/<your-team>/` (if you're on that team's list) or
-> `members/<your-github-username>/`.
+> `teams/<your-team>/` or `members/<your-github-username>/`. One pull request
+> should touch one folder. Everything else (the club's pages in `site/`, the
+> shared styles, the scripts) is for admins.
 
 Beyond that:
 
@@ -127,20 +130,41 @@ production headers, and rebuilds when you save. Node 18+, no `npm install`.
 
 ## For admins
 
-### The roster
+### The club's own pages
 
-`teams.json` is the access list. Add each person's GitHub login under their
-team; case doesn't matter. Then invite them as collaborators so their CI runs
-without an approval click and they don't need to fork:
+`site/` holds the home, about and events pages as plain HTML on the shared
+design system. Edit them like any other page (an AI tool with AGENTS.md works
+here too) and push to `main`; they deploy in about a minute. Two build-time
+snippets are available in these files: `<!-- TEAMS_GRID -->` (cards for every
+team in `teams.json`) and `<!-- PARTNERS_STRIP -->` (the partner marquee; the
+list is at the top of `scripts/build.mjs`). Leadership names live in
+`site/about/index.html` under the LEADERSHIP comment.
+
+### The roster (optional)
+
+`teams.json` lists the teams. While a team's `members` list is empty, anyone
+with a GitHub account can open a pull request to that team's folder and an
+admin reviews it. Once you know people's GitHub logins, add them under their
+team (case doesn't matter) and the folder is locked to them. Then, optionally,
+invite them as collaborators so their CI runs without an approval click and
+they don't need to fork:
 
 ```bash
 scripts/add-collaborators.sh --from-teams
 ```
 
-Invitations must be accepted before someone can push — send them the day
-before, not during. `admins` in `teams.json` may edit anything; keep it in
-sync with `.github/CODEOWNERS`, which is what makes only admin approvals
-count toward the required review.
+`admins` in `teams.json` may edit anything; keep it in sync with
+`.github/CODEOWNERS`, which is what makes only admin approvals count toward
+the required review.
+
+### Event day
+
+- Pull requests from people who are not collaborators run CI from a fork.
+  The repo is set so only accounts *brand new to GitHub* need an admin to click
+  **Approve and run** on their first PR; everyone else's checks run on their own.
+- Two checks must be green: *Only your own folder* and *Site builds*. The first
+  failure message tells the author exactly what to fix.
+- Merge from the PR page; the site redeploys in about a minute. Merge often.
 
 ### Reviewing
 
@@ -194,9 +218,14 @@ reference in the docs and scripts.
 **Cloudflare Pages (optional).** Build command `node scripts/build.mjs`,
 output `dist`. `_headers` is honoured there for real HTTP headers.
 
-**Showing the pages on the Wix site.** Wix can't host these files itself, but
-it can link to them or embed them. Add a nav item pointing at the directory,
-or drop an *Embed HTML* element on a Wix page with:
+**Replacing the Wix site.** This repo already has the home, about and events
+pages. To make it *the* site, point the main domain here: in Wix DNS, replace
+the apex `A` records with GitHub Pages' four addresses (185.199.108.153,
+185.199.109.153, 185.199.110.153, 185.199.111.153), add a CNAME `www` →
+`rotmancommercetech.github.io`, change the custom domain in *Settings → Pages*
+to `rotmancommercetech.com`, and put that in the `CNAME` file. Wix will warn
+that its site disconnects; that is the point. Keep `about.` as a redirect or
+drop it. Until then, the Wix site can link here, or embed a page:
 
 ```html
 <iframe src="https://about.rotmancommercetech.com/teams/marketing/"

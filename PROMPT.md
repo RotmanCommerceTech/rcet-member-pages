@@ -34,9 +34,8 @@ errors, and check it at 375px and 1280px wide. When it's done, open a pull
 request to main from a branch called teams/<team-slug>.
 ```
 
-If the AI asks you for a token, password or key: it doesn't need one. Your
-GitHub login (on the team roster) is the only credential. Ask an admin to add
-you to `teams.json` if the PR check says you're not on the team.
+If the AI asks you for a token, password or key: it doesn't need one. Any
+GitHub account can open the pull request; an admin reviews and merges it.
 
 ## Tools that are a chat window
 
