@@ -246,6 +246,8 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
 .rcet-marquee:hover .rcet-marquee__track { animation-play-state: paused; }
 .rcet-marquee__track img { height: 30px; width: auto; max-width: 150px; object-fit: contain; opacity: .75; filter: grayscale(1) brightness(.55) contrast(1.25); transition: opacity .2s, filter .2s; }
 .rcet-marquee__track img:hover { opacity: 1; filter: none; }
+.rcet-marquee__track img.rcet-invert { filter: invert(1) grayscale(1) brightness(.55) contrast(1.25); }
+.rcet-marquee__track img.rcet-invert:hover { filter: invert(1); }
 @keyframes rcet-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .rcet-marquee { mask-image: none; -webkit-mask-image: none; } .rcet-marquee__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; } }
 

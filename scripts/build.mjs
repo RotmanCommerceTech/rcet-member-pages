@@ -18,8 +18,9 @@ const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
 
 // Partner logos for the directory strip (from the old site's events pages).
+// A third field of 'invert' flips a white-on-transparent logo to dark for the grayscale strip.
 const PARTNERS = [
-  ['Microsoft', 'microsoft.png'], ['Meta', 'meta.png'], ['AWS', 'aws.png'], ['BDO', 'bdo.png'], ['SAP', 'sap.png'],
+  ['Microsoft', 'microsoft-white.png', 'invert'], ['Meta', 'meta.png'], ['AWS', 'aws.png'], ['BDO', 'bdo.png'], ['SAP', 'sap.png'],
   ['Cohere', 'cohere.png'], ['Vanguard', 'vanguard.png'], ['Harvard', 'harvard.png'], ['Columbia', 'columbia.png'],
   ['Stanford', 'stanford.png'], ['Yale', 'yale.png'],
 ];
@@ -182,7 +183,7 @@ function directoryPage(teams, members) {
         <span class="t">${esc(m.title)}</span>
       </a>`).join('\n');
 
-  const logos = PARTNERS.map(([name, file]) => `<img src="/shared/assets/partners/${file}" alt="${esc(name)}" loading="lazy">`).join('');
+  const logos = PARTNERS.map(([name, file, mode]) => `<img src="/shared/assets/partners/${file}" alt="${esc(name)}" loading="lazy"${mode === 'invert' ? ' class="rcet-invert"' : ''}>`).join('');
   const body = `
   <section class="rcet-hero rcet-hero--art rcet-bg-mesh" data-constellation>
     <div class="rcet-container">
