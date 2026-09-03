@@ -179,10 +179,37 @@ gh api -X POST repos/Slimebro1231/rcet-member-pages/pages -f build_type=workflow
 The site appears at https://slimebro1231.github.io/rcet-member-pages/ a minute
 after the next push.
 
-**Custom domain (when ready).** Add a file named `CNAME` at the repo root
-containing `about.rotmancommercetech.com`, and in Wix → Domains → DNS records
-add a CNAME record `about` → `slimebro1231.github.io`. The workflow detects the
-file and builds for `/` instead of `/rcet-member-pages/`.
+**Custom domain (do this before linking from the main site).** Nobody should
+see a personal GitHub username in the club's URL.
+
+1. In Wix → Domains → *rotmancommercetech.com* → Manage DNS records, add a
+   **CNAME** record: host `about`, value `slimebro1231.github.io` (the current
+   Pages host; check the Pages settings after any repo move).
+2. Wait until `dig +short about.rotmancommercetech.com` returns something.
+3. Add a file named `CNAME` at the repo root containing
+   `about.rotmancommercetech.com`, then tell GitHub:
+
+   ```bash
+   gh api -X PUT repos/Slimebro1231/rcet-member-pages/pages -f cname=about.rotmancommercetech.com -F https_enforced=true
+   ```
+
+   The workflow sees the file and builds for `/` instead of `/rcet-member-pages/`.
+   HTTPS provisions itself within about an hour. Also add the domain under
+   GitHub *Settings → Pages → Verified domains* so nobody else can claim it.
+
+**Move the repo to a club organization (recommended).** The site should
+belong to RCET, not to whoever set it up. Create a free GitHub organization
+(*New organization → Free*, e.g. `RotmanCommerceTech`), then:
+
+```bash
+gh api -X POST repos/Slimebro1231/rcet-member-pages/transfer -f new_owner=<OrgName>
+scripts/set-repo.sh <OrgName>/rcet-member-pages
+```
+
+The transfer keeps history, PRs, branch protection and redirects the old URLs.
+`scripts/set-repo.sh` rewrites every reference in the docs and scripts; commit
+and push the result. Make the current execs organization owners so admin
+access survives graduation.
 
 **Cloudflare Pages (optional).** Build command `node scripts/build.mjs`,
 output `dist`. `_headers` is honoured there for real HTTP headers.
