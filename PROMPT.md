@@ -12,7 +12,7 @@ Claude Code, Cursor, Codex, GitHub Copilot (agent mode), Gemini CLI, Jules,
 Devin, Windsurf, and anything else that can clone and run git.
 
 ```text
-Clone https://github.com/Slimebro1231/rcet-member-pages and read AGENTS.md
+Clone https://github.com/RotmanCommerceTech/rcet-member-pages and read AGENTS.md
 before doing anything else. It has the rules and the design system — follow
 it exactly.
 
@@ -49,10 +49,10 @@ image files. No build step, no server, no framework unless it compiles to
 static files.
 
 Read these two files and follow them exactly:
-- https://raw.githubusercontent.com/Slimebro1231/rcet-member-pages/main/AGENTS.md
-- https://raw.githubusercontent.com/Slimebro1231/rcet-member-pages/main/shared/rcet.css
+- https://raw.githubusercontent.com/RotmanCommerceTech/rcet-member-pages/main/AGENTS.md
+- https://raw.githubusercontent.com/RotmanCommerceTech/rcet-member-pages/main/shared/rcet.css
 Start from our current page:
-- https://raw.githubusercontent.com/Slimebro1231/rcet-member-pages/main/teams/<team-slug>/index.html
+- https://raw.githubusercontent.com/RotmanCommerceTech/rcet-member-pages/main/teams/<team-slug>/index.html
 If you can't open links, say so and I'll paste them.
 
 I'm on the <TEAM NAME> team at Rotman Commerce Emerging Technologies (RCET).
@@ -74,7 +74,7 @@ Give me every file in full, with its file name, ready to upload.
 
 Then publish:
 
-1. Go to https://github.com/Slimebro1231/rcet-member-pages/tree/main/teams/<team-slug>
+1. Go to https://github.com/RotmanCommerceTech/rcet-member-pages/tree/main/teams/<team-slug>
 2. **Add file → Upload files**, drop the files in (replace `index.html`).
 3. Write a one-line description and click **Propose changes**. That opens a
    pull request; a bot checks it in about 30 seconds.

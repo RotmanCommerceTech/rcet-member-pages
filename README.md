@@ -4,7 +4,7 @@ The teams behind **Rotman Commerce Emerging Technologies**, each with a page
 built by the team itself and published through this repository. Every team
 owns one folder; a pull request is the publish button.
 
-- Live site: https://slimebro1231.github.io/rcet-member-pages/ (moving to
+- Live site: https://rotmancommercetech.github.io/rcet-member-pages/ (moving to
   `about.rotmancommercetech.com` — see [Hosting](#hosting))
 - Main club site: https://www.rotmancommercetech.com/ (stays on Wix)
 
@@ -27,7 +27,7 @@ teams.json                       ← who may publish to which team (admins edit)
 
 About ten minutes with an AI tool. No coding, no Git and no install required.
 
-1. **Copy this link:** `https://github.com/Slimebro1231/rcet-member-pages`
+1. **Copy this link:** `https://github.com/RotmanCommerceTech/rcet-member-pages`
 2. **Paste it into your AI tool** with the prompt from **[PROMPT.md](PROMPT.md)**.
    Claude Code, Cursor, Codex, Copilot, ChatGPT, Gemini, Lovable, v0, Bolt —
    anything. The repo contains [AGENTS.md](AGENTS.md), which tells the AI the
@@ -173,24 +173,24 @@ starter page into `teams/<slug>/`. Commit both.
 `dist/` on every push to `main`. Enable it once:
 
 ```bash
-gh api -X POST repos/Slimebro1231/rcet-member-pages/pages -f build_type=workflow
+gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/pages -f build_type=workflow
 ```
 
-The site appears at https://slimebro1231.github.io/rcet-member-pages/ a minute
+The site appears at https://rotmancommercetech.github.io/rcet-member-pages/ a minute
 after the next push.
 
 **Custom domain (do this before linking from the main site).** Nobody should
 see a personal GitHub username in the club's URL.
 
 1. In Wix → Domains → *rotmancommercetech.com* → Manage DNS records, add a
-   **CNAME** record: host `about`, value `slimebro1231.github.io` (the current
+   **CNAME** record: host `about`, value `rotmancommercetech.github.io` (the current
    Pages host; check the Pages settings after any repo move).
 2. Wait until `dig +short about.rotmancommercetech.com` returns something.
 3. Add a file named `CNAME` at the repo root containing
    `about.rotmancommercetech.com`, then tell GitHub:
 
    ```bash
-   gh api -X PUT repos/Slimebro1231/rcet-member-pages/pages -f cname=about.rotmancommercetech.com -F https_enforced=true
+   gh api -X PUT repos/RotmanCommerceTech/rcet-member-pages/pages -f cname=about.rotmancommercetech.com -F https_enforced=true
    ```
 
    The workflow sees the file and builds for `/` instead of `/rcet-member-pages/`.
@@ -202,7 +202,7 @@ belong to RCET, not to whoever set it up. Create a free GitHub organization
 (*New organization → Free*, e.g. `RotmanCommerceTech`), then:
 
 ```bash
-gh api -X POST repos/Slimebro1231/rcet-member-pages/transfer -f new_owner=<OrgName>
+gh api -X POST repos/RotmanCommerceTech/rcet-member-pages/transfer -f new_owner=<OrgName>
 scripts/set-repo.sh <OrgName>/rcet-member-pages
 ```
 
@@ -219,7 +219,7 @@ it can link to them or embed them. Add a nav item pointing at the directory,
 or drop an *Embed HTML* element on a Wix page with:
 
 ```html
-<iframe src="https://slimebro1231.github.io/rcet-member-pages/teams/marketing/"
+<iframe src="https://rotmancommercetech.github.io/rcet-member-pages/teams/marketing/"
         style="width:100%;height:100vh;border:0" loading="lazy" title="Marketing team"></iframe>
 ```
 

@@ -10,7 +10,7 @@ import { readdir, stat } from 'node:fs/promises';
 import { ROOT, loadRegistry, listPageDirs, pageMeta, metaCspFor } from './lib.mjs';
 
 const DIST = path.join(ROOT, 'dist');
-const REPO = 'https://github.com/Slimebro1231/rcet-member-pages';
+const REPO = 'https://github.com/RotmanCommerceTech/rcet-member-pages';
 // Set BASE_PATH="/rcet-member-pages" to build for a project GitHub Pages URL
 // (https://<user>.github.io/rcet-member-pages/). Leave unset for a real domain.
 const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');

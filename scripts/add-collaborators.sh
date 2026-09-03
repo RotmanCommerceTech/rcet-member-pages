@@ -13,7 +13,7 @@
 # and their CI runs without an admin clicking "Approve and run".
 set -uo pipefail
 
-REPO="${REPO:-Slimebro1231/rcet-member-pages}"
+REPO="${REPO:-RotmanCommerceTech/rcet-member-pages}"
 FILE="${1:?usage: $0 <file-with-usernames> | --from-teams}"
 PERM="${PERM:-push}"
 

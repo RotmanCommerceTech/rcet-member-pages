@@ -11,7 +11,7 @@
 # --as records who actually made the page in the PR body (they may not have a GitHub account).
 set -euo pipefail
 
-REPO="${REPO:-Slimebro1231/rcet-member-pages}"
+REPO="${REPO:-RotmanCommerceTech/rcet-member-pages}"
 SLUG="${1:?usage: $0 <team-slug> <bundle.zip|folder> [--as <github-login>]}"
 SRC="${2:?usage: $0 <team-slug> <bundle.zip|folder> [--as <github-login>]}"
 AS=""; [ "${3:-}" = "--as" ] && AS="${4:-}"
