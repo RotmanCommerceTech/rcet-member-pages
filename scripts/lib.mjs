@@ -47,6 +47,7 @@ export function loadRegistry() {
       slug: t.slug,
       name: t.name,
       blurb: typeof t.blurb === 'string' ? t.blurb : '',
+      icon: /^[a-z0-9-]+$/.test(String(t.icon || '')) ? t.icon : 'users',
       members: t.members.map(lc),
     })),
   };

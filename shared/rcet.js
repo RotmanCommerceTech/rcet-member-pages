@@ -7,6 +7,7 @@
  * so a team's own CSS can restyle them. Admins edit this file; team folders can't.
  */
 (() => {
+  document.documentElement.classList.add('rcet-js');
   const SITE = 'https://www.rotmancommercetech.com/';
   const EMAIL = 'rotmancommercetech@gmail.com';
   const ADDRESS = '105 St. George St, Toronto, ON M5S 3E6';
@@ -22,6 +23,7 @@
     connectedCallback() {
       const team = this.getAttribute('team');
       this.innerHTML = `
+<a class="rcet-skip" href="#main">Skip to content</a>
 <header class="rcet-header">
   <div class="rcet-container rcet-header__inner">
     <a class="rcet-brand" href="${SITE}"><img class="rcet-brand__logo" src="/shared/assets/brand/logo-256.png" alt="" width="36" height="36">${wordmark()}</a>
@@ -55,4 +57,64 @@
 
   customElements.define('rcet-header', RcetHeader);
   customElements.define('rcet-footer', RcetFooter);
+
+  // Reveal on scroll: elements with data-reveal get .in when they enter the viewport.
+  const reveal = () => {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((e) => e.classList.add('in')); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    }, { threshold: .15, rootMargin: '0px 0px -5% 0px' });
+    els.forEach((e) => io.observe(e));
+  };
+
+  // Constellation: a slow network of dots and lines behind a hero — <section class="rcet-hero rcet-hero--art" data-constellation>.
+  // No library, ~60 points, pauses when hidden or off-screen, skipped under prefers-reduced-motion.
+  const constellation = (host) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const c = document.createElement('canvas');
+    c.className = 'rcet-constellation'; c.setAttribute('aria-hidden', 'true');
+    host.prepend(c);
+    const ctx = c.getContext('2d');
+    const color = getComputedStyle(host).getPropertyValue('--rcet-accent').trim() || '#1a6aff';
+    let w = 0, h = 0, raf = 0, running = false;
+    const pts = [];
+    const mk = () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22, r: 1.2 + Math.random() * 1.5 });
+    const resize = () => {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = host.clientWidth; h = host.clientHeight;
+      c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.max(24, Math.min(64, Math.round(w / 22)));
+      while (pts.length < n) pts.push(mk());
+      pts.length = n;
+    };
+    const step = () => {
+      ctx.clearRect(0, 0, w, h);
+      const link = Math.min(150, w / 7);
+      for (const p of pts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -12) p.x = w + 12; else if (p.x > w + 12) p.x = -12;
+        if (p.y < -12) p.y = h + 12; else if (p.y > h + 12) p.y = -12;
+      }
+      ctx.lineWidth = 1; ctx.strokeStyle = color; ctx.fillStyle = color;
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < link) { ctx.globalAlpha = (1 - d / link) * .3; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      ctx.globalAlpha = .6;
+      for (const p of pts) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); }
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(step);
+    };
+    const start = () => { if (!running) { running = true; raf = requestAnimationFrame(step); } };
+    const stop = () => { running = false; cancelAnimationFrame(raf); };
+    resize(); start();
+    addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop())).observe(host);
+  };
+
+  const init = () => { reveal(); document.querySelectorAll('[data-constellation]').forEach(constellation); };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();

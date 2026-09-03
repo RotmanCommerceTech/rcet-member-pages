@@ -212,3 +212,48 @@ a.rcet-card:hover { transform: translateY(-2px); border-color: var(--rcet-accent
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ------------------------------------------------------------ icons */
+/* <svg class="rcet-icon"><use href="/shared/assets/icons.svg#megaphone"/></svg>  (Lucide, see shared/assets/README.md) */
+.rcet-icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.2em; flex: none; }
+.rcet-icon--lg { width: 26px; height: 26px; }
+.rcet-icon-badge { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--rcet-pale); color: var(--rcet-navy); }
+[data-theme="dark"] .rcet-icon-badge, .rcet-section--dark .rcet-icon-badge { background: rgba(26, 215, 255, .14); color: var(--rcet-cyan); }
+
+/* ------------------------------------------------------- backgrounds */
+.rcet-bg-dots { background-image: radial-gradient(var(--rcet-pale) 1.5px, transparent 1.5px); background-size: 22px 22px; }
+.rcet-bg-mesh {
+  background-image:
+    radial-gradient(40% 50% at 15% 20%, rgba(26, 106, 255, .14), transparent),
+    radial-gradient(35% 45% at 85% 15%, rgba(26, 215, 255, .18), transparent),
+    radial-gradient(50% 60% at 50% 100%, rgba(25, 46, 79, .08), transparent);
+}
+/* Constellation canvas: <section class="rcet-hero rcet-hero--art" data-constellation> … (rcet.js draws it) */
+.rcet-hero--art { position: relative; overflow: hidden; }
+.rcet-hero--art > .rcet-container { position: relative; }
+.rcet-constellation { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* --------------------------------------------------- reveal on scroll */
+/* Add data-reveal to an element; optional style="--i: 2" staggers siblings. Hidden only once rcet.js has loaded. */
+.rcet-js [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i, 0) * 70ms); }
+.rcet-js [data-reveal].in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rcet-js [data-reveal] { opacity: 1; transform: none; transition: none; } }
+
+/* ------------------------------------------------------------ marquee */
+/* <div class="rcet-marquee"><div class="rcet-marquee__track"> …logos, then the same logos again… </div></div> */
+.rcet-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.rcet-marquee__track { display: flex; align-items: center; gap: 64px; width: max-content; padding: 8px 0; animation: rcet-marquee 45s linear infinite; }
+.rcet-marquee:hover .rcet-marquee__track { animation-play-state: paused; }
+.rcet-marquee__track img { height: 30px; width: auto; max-width: 150px; object-fit: contain; opacity: .65; filter: grayscale(1) contrast(1.15); transition: opacity .2s, filter .2s; }
+.rcet-marquee__track img:hover { opacity: 1; filter: none; }
+@keyframes rcet-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .rcet-marquee { mask-image: none; -webkit-mask-image: none; } .rcet-marquee__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; } }
+
+/* -------------------------------------------------- skip link, print */
+.rcet-skip { position: absolute; left: 16px; top: -100px; z-index: 100; padding: 10px 16px; border-radius: 999px; background: var(--rcet-navy); color: #fff; font-weight: 600; text-decoration: none; }
+.rcet-skip:focus { top: 12px; }
+@media print {
+  .rcet-header, .rcet-footer nav, .rcet-btn, .rcet-constellation, .rcet-marquee { display: none !important; }
+  body { background: #fff; color: #000; font-size: 12pt; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .85em; color: #555; }
+}

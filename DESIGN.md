@@ -113,6 +113,22 @@ the old site — see [`shared/assets/README.md`](shared/assets/README.md). Use
 them by absolute path (`/shared/assets/pillars/data-ai.jpg`); put your own
 photos in your team folder and reference them relatively.
 
+## Built-in extras
+
+All optional, all in `shared/rcet.css` + `rcet.js`, all off unless you use them:
+
+- **Icons** — Lucide line icons, self-hosted: `<svg class="rcet-icon"><use href="/shared/assets/icons.svg#megaphone"/></svg>`.
+  Wrap in `.rcet-icon-badge` for a tinted square. Symbol names are listed in the sprite file.
+- **Backgrounds** — `.rcet-bg-dots` (pale dot grid) and `.rcet-bg-mesh` (soft brand blooms) on any section.
+- **Constellation** — `<section class="rcet-hero rcet-hero--art" data-constellation>` draws a slow
+  network of dots behind the hero. Off under reduced motion; pauses off-screen.
+- **Reveal on scroll** — add `data-reveal` to cards; `style="--i:2"` staggers siblings.
+- **Marquee** — `.rcet-marquee > .rcet-marquee__track` with the logos repeated twice; pauses on hover.
+- **Skip link and print styles** come with `<rcet-header>`; give your `<main>` the id `main`.
+
+More ideas, libraries and free illustration sources, all licence-checked and CSP-compatible:
+[`content/design-ideas.md`](content/design-ideas.md).
+
 ## Do / don't
 
 **Do**

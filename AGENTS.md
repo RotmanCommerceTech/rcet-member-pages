@@ -135,6 +135,15 @@ Guidance:
   least 4.5:1, keyboard focus visible (already handled).
 - Libraries are fine (Three.js, GSAP, Chart.js, React…) from the three CDNs
   above. Prefer no library for things CSS can do.
+- Built-in extras you can switch on without any library: Lucide icons
+  (`<svg class="rcet-icon"><use href="/shared/assets/icons.svg#cpu"/></svg>`),
+  `.rcet-bg-dots` / `.rcet-bg-mesh` backgrounds, `data-reveal` scroll reveal,
+  `.rcet-marquee` for logo strips, and `data-constellation` on a
+  `.rcet-hero.rcet-hero--art` for an animated network behind the hero. Give
+  `<main>` the id `main` so the header's skip link works.
+- `content/design-ideas.md` lists licence-checked, CSP-compatible libraries,
+  illustration sources and motion patterns. Pick from there before searching
+  the web.
 
 ## React, Vite and other frameworks
 

@@ -17,6 +17,13 @@ const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 // Absolute origin for Open Graph tags (og:image must be absolute). deploy.yml sets it.
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
 
+// Partner logos for the directory strip (from the old site's events pages).
+const PARTNERS = [
+  ['Microsoft', 'microsoft.png'], ['Meta', 'meta.png'], ['AWS', 'aws.png'], ['BDO', 'bdo.png'], ['SAP', 'sap.png'],
+  ['Cohere', 'cohere.png'], ['Vanguard', 'vanguard.png'], ['Harvard', 'harvard.png'], ['Columbia', 'columbia.png'],
+  ['Stanford', 'stanford.png'], ['Yale', 'yale.png'],
+];
+
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -45,11 +52,18 @@ export async function build({ quiet = false } = {}) {
     members.push({ login, title: meta.title || login });
   }
 
-  await rm(DIST, { recursive: true, force: true });
+  for (let i = 0; ; i++) { // a concurrent rebuild (serve.mjs) can race the delete
+    try { await rm(DIST, { recursive: true, force: true }); break; }
+    catch (e) { if (i >= 4) throw e; await new Promise((r) => setTimeout(r, 200)); }
+  }
   await mkdir(DIST, { recursive: true });
   await cp(path.join(ROOT, 'shared'), path.join(DIST, 'shared'), { recursive: true });
   if (BASE) await rewriteTree(path.join(DIST, 'shared'), (_, text) => rebase(text));
-  for (const t of teams) if (t.built) await copyPage(path.join(ROOT, 'teams', t.slug), path.join(DIST, 'teams', t.slug), `/teams/${t.slug}/`);
+  for (const t of teams) {
+    if (t.built) { await copyPage(path.join(ROOT, 'teams', t.slug), path.join(DIST, 'teams', t.slug), `/teams/${t.slug}/`); continue; }
+    await mkdir(path.join(DIST, 'teams', t.slug), { recursive: true });
+    await writeFile(path.join(DIST, 'teams', t.slug, 'index.html'), rebase(comingSoonPage(t)));
+  }
   for (const m of members) await copyPage(path.join(ROOT, 'members', m.login), path.join(DIST, 'u', m.login), `/u/${m.login}/`);
   await writeFile(path.join(DIST, 'index.html'), rebase(directoryPage(teams, members)));
   await writeFile(path.join(DIST, '404.html'), rebase(notFoundPage()));
@@ -116,12 +130,16 @@ function shell({ title, description, body, headerAttrs = '' }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE_URL}${BASE}/shared/assets/brand/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/shared/rcet.css">
 <script src="/shared/rcet.js" defer></script>
 <style>
   .team-card { display: grid; gap: 10px; align-content: start; min-height: 100%; }
-  .team-card .rcet-tag { justify-self: start; }
+  .team-card .rcet-icon-badge { margin-bottom: 6px; }
   .team-card h3 { margin: 4px 0 0; }
+  .partners { padding: 28px 0 8px; }
+  .partners .rcet-eyebrow { margin-bottom: 8px; }
   .team-card p { color: var(--rcet-muted); margin: 0; }
   .team-card .go { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 600; color: var(--rcet-accent); }
   .team-card--soon { border-style: dashed; box-shadow: none; background: transparent; }
@@ -138,7 +156,7 @@ function shell({ title, description, body, headerAttrs = '' }) {
 </head>
 <body>
 <rcet-header${headerAttrs}></rcet-header>
-<main>
+<main id="main">
 ${body}
 </main>
 <rcet-footer></rcet-footer>
@@ -151,32 +169,34 @@ const words = (n) => (['No teams', 'One team', 'Two teams', 'Three teams', 'Four
 
 function directoryPage(teams, members) {
   const built = teams.filter((t) => t.built).length;
-  const teamCards = teams.map((t) => t.built
-    ? `      <a class="rcet-card team-card" href="/teams/${esc(t.slug)}/">
-        <span class="rcet-tag">Team</span>
+  const icon = (t) => `<span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#${esc(t.icon)}"/></svg></span>`;
+  const teamCards = teams.map((t, i) => `      <a class="rcet-card team-card${t.built ? '' : ' team-card--soon'}" href="/teams/${esc(t.slug)}/" data-reveal style="--i:${i}">
+        ${icon(t)}
         <h3>${esc(t.name)}</h3>
         <p>${esc(t.blurb)}</p>
-        <span class="go">Visit the page →</span>
-      </a>`
-    : `      <div class="rcet-card team-card team-card--soon">
-        <span class="rcet-tag">Team</span>
-        <h3>${esc(t.name)}</h3>
-        <p>${esc(t.blurb)}</p>
-        <span class="go">Page coming soon</span>
-      </div>`).join('\n');
+        <span class="go">${t.built ? 'Visit the page →' : 'Page coming soon'}</span>
+      </a>`).join('\n');
 
-  const memberCards = members.map((m) => `      <a class="rcet-card member-card" href="/u/${esc(m.login)}/">
+  const memberCards = members.map((m, i) => `      <a class="rcet-card member-card" href="/u/${esc(m.login)}/" data-reveal style="--i:${i}">
         <span class="rcet-mono">@${esc(m.login)}</span>
         <span class="t">${esc(m.title)}</span>
       </a>`).join('\n');
 
+  const logos = PARTNERS.map(([name, file]) => `<img src="/shared/assets/partners/${file}" alt="${esc(name)}" loading="lazy">`).join('');
   const body = `
-  <section class="rcet-hero">
+  <section class="rcet-hero rcet-hero--art rcet-bg-mesh" data-constellation>
     <div class="rcet-container">
       <p class="rcet-eyebrow">Rotman Commerce Emerging Technologies</p>
       <h1>Our teams</h1>
       <p class="rcet-lede">${words(teams.length)} run RCET. Each one built its own page — written, designed and
       published by the people on it, straight from this site's GitHub repository.</p>
+    </div>
+  </section>
+
+  <section class="partners" aria-label="Partners">
+    <div class="rcet-container">
+      <p class="rcet-eyebrow">Previously with</p>
+      <div class="rcet-marquee"><div class="rcet-marquee__track">${logos}${logos}</div></div>
     </div>
   </section>
 
@@ -229,14 +249,32 @@ ${memberCards}
   });
 }
 
+function comingSoonPage(t) {
+  return shell({
+    title: `${t.name} | RCET`,
+    description: t.blurb || `The ${t.name} team at Rotman Commerce Emerging Technologies.`,
+    headerAttrs: ` team="${esc(t.name)}"`,
+    body: `
+  <section class="rcet-hero rcet-bg-dots">
+    <div class="rcet-container">
+      <p class="rcet-eyebrow">Coming soon</p>
+      <h1>${esc(t.name)}</h1>
+      <p class="rcet-lede">${esc(t.blurb || 'This team has not published its page yet.')}</p>
+      <p class="rcet-muted">The ${esc(t.name)} team is building this page. Check back soon.</p>
+      <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/">All teams</a></div>
+    </div>
+  </section>`,
+  });
+}
+
 function notFoundPage() {
   return shell({
     title: 'Not found | RCET',
     description: 'That page does not exist.',
     body: `
-  <section class="rcet-hero">
+  <section class="rcet-hero rcet-bg-dots">
     <div class="rcet-container">
-      <p class="rcet-eyebrow">404</p>
+      <p class="rcet-eyebrow">404 · Signal lost</p>
       <h1>Nothing here</h1>
       <p class="rcet-lede">That page does not exist, or it has not been published yet.</p>
       <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="/">All teams</a></div>
