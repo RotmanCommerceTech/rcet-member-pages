@@ -40,7 +40,7 @@ About ten minutes with an AI tool. No coding, no Git and no install required.
 | You used… | Then… |
 |---|---|
 | An AI tool with git (Claude Code, Cursor, Codex, Copilot agent) | Let it open the pull request. Done. |
-| A chat tool that gives you files (ChatGPT, Lovable, v0, Bolt) | On GitHub open `teams/<your-team>/` → **Add file → Upload files** → drop them in → **Propose changes**. That is a pull request too. |
+| A chat tool that gives you files (ChatGPT, Lovable, v0, Bolt) | On GitHub open `teams/<your-team>/` → **Add file → Upload files** → drop the files in (the files themselves, not a zip) → **Propose changes**. That is a pull request too. |
 | Nothing with GitHub / no account | Zip the folder and email it to rotmancommercetech@gmail.com. An admin imports it. |
 
 A bot checks the pull request in about 30 seconds (green tick = fine). An
