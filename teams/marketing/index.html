@@ -12,159 +12,148 @@
   <link rel="stylesheet" href="/shared/rcet.css">
   <script src="/shared/rcet.js" defer></script>
   <style>
-    body { background: var(--rcet-bg-alt); }
-    .marketing-shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); max-width: 1240px; min-height: calc(100vh - 64px); margin: 0 auto; background: var(--rcet-bg); border-inline: 1px solid var(--rcet-line); }
-    .workspace-nav { padding: 30px 14px; background: var(--rcet-bg-alt); border-right: 1px solid var(--rcet-line); }
-    .workspace-mark { display: flex; align-items: center; gap: 10px; padding: 0 10px 28px; }
-    .workspace-mark svg { width: 22px; height: 22px; color: var(--rcet-accent); }
-    .workspace-mark b { display: block; font-size: 14px; line-height: 1.2; }
-    .workspace-mark span { display: block; margin-top: 3px; color: var(--rcet-muted); font: 11px/1.2 var(--rcet-font-mono); }
-    .nav-label { margin: 22px 10px 7px; color: var(--rcet-muted); font: 500 10px/1 var(--rcet-font-mono); letter-spacing: .1em; text-transform: uppercase; }
-    .nav-link { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; color: var(--rcet-muted); font-size: 14px; text-decoration: none; }
-    .nav-link:hover, .nav-link[aria-current="page"] { color: var(--rcet-fg); background: var(--rcet-surface); text-decoration: none; }
-    .nav-link[aria-current="page"] { font-weight: 600; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
-    .nav-link svg { width: 16px; height: 16px; color: var(--rcet-accent); }
-    .page { min-width: 0; padding: clamp(44px, 7vw, 88px) clamp(24px, 6vw, 88px); }
-    .page-inner { max-width: 820px; }
-    .page-icon { display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: 24px; border-radius: 14px; color: var(--rcet-accent); background: var(--rcet-pale); }
-    .page-icon svg { width: 30px; height: 30px; }
-    h1 { margin-bottom: 12px; font-size: clamp(46px, 6vw, 68px); }
-    .page-intro { max-width: 58ch; margin-bottom: 48px; color: var(--rcet-muted); font-size: 19px; line-height: 1.6; }
-    .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin: 0 0 58px; }
-    .home-grid h2, .section-title { margin: 0 0 14px; padding-bottom: 12px; border-bottom: 1px solid var(--rcet-line); font-size: 20px; }
-    .workspace-list { list-style: none; margin: 0; padding: 0; }
-    .workspace-list li + li { border-top: 1px solid var(--rcet-line); }
-    .workspace-list a, .workspace-list button { display: flex; width: 100%; align-items: center; gap: 10px; padding: 11px 2px; border: 0; background: transparent; color: var(--rcet-fg); font: 500 15px/1.3 var(--rcet-font-body); text-align: left; text-decoration: none; cursor: pointer; }
-    .workspace-list a:hover { color: var(--rcet-accent); }
-    .workspace-list svg { width: 17px; height: 17px; color: var(--rcet-accent); }
-    .database { margin: 0 0 58px; border: 1px solid var(--rcet-line); border-radius: var(--rcet-radius); overflow: hidden; }
-    .database-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; background: var(--rcet-bg-alt); border-bottom: 1px solid var(--rcet-line); }
-    .database-head h2 { margin: 0; font-size: 16px; }
-    .database-head span { color: var(--rcet-muted); font: 11px/1 var(--rcet-font-mono); letter-spacing: .08em; text-transform: uppercase; }
-    .db-row { display: grid; grid-template-columns: 116px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 17px 18px; border-bottom: 1px solid var(--rcet-line); }
-    .db-row:last-child { border-bottom: 0; }
-    .db-row h3 { margin: 0 0 3px; font-size: 16px; }
-    .db-row p { margin: 0; color: var(--rcet-muted); font-size: 14px; line-height: 1.45; }
-    .db-date { color: var(--rcet-muted); font: 11px/1.4 var(--rcet-font-mono); }
-    .status { white-space: nowrap; padding: 5px 8px; border-radius: 5px; color: var(--rcet-accent); background: var(--rcet-pale); font: 500 10px/1 var(--rcet-font-mono); letter-spacing: .04em; text-transform: uppercase; }
-    .status--quiet { color: var(--rcet-muted); background: var(--rcet-bg-alt); }
-    .people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; margin-bottom: 58px; }
-    .person { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--rcet-line); }
-    .initials { display: grid; flex: none; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--rcet-navy); color: #fff; font: 600 11px/1 var(--rcet-font-mono); }
+    .portfolio { max-width: 1120px; margin: 0 auto; padding: clamp(46px, 7vw, 84px) 24px; }
+    .portfolio-brand { display: flex; align-items: center; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid var(--rcet-line); }
+    .portfolio-brand svg { width: 42px; height: 42px; color: var(--rcet-accent); }
+    .portfolio-brand h1 { margin: 0; font-size: clamp(34px, 5vw, 48px); }
+    .portfolio-brand p { margin: 3px 0 0; color: var(--rcet-muted); font: 12px/1.3 var(--rcet-font-mono); letter-spacing: .06em; text-transform: uppercase; }
+    .portfolio-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 26px; padding-top: 20px; }
+    .portfolio-side { align-self: start; }
+    .side-panel { margin-bottom: 12px; padding: 14px; background: color-mix(in srgb, var(--rcet-pale) 30%, var(--rcet-bg)); }
+    .side-panel h2 { margin: 0 0 8px; font-size: 15px; color: var(--rcet-accent); }
+    .side-nav { list-style: none; margin: 0; padding: 0; }
+    .side-nav li + li { border-top: 1px solid color-mix(in srgb, var(--rcet-line) 72%, transparent); }
+    .side-nav a { display: flex; align-items: center; gap: 8px; padding: 7px 2px; color: var(--rcet-fg); font-size: 13px; text-decoration: none; }
+    .side-nav a:hover { color: var(--rcet-accent); }
+    .side-nav svg { width: 14px; height: 14px; color: var(--rcet-accent); }
+    .contact-list { list-style: none; margin: 0; padding: 0; }
+    .contact-list li { display: flex; gap: 8px; padding: 8px 2px; color: var(--rcet-muted); font-size: 12px; line-height: 1.4; }
+    .contact-list svg { flex: none; width: 15px; height: 15px; color: var(--rcet-accent); }
+    .about { padding: 18px; background: color-mix(in srgb, var(--rcet-pale) 35%, var(--rcet-bg)); }
+    .about h2 { margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid color-mix(in srgb, var(--rcet-line) 72%, transparent); font-size: 17px; color: var(--rcet-accent); }
+    .about p { max-width: 75ch; margin: 0; font-size: 14px; line-height: 1.55; }
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0 20px; }
+    .info { display: flex; gap: 9px; align-items: flex-start; padding: 14px; border: 1px solid var(--rcet-line); }
+    .info svg { flex: none; width: 16px; height: 16px; color: var(--rcet-accent); }
+    .info b, .info span { display: block; }
+    .info b { margin-bottom: 4px; color: var(--rcet-muted); font: 10px/1 var(--rcet-font-mono); letter-spacing: .05em; text-transform: uppercase; }
+    .info span { font-size: 13px; line-height: 1.35; }
+    .content-label { display: flex; align-items: center; gap: 7px; margin: 0 0 9px; padding-bottom: 9px; border-bottom: 1px solid var(--rcet-line); font: 500 11px/1 var(--rcet-font-mono); letter-spacing: .05em; text-transform: uppercase; }
+    .content-label svg { width: 14px; height: 14px; color: var(--rcet-accent); }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .project { overflow: hidden; border: 1px solid var(--rcet-line); border-radius: var(--rcet-radius-sm); color: inherit; text-decoration: none; }
+    .project-top { display: grid; place-items: center; min-height: 126px; padding: 18px; background: color-mix(in srgb, var(--rcet-pale) 45%, var(--rcet-bg)); text-align: center; }
+    .project:nth-child(2) .project-top { background: color-mix(in srgb, var(--rcet-pale) 27%, var(--rcet-bg)); }
+    .project:nth-child(3) .project-top { background: color-mix(in srgb, var(--rcet-pale) 18%, var(--rcet-bg)); }
+    .project-top svg { width: 28px; height: 28px; margin-bottom: 8px; color: var(--rcet-accent); }
+    .project-top h3 { margin: 0; font-size: 17px; color: var(--rcet-navy); }
+    .project-copy { padding: 12px; }
+    .project-copy b { display: block; margin-bottom: 5px; font-size: 12px; }
+    .project-copy p { margin: 0; color: var(--rcet-muted); font-size: 11px; line-height: 1.45; }
+    .schedule { margin-top: 20px; }
+    .schedule-list { border-top: 1px solid var(--rcet-line); }
+    .schedule-row { display: grid; grid-template-columns: 82px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rcet-line); }
+    .schedule-row time { color: var(--rcet-accent); font: 500 11px/1.3 var(--rcet-font-mono); }
+    .schedule-row b { font-size: 13px; }
+    .schedule-row span { color: var(--rcet-muted); font-size: 11px; }
+    .team { margin-top: 20px; }
+    .team-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 20px; border-top: 1px solid var(--rcet-line); }
+    .person { display: flex; gap: 9px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rcet-line); }
+    .avatar { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; background: var(--rcet-navy); color: #fff; font: 600 10px/1 var(--rcet-font-mono); }
     .person b, .person span { display: block; }
-    .person b { font-size: 14px; }
-    .person span { margin-top: 2px; color: var(--rcet-muted); font-size: 13px; }
-    .schedule { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 58px; border: 1px solid var(--rcet-line); border-radius: var(--rcet-radius); overflow: hidden; }
-    .schedule-item { min-height: 126px; padding: 17px; border-right: 1px solid var(--rcet-line); }
-    .schedule-item:last-child { border-right: 0; }
-    .schedule-item time { display: block; margin-bottom: 28px; color: var(--rcet-accent); font: 500 11px/1 var(--rcet-font-mono); }
-    .schedule-item p { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.4; }
-    .notes { padding: 24px; border-left: 3px solid var(--rcet-accent); background: var(--rcet-bg-alt); }
-    .notes h2 { margin: 0 0 12px; font-size: 20px; }
-    .notes p { max-width: 65ch; margin: 0; color: var(--rcet-muted); }
-    .contact { margin-top: 58px; padding: 34px; border-radius: var(--rcet-radius); background: var(--rcet-navy); color: #fff; }
-    .contact .rcet-eyebrow { color: var(--rcet-cyan); }
-    .contact h2 { margin-bottom: 8px; }
-    .contact p { max-width: 55ch; margin: 0; color: #b7c5dc; }
-    .contact .rcet-btn-row { margin-top: 22px; }
-    .contact .rcet-btn--primary { color: var(--rcet-navy); background: var(--rcet-cyan); border-color: var(--rcet-cyan); }
-    .contact .rcet-btn--ghost { color: #fff; border-color: rgba(255, 255, 255, .35); }
-    @media (max-width: 880px) { .marketing-shell { display: block; border-inline: 0; } .workspace-nav { display: none; } .page { padding: 52px 24px; } }
-    @media (max-width: 620px) { .home-grid, .people { grid-template-columns: 1fr; gap: 32px; } .db-row { grid-template-columns: 1fr auto; gap: 8px 16px; } .db-date { grid-column: 1 / -1; grid-row: 2; } .schedule { grid-template-columns: 1fr 1fr; } .schedule-item { border-bottom: 1px solid var(--rcet-line); } .schedule-item:nth-child(2n) { border-right: 0; } .schedule-item:nth-last-child(-n + 2) { border-bottom: 0; } .contact { padding: 28px 24px; } }
+    .person b { font-size: 12px; }
+    .person span { color: var(--rcet-muted); font-size: 11px; }
+    .idea { margin-top: 20px; padding: 22px; background: var(--rcet-navy); color: #fff; }
+    .idea h2 { margin: 0 0 7px; font-size: 22px; }
+    .idea p { max-width: 60ch; margin: 0; color: #b7c5dc; font-size: 14px; }
+    .idea .rcet-btn-row { margin-top: 16px; }
+    .idea .rcet-btn--primary { color: var(--rcet-navy); background: var(--rcet-cyan); border-color: var(--rcet-cyan); }
+    @media (max-width: 760px) { .portfolio-grid { grid-template-columns: 1fr; } .portfolio-side { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .side-panel { margin: 0; } .info-grid, .project-grid { grid-template-columns: 1fr; } .project-top { min-height: 100px; } .team-list { grid-template-columns: 1fr; } }
+    @media (max-width: 460px) { .portfolio { padding-inline: 18px; } .portfolio-side { grid-template-columns: 1fr; } .schedule-row { grid-template-columns: 62px 1fr; } .schedule-row span { display: none; } }
   </style>
 </head>
 <body>
   <rcet-header team="Marketing"></rcet-header>
-  <main id="main" class="marketing-shell">
-    <aside class="workspace-nav" aria-label="Marketing workspace">
-      <div class="workspace-mark">
-        <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#megaphone"/></svg>
-        <div><b>RCET Marketing</b><span>marketing workspace</span></div>
-      </div>
-      <nav>
-        <a class="nav-link" href="#top" aria-current="page"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#layers"/></svg>Marketing Home</a>
-        <a class="nav-link" href="#work"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#settings"/></svg>Content board</a>
-        <a class="nav-link" href="#team"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg>Team directory</a>
-        <a class="nav-link" href="#schedule"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg>Tech &amp; Tonic</a>
-        <p class="nav-label">Shared</p>
-        <a class="nav-link" href="/teams/"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#layers"/></svg>All RCET teams</a>
-        <a class="nav-link" href="#contact"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#lightbulb"/></svg>Pitch an idea</a>
-      </nav>
-    </aside>
+  <main id="main" class="portfolio">
+    <header class="portfolio-brand">
+      <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#megaphone"/></svg>
+      <div><h1>Marketing Portfolio</h1><p>Rotman Commerce Emerging Technologies</p></div>
+    </header>
 
-    <article class="page" id="top">
-      <div class="page-inner">
-        <div class="page-icon"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#megaphone"/></svg></div>
-        <p class="rcet-eyebrow">RCET / Team space</p>
-        <h1>Marketing Home</h1>
-        <p class="page-intro">We create the stories, content and social moments that bring emerging technology to campus.</p>
-
-        <div class="home-grid">
-          <section>
-            <h2>Team</h2>
-            <ul class="workspace-list">
-              <li><a href="#team"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg>Meet the team</a></li>
-              <li><a href="#work"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#settings"/></svg>Content board</a></li>
-              <li><a href="#schedule"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg>Tech &amp; Tonic schedule</a></li>
+    <div class="portfolio-grid">
+      <aside class="portfolio-side" aria-label="Marketing navigation">
+        <section class="side-panel">
+          <h2>Menu</h2>
+          <nav>
+            <ul class="side-nav">
+              <li><a href="#about"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg>About the team</a></li>
+              <li><a href="#projects"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#sparkles"/></svg>Current projects</a></li>
+              <li><a href="#schedule"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg>Posting schedule</a></li>
+              <li><a href="#team"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg>Team directory</a></li>
             </ul>
-          </section>
-          <section>
-            <h2>What we make</h2>
-            <ul class="workspace-list">
-              <li><a href="#work"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#sparkles"/></svg>Posts &amp; campaigns</a></li>
-              <li><a href="#work"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#rocket"/></svg>Reels &amp; recaps</a></li>
-              <li><a href="#contact"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#lightbulb"/></svg>Fresh ideas for the feed</a></li>
-            </ul>
-          </section>
-        </div>
+          </nav>
+        </section>
+        <section class="side-panel">
+          <h2>Contact Info</h2>
+          <ul class="contact-list">
+            <li><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#mail"/></svg><a href="mailto:rotmancommercetech@gmail.com">rotmancommercetech@gmail.com</a></li>
+            <li><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#lightbulb"/></svg>New social and campaign ideas welcome.</li>
+          </ul>
+        </section>
+      </aside>
 
-        <section id="work">
-          <div class="database">
-            <div class="database-head"><h2>Content board</h2><span>Current queue</span></div>
-            <div class="db-row"><span class="db-date">Incoming</span><div><h3>Meet the Team post</h3><p>A character-customization introduction to RCET, with Nintendo Mii as a leading concept.</p></div><span class="status">In progress</span></div>
-            <div class="db-row"><span class="db-date">Sep 1</span><div><h3>Placement post</h3><p>Well-known companies, a tech-forward theme, and Figma or Spotify Wrapped on the moodboard.</p></div><span class="status">In progress</span></div>
-            <div class="db-row"><span class="db-date">Sep 4</span><div><h3>Team Social</h3><p>Two reels: “Passing the phone to someone who…” and a possible social recap.</p></div><span class="status status--quiet">Filming</span></div>
+      <div>
+        <section class="about" id="about">
+          <h2>About</h2>
+          <p>We create the stories, content and social moments that bring emerging technology to campus. From the first teaser to the final recap, Marketing helps the RCET community see what is worth showing up for.</p>
+        </section>
+
+        <section class="info-grid" aria-label="Marketing team details">
+          <div class="info"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg><div><b>Team</b><span>5 creative minds</span></div></div>
+          <div class="info"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#sparkles"/></svg><div><b>Focus</b><span>Content &amp; campaigns</span></div></div>
+          <div class="info"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg><div><b>Now</b><span>Tech &amp; Tonic</span></div></div>
+        </section>
+
+        <section id="projects">
+          <p class="content-label"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#layers"/></svg>Current projects</p>
+          <div class="project-grid">
+            <article class="project"><div class="project-top"><div><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg><h3>Meet the Team</h3></div></div><div class="project-copy"><b>Character customization post</b><p>Nintendo Mii is a leading direction for the manager introduction.</p></div></article>
+            <article class="project"><div class="project-top"><div><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#briefcase"/></svg><h3>Placement</h3></div></div><div class="project-copy"><b>Tech-forward placement post</b><p>Well-known companies with Figma and Spotify Wrapped on the moodboard.</p></div></article>
+            <article class="project"><div class="project-top"><div><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#rocket"/></svg><h3>Team Social</h3></div></div><div class="project-copy"><b>Reels &amp; social recap</b><p>Two reels, including “Passing the phone to someone who…”.</p></div></article>
           </div>
         </section>
 
-        <section id="team">
-          <h2 class="section-title">Team directory</h2>
-          <div class="people">
-            <div class="person"><span class="initials">NS</span><div><b>Noa Shiohara</b><span>Marketing Director</span></div></div>
-            <div class="person"><span class="initials">CT</span><div><b>Carmen Teng</b><span>Marketing Manager</span></div></div>
-            <div class="person"><span class="initials">EL</span><div><b>Emma Liu</b><span>Marketing Manager</span></div></div>
-            <div class="person"><span class="initials">ZS</span><div><b>Zobia Shahzad</b><span>Marketing Manager</span></div></div>
-            <div class="person"><span class="initials">PH</span><div><b>Pham Huynh</b><span>Marketing Manager</span></div></div>
+        <section class="schedule" id="schedule">
+          <p class="content-label"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg>Tech &amp; Tonic schedule</p>
+          <div class="schedule-list">
+            <div class="schedule-row"><time datetime="2026-09-09">SEP 09</time><b>Intro post</b><span>Launch</span></div>
+            <div class="schedule-row"><time datetime="2026-09-14">SEP 14</time><b>Meet the guests</b><span>Feature</span></div>
+            <div class="schedule-row"><time datetime="2026-09-16">SEP 16</time><b>Key sponsors</b><span>Feature</span></div>
+            <div class="schedule-row"><time datetime="2026-09-17">SEP 17</time><b>Ticket pricing</b><span>Info</span></div>
+            <div class="schedule-row"><time datetime="2026-09-20">SEP 20</time><b>Drinks menu</b><span>Feature</span></div>
+            <div class="schedule-row"><time datetime="2026-09-22">SEP 22</time><b>5 things worth your money reel</b><span>Reel</span></div>
           </div>
         </section>
 
-        <section id="schedule">
-          <h2 class="section-title">Tech &amp; Tonic / posting schedule</h2>
-          <div class="schedule">
-            <div class="schedule-item"><time datetime="2026-09-09">SEP 09</time><p>Intro post</p></div>
-            <div class="schedule-item"><time datetime="2026-09-14">SEP 14</time><p>Meet the guests</p></div>
-            <div class="schedule-item"><time datetime="2026-09-16">SEP 16</time><p>Key sponsors</p></div>
-            <div class="schedule-item"><time datetime="2026-09-17">SEP 17</time><p>Ticket pricing</p></div>
-            <div class="schedule-item"><time datetime="2026-09-19">SEP 19</time><p>Venue reveal reel</p></div>
-            <div class="schedule-item"><time datetime="2026-09-20">SEP 20</time><p>Drinks menu</p></div>
-            <div class="schedule-item"><time datetime="2026-09-22">SEP 22</time><p>5 things worth your money reel</p></div>
-            <div class="schedule-item"><time datetime="2026-09-28">SEP 28</time><p>Tiny mic interview</p></div>
+        <section class="team" id="team">
+          <p class="content-label"><svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#users"/></svg>Team directory</p>
+          <div class="team-list">
+            <div class="person"><span class="avatar">NS</span><div><b>Noa Shiohara</b><span>Marketing Director</span></div></div>
+            <div class="person"><span class="avatar">CT</span><div><b>Carmen Teng</b><span>Marketing Manager</span></div></div>
+            <div class="person"><span class="avatar">EL</span><div><b>Emma Liu</b><span>Marketing Manager</span></div></div>
+            <div class="person"><span class="avatar">ZS</span><div><b>Zobia Shahzad</b><span>Marketing Manager</span></div></div>
+            <div class="person"><span class="avatar">PH</span><div><b>Pham Huynh</b><span>Marketing Manager</span></div></div>
           </div>
         </section>
 
-        <section class="notes">
-          <h2>Working notes</h2>
-          <p>For Meet the Team, Emma owns PVP and R&amp;D; Zobia, Marketing; Carmen, Operations; and Pham, BD and Finance. The next step for both placement and Meet the Team is to bring options to the group, then poll on the final theme.</p>
-        </section>
-
-        <section class="contact" id="contact">
-          <p class="rcet-eyebrow">New ideas welcome</p>
-          <h2>Have something worth showcasing?</h2>
-          <p>We are looking for fresh ways to put the people, projects and possibilities around RCET on the feed.</p>
-          <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com?subject=Marketing%20idea">Pitch an idea</a><a class="rcet-btn rcet-btn--ghost" href="/teams/">All teams</a></div>
+        <section class="idea" id="contact">
+          <p class="rcet-eyebrow">Collaborate</p>
+          <h2>Have an idea for the feed?</h2>
+          <p>We are always looking for new ways to showcase the people, projects and possibilities around RCET.</p>
+          <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com?subject=Marketing%20idea">Pitch an idea</a></div>
         </section>
       </div>
-    </article>
+    </div>
   </main>
   <rcet-footer team="Marketing"></rcet-footer>
 </body>
