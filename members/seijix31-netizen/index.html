@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seiji Ogihara | RCET</title>
+  <meta name="description" content="Seiji Ogihara — R&D Manager at Rotman Commerce Emerging Technologies (RCET). 2nd-year Finance & Economics student with a CS minor, and a hobbyist coder.">
+
+  <!-- Self-contained: reproduces the RCET design system inline so it works pasted
+       into a Wix HTML embed (no dependency on the RCET site's /shared/ files). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rcet-navy: #192e4f;
+      --rcet-blue: #1a6aff;
+      --rcet-cyan: #1ad7ff;
+      --rcet-pale: #d3e4ff;
+      --rcet-ink:  #0f172a;
+      --rcet-bg:        #ffffff;
+      --rcet-bg-alt:    #f3f6fb;
+      --rcet-surface:   #ffffff;
+      --rcet-line:      #e2e8f0;
+      --rcet-fg:        var(--rcet-ink);
+      --rcet-muted:     #5b6577;
+      --rcet-accent:    var(--rcet-blue);
+      --rcet-accent-fg: #ffffff;
+      --rcet-link:      var(--rcet-blue);
+      --rcet-font-display: "Inter Tight", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --rcet-font-body:    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --rcet-font-mono:    "Azeret Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --rcet-radius:    12px;
+      --rcet-shadow:    0 1px 2px rgba(15, 23, 42, .05), 0 10px 28px -14px rgba(25, 46, 79, .22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--rcet-bg);
+      color: var(--rcet-fg);
+      font: 400 17px/1.65 var(--rcet-font-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    h1, h2, h3 {
+      font-family: var(--rcet-font-display);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+      margin: 0 0 .5em; text-wrap: balance;
+    }
+    h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; }
+    h2 { font-size: clamp(24px, 3.2vw, 34px); }
+    p  { margin: 0 0 1em; }
+    a  { color: var(--rcet-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    ::selection { background: var(--rcet-cyan); color: var(--rcet-navy); }
+    :focus-visible { outline: 3px solid var(--rcet-cyan); outline-offset: 2px; }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; margin: 0 0 14px;
+      font-family: var(--rcet-font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--rcet-accent);
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
+
+    /* Hero */
+    .hero { padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px); }
+    .hero-grid { display: grid; gap: 44px; grid-template-columns: 1.2fr .8fr; align-items: center; }
+    .lede { font-size: clamp(18px, 2vw, 21px); color: var(--rcet-muted); max-width: 52ch; }
+
+    /* Avatar tile */
+    .avatar {
+      aspect-ratio: 1; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow);
+      display: grid; place-items: center; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 28% 26%, var(--rcet-cyan) 0, transparent 52%),
+        radial-gradient(circle at 76% 74%, var(--rcet-blue) 0, transparent 55%),
+        var(--rcet-navy);
+    }
+    .avatar span {
+      font: 800 clamp(64px, 12vw, 104px)/1 var(--rcet-font-display);
+      letter-spacing: -.03em; color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,.25);
+    }
+
+    /* Tag pills */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .tag {
+      display: inline-block; font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .04em;
+      padding: 5px 12px; border-radius: 999px; background: var(--rcet-pale); color: var(--rcet-navy);
+    }
+
+    /* Buttons */
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font: 600 15px/1 var(--rcet-font-body); padding: 14px 22px; border-radius: 999px;
+      border: 1.5px solid var(--rcet-accent); color: var(--rcet-accent); background: transparent;
+      text-decoration: none; cursor: pointer; transition: background .15s, color .15s, transform .15s, filter .15s;
+    }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn--primary { background: var(--rcet-accent); color: var(--rcet-accent-fg); }
+    .btn--primary:hover { filter: brightness(1.08); }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* About section */
+    .section { padding: clamp(40px, 6vw, 72px) 0; border-top: 1px solid var(--rcet-line); }
+    .prose { max-width: 62ch; }
+    .prose p { color: var(--rcet-fg); }
+
+    /* Detail rows */
+    .facts { display: grid; gap: 0; margin: 8px 0 0; }
+    .fact { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--rcet-line); }
+    .fact:last-child { border-bottom: 1px solid var(--rcet-line); }
+    .fact dt { font-family: var(--rcet-font-mono); font-size: 13px; letter-spacing: .04em; color: var(--rcet-muted); margin: 2px 0 0; }
+    .fact dd { margin: 0; }
+    .fact a { word-break: break-word; }
+
+    @media (max-width: 720px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .avatar { max-width: 220px; }
+      .hero { text-align: left; }
+      .fact { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">RCET · Research &amp; Development</p>
+          <h1>Seiji Ogihara</h1>
+          <ul class="tags">
+            <li class="tag">Finance &amp; Economics</li>
+            <li class="tag">CS Minor</li>
+            <li class="tag">2nd Year</li>
+            <li class="tag">R&amp;D Manager</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="https://www.linkedin.com/in/seiji-ogihara" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg>
+              LinkedIn
+            </a>
+            <a class="btn" href="mailto:seiji.ogihara@mail.utoronto.ca">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2 8-5.2H4zM4 8.4V18h16V8.4l-8 5.2z"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+        <div class="avatar" role="img" aria-label="Seiji Ogihara — initials S O">
+          <span>SO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section">
+      <p class="eyebrow">About</p>
+      <div class="prose">
+        <p>Hi guys! My name is Seiji, I'm a second-year student studying Finance &amp; Economics with a minor in CS. I started vibe coding as a hobby, making poker engine for my friends, etc. On my free time I like to cook (basically anything), read and go on walks.</p>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="section">
+      <p class="eyebrow">Off the clock</p>
+      <ul class="tags">
+        <li class="tag">Vibe coding</li>
+        <li class="tag">Poker engine</li>
+        <li class="tag">Cooking</li>
+        <li class="tag">Reading</li>
+        <li class="tag">Walks</li>
+      </ul>
+    </section>
+
+    <!-- DETAILS -->
+    <section class="section">
+      <p class="eyebrow">Details</p>
+      <dl class="facts">
+        <div class="fact">
+          <dt>Role</dt>
+          <dd>R&amp;D Manager, Rotman Commerce Emerging Technologies (RCET)</dd>
+        </div>
+        <div class="fact">
+          <dt>Studying</dt>
+          <dd>Finance &amp; Economics, minor in Computer Science — University of Toronto, 2nd Year</dd>
+        </div>
+        <div class="fact">
+          <dt>LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/seiji-ogihara" target="_blank" rel="noopener">linkedin.com/in/seiji-ogihara</a></dd>
+        </div>
+        <div class="fact">
+          <dt>Email</dt>
+          <dd><a href="mailto:seiji.ogihara@mail.utoronto.ca">seiji.ogihara@mail.utoronto.ca</a></dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+</body>
+</html>
