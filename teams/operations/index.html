@@ -3,172 +3,114 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- The title and description show up on the team directory at / -->
   <title>Operations | RCET</title>
-  <meta name="description" content="Logistics, venues and the run-of-show behind every event RCET hosts.">
+  <meta name="description" content="Meet the RCET Operations team—the people behind the logistics, venues and run-of-show for every event.">
   <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
   <link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
-
-  <!-- Shared RCET design system: colours, type, header and footer. Keep these two lines. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/shared/rcet.css">
   <script src="/shared/rcet.js" defer></script>
-
   <style>
-    /* Page-specific styles live here. Build on the tokens (var(--rcet-*)) and the page
-       will match the rest of the site. Prefer a dark page? Add data-theme="dark" to <html>. */
-    .hero-grid { display: grid; gap: 48px; grid-template-columns: 1.15fr .85fr; align-items: center; }
-    .hero-art {
-      aspect-ratio: 1; border-radius: 20px; box-shadow: var(--rcet-shadow);
-      background-color: var(--rcet-navy);
-      background-image: radial-gradient(circle at 30% 30%, rgba(26, 215, 255, .35), transparent 55%), radial-gradient(rgba(26, 215, 255, .55) 1px, transparent 1px);
-      background-size: auto, 20px 20px;
+    .operations-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.82fr); gap:clamp(40px,7vw,88px); align-items:center; }
+    .operations-hero h1 { max-width:10ch; }
+    .operations-hero__photo { width:100%; aspect-ratio:4/5; object-fit:cover; object-position:52% 50%; }
+    .operations-stats .rcet-stat { padding-right:20px; }
+    .operations-stats .rcet-stat + .rcet-stat { border-left:1px solid var(--rcet-line); padding-left:32px; }
+    .statement { max-width:17ch; margin:0 auto; font-size:clamp(32px,5vw,60px); }
+    .responsibility { display:grid; align-content:start; gap:18px; min-height:100%; }
+    .responsibility h3, .responsibility p { margin:0; }
+    .responsibility p { color:var(--rcet-muted); }
+    .runbook { counter-reset:runbook; display:grid; grid-template-columns:repeat(4,1fr); border-block:1px solid var(--rcet-line); }
+    .runbook__step { counter-increment:runbook; padding:28px 24px 28px 0; }
+    .runbook__step + .runbook__step { border-left:1px solid var(--rcet-line); padding-left:24px; }
+    .runbook__step::before { content:"0" counter(runbook); display:block; margin-bottom:22px; color:var(--rcet-accent); font:500 12px/1 var(--rcet-font-mono); letter-spacing:.12em; }
+    .runbook__step h3 { font-size:19px; margin-bottom:8px; }
+    .runbook__step p { color:var(--rcet-muted); font-size:15px; margin:0; }
+    .event { display:grid; grid-template-columns:140px minmax(0,1fr) auto; gap:28px; align-items:baseline; padding:26px 0; border-top:1px solid var(--rcet-line); }
+    .event:last-child { border-bottom:1px solid var(--rcet-line); }
+    .event time, .event__place { color:var(--rcet-muted); font:500 12px/1.5 var(--rcet-font-mono); letter-spacing:.06em; text-transform:uppercase; }
+    .event h3 { font-size:20px; margin:0 0 4px; }
+    .event p { color:var(--rcet-muted); margin:0; }
+    .contact-copy { max-width:760px; margin-inline:auto; }
+    @media (max-width:760px) {
+      .operations-hero { grid-template-columns:1fr; gap:40px; }
+      .operations-hero__photo { aspect-ratio:16/11; object-position:50% 52%; }
+      .operations-stats { grid-template-columns:1fr 1fr; gap:32px 20px; }
+      .operations-stats .rcet-stat + .rcet-stat { border-left:0; padding-left:0; }
+      .runbook { grid-template-columns:1fr 1fr; }
+      .runbook__step:nth-child(odd) { border-left:0; padding-left:0; }
+      .runbook__step:nth-child(n+3) { border-top:1px solid var(--rcet-line); }
+      .event { grid-template-columns:1fr; gap:6px; }
+      .event__place { margin-top:6px; }
     }
-    .highlight { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid var(--rcet-line); }
-    .highlight:last-of-type { border-bottom: 1px solid var(--rcet-line); }
-    .highlight time { font-family: var(--rcet-font-mono); font-size: 13px; color: var(--rcet-muted); padding-top: 4px; }
-    .highlight h3 { font-size: 19px; margin-bottom: 4px; }
-    .highlight p  { margin: 0; color: var(--rcet-muted); }
-    @media (max-width: 760px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-art  { max-width: 320px; }
-      .highlight { grid-template-columns: 1fr; gap: 4px; }
+    @media (max-width:420px) {
+      .operations-stats, .runbook { grid-template-columns:1fr; }
+      .runbook__step + .runbook__step { border-left:0; border-top:1px solid var(--rcet-line); padding-left:0; }
     }
   </style>
 </head>
 <body>
-
   <rcet-header team="Operations"></rcet-header>
-
   <main id="main">
-
-    <!-- HERO: who you are in one breath ----------------------------------- -->
-    <section class="rcet-hero">
-      <div class="rcet-container hero-grid">
-        <div>
+    <section class="rcet-hero rcet-bg-dots">
+      <div class="rcet-container operations-hero">
+        <div data-reveal>
           <p class="rcet-eyebrow">RCET · Operations</p>
-          <h1>Operations</h1>
-          <p class="rcet-lede">Logistics, venues and the run-of-show behind every event RCET hosts.</p>
-          <div class="rcet-btn-row">
-            <a class="rcet-btn rcet-btn--primary" href="#team">Meet the team</a>
-            <a class="rcet-btn rcet-btn--ghost" href="#contact">Work with us</a>
-          </div>
+          <h1>We make the room work.</h1>
+          <p class="rcet-lede">From the first venue hold to the final mic check, Operations turns RCET's event ideas into experiences that run on time and feel effortless.</p>
+          <div class="rcet-btn-row"><a class="rcet-btn rcet-btn--primary" href="#work">What we own</a><a class="rcet-btn rcet-btn--ghost" href="#contact">Work with us</a></div>
         </div>
-        <!-- Swap this for a real photo: <img class="hero-art" src="./team.jpg" alt="The team at ..."> -->
-        <div class="hero-art" role="img" aria-label="Abstract gradient in RCET colours"></div>
+        <img class="operations-hero__photo rcet-cinematic" src="/shared/assets/events/2025-11-tech-and-tonic-1.jpg" alt="A full room of guests networking at RCET's Tech &amp; Tonic event" width="1600" height="1067">
       </div>
     </section>
 
-    <!-- NUMBERS: three or four figures you are proud of ---------------------- -->
-    <section class="rcet-section rcet-section--alt">
-      <div class="rcet-container rcet-grid rcet-grid--4">
-        <div class="rcet-stat"><b data-count="12">0</b><span>Events this year</span></div>
-        <div class="rcet-stat"><b data-count="6">0</b><span>Team members</span></div>
-        <div class="rcet-stat"><b data-count="3">0</b><span>Partner companies</span></div>
-        <div class="rcet-stat"><b data-count="200" data-suffix="+">0</b><span>Students reached</span></div>
+    <section class="rcet-section rcet-section--alt" aria-label="RCET event impact">
+      <div class="rcet-container rcet-grid rcet-grid--3 operations-stats">
+        <div class="rcet-stat" data-reveal style="--i:0"><b data-count="300" data-suffix="+">300+</b><span>Event attendees</span></div>
+        <div class="rcet-stat" data-reveal style="--i:1"><b data-count="20" data-suffix="+">20+</b><span>Companies in the room</span></div>
+        <div class="rcet-stat" data-reveal style="--i:2"><b data-count="3">3</b><span>Flagship formats delivered</span></div>
       </div>
     </section>
 
-    <!-- ONE LINE: the team in a sentence. Words light up as the page scrolls. Delete if you'd rather not. -->
-    <section class="rcet-section rcet-section--dark rcet-center">
+    <section class="rcet-section rcet-section--dark rcet-center"><div class="rcet-container"><p class="rcet-eyebrow">Behind every moment</p><h2 class="statement" data-words>Good operations disappear. What remains is a room where everyone can focus on why they came.</h2></div></section>
+
+    <section class="rcet-section" id="work">
       <div class="rcet-container">
-        <p class="rcet-eyebrow" style="display: inline-flex">In one line</p>
-        <h2 style="max-width: 16ch; margin-inline: auto; font-size: clamp(30px, 4.4vw, 56px)" data-words>What Operations does for RCET, in one sentence.</h2>
-      </div>
-    </section>
-
-    <!-- WHAT WE DO ------------------------------------------------------------ -->
-    <section class="rcet-section">
-      <div class="rcet-container">
-        <div class="rcet-section-head">
-          <div>
-            <p class="rcet-eyebrow">What we do</p>
-            <h2>Three things we own</h2>
-          </div>
-          <p>Replace these with the real responsibilities of your team, in plain language.</p>
-        </div>
+        <div class="rcet-section-head"><div><p class="rcet-eyebrow">What we do</p><h2>Three things we own</h2></div><p>We connect the plan, the place and the people—then stay close enough to solve what changes.</p></div>
         <div class="rcet-grid rcet-grid--3">
-          <div class="rcet-card">
-            <span class="rcet-tag">01</span>
-            <h3>First responsibility</h3>
-            <p>One or two sentences on what this involves and why a member should care.</p>
-          </div>
-          <div class="rcet-card">
-            <span class="rcet-tag">02</span>
-            <h3>Second responsibility</h3>
-            <p>Concrete beats abstract: name the event, the deck, the sponsor, the tool.</p>
-          </div>
-          <div class="rcet-card">
-            <span class="rcet-tag">03</span>
-            <h3>Third responsibility</h3>
-            <p>If you only did one thing this year that mattered, this is where it goes.</p>
-          </div>
+          <article class="rcet-card responsibility" data-reveal style="--i:0"><span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#calendar"/></svg></span><div><h3>Plan the experience</h3><p>Translate each event idea into a practical timeline, room plan and run-of-show with clear owners at every step.</p></div></article>
+          <article class="rcet-card responsibility" data-reveal style="--i:1"><span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#map-pin"/></svg></span><div><h3>Ready the room</h3><p>Coordinate venues, equipment, signage and guest flow so speakers arrive prepared and attendees know where to go.</p></div></article>
+          <article class="rcet-card responsibility" data-reveal style="--i:2"><span class="rcet-icon-badge"><svg class="rcet-icon rcet-icon--lg" aria-hidden="true"><use href="/shared/assets/icons.svg#settings"/></svg></span><div><h3>Run the day</h3><p>Keep the team synchronized, adapt when plans move and protect the details that make an event feel considered.</p></div></article>
         </div>
       </div>
     </section>
 
-    <!-- TEAM: real names, real roles ----------------------------------------- -->
-    <section class="rcet-section rcet-section--alt" id="team">
+    <section class="rcet-section rcet-section--alt" aria-labelledby="runbook-heading">
       <div class="rcet-container">
-        <div class="rcet-section-head">
-          <div>
-            <p class="rcet-eyebrow">The team</p>
-            <h2>Who we are</h2>
-          </div>
-        </div>
-        <div class="rcet-grid rcet-grid--3 rcet-grid--wrap-center">
-          <!-- Use initials, or replace the <span> with <img class="rcet-avatar" src="./name.jpg" alt=""> -->
-          <div class="rcet-card rcet-person"><span class="rcet-avatar">AB</span><div><b>Person Name</b><span>Director</span></div></div>
-          <div class="rcet-card rcet-person"><span class="rcet-avatar">CD</span><div><b>Person Name</b><span>Director</span></div></div>
-          <div class="rcet-card rcet-person"><span class="rcet-avatar">EF</span><div><b>Person Name</b><span>Manager</span></div></div>
-          <div class="rcet-card rcet-person"><span class="rcet-avatar">GH</span><div><b>Person Name</b><span>Manager</span></div></div>
+        <div class="rcet-section-head"><div><p class="rcet-eyebrow">The runbook</p><h2 id="runbook-heading">From brief to doors open</h2></div><p>Our work starts well before an attendee enters the room.</p></div>
+        <div class="runbook">
+          <div class="runbook__step" data-reveal style="--i:0"><h3>Scope</h3><p>Audience, format, timing and constraints.</p></div>
+          <div class="runbook__step" data-reveal style="--i:1"><h3>Coordinate</h3><p>Venue, vendors, equipment and people.</p></div>
+          <div class="runbook__step" data-reveal style="--i:2"><h3>Rehearse</h3><p>Walk the space and pressure-test the plan.</p></div>
+          <div class="runbook__step" data-reveal style="--i:3"><h3>Deliver</h3><p>Open the doors, run the room and wrap well.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- HIGHLIGHTS: a short, dated list of things you shipped ----------------- -->
-    <section class="rcet-section">
+    <section class="rcet-section" id="highlights">
       <div class="rcet-container">
-        <div class="rcet-section-head">
-          <div>
-            <p class="rcet-eyebrow">Highlights</p>
-            <h2>What we've shipped</h2>
-          </div>
-        </div>
-        <div class="highlight">
-          <time datetime="2026-09">Sep 2026</time>
-          <div><h3>Something you did</h3><p>What it was, who it was for, what came out of it.</p></div>
-        </div>
-        <div class="highlight">
-          <time datetime="2026-03">Mar 2026</time>
-          <div><h3>Something else you did</h3><p>Link to it if it lives somewhere, like <a href="/events/">the events page</a>.</p></div>
-        </div>
-        <div class="highlight">
-          <time datetime="2025-11">Nov 2025</time>
-          <div><h3>And one more</h3><p>Three to six of these is the sweet spot.</p></div>
+        <div class="rcet-section-head"><div><p class="rcet-eyebrow">Recent rooms</p><h2>Where the plan came to life</h2></div><p><a href="/events/">Explore all RCET events →</a></p></div>
+        <div>
+          <article class="event" data-reveal><time datetime="2026-03-19">March 2026</time><div><h3>Ship &amp; Sip</h3><p>Founders, investors and students gathered for an evening of candid conversations at Chefs Hall.</p></div><span class="event__place">RCET × RCEO</span></article>
+          <article class="event" data-reveal><time datetime="2025-11-21">November 2025</time><div><h3>Tech &amp; Tonic</h3><p>More than 130 guests and 31 industry professionals connected across one packed evening.</p></div><span class="event__place">Chefs Hall</span></article>
+          <article class="event" data-reveal><time datetime="2024-11-27">November 2024</time><div><h3>AI Transformation Case Competition</h3><p>Sixty-five students built AI agents with Copilot Studio at Microsoft Canada's headquarters.</p></div><span class="event__place">Microsoft × BDO</span></article>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT ----------------------------------------------------------------- -->
-    <section class="rcet-section rcet-section--dark" id="contact">
-      <div class="rcet-container rcet-center">
-        <p class="rcet-eyebrow">Get involved</p>
-        <h2>Want to work with Operations?</h2>
-        <p class="rcet-lede" style="margin-inline: auto">Tell people what you are looking for: new members, sponsors, speakers, collaborators.</p>
-        <div class="rcet-btn-row" style="justify-content: center">
-          <a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com?subject=Operations%20team">Email us</a>
-          <a class="rcet-btn" href="/teams/">All teams</a>
-        </div>
-      </div>
-    </section>
-
+    <section class="rcet-section rcet-section--dark" id="contact"><div class="rcet-container rcet-center contact-copy"><p class="rcet-eyebrow">Join the crew</p><h2>Calm under pressure. Precise by default.</h2><p class="rcet-lede" style="margin-inline:auto">We're always glad to meet students who notice the details, communicate clearly and want to build memorable experiences with RCET.</p><div class="rcet-btn-row" style="justify-content:center"><a class="rcet-btn rcet-btn--primary" href="mailto:rotmancommercetech@gmail.com?subject=Operations%20team">Talk to Operations</a><a class="rcet-btn" href="/teams/">Meet every team</a></div></div></section>
   </main>
-
   <rcet-footer team="Operations"></rcet-footer>
-
-
 </body>
 </html>
