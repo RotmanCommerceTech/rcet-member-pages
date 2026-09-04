@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Change this: it shows up on the member directory page. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/rcet.css"> <script src="/shared/rcet.js" defer></script>
+  <title>Emma Zhang</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    background: var(--rcet-bg);
+    color: var(--rcet-fg);
+    font: 16px/1.6 var(--rcet-font-body), ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+
+  main {
+    max-width: var(--rcet-container);
+    margin: 0 auto;
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--rcet-font-display);
+    font-size: clamp(32px, 8vw, 64px);
+    margin: 0 0 8px;
+    letter-spacing: -.02em;
+  }
+  p  { color: var(--rcet-muted); max-width: 50ch; margin: 0 auto 24px; }
+  button {
+    font: inherit; color: var(--rcet-accent-fg); background: var(--rcet-accent);
+    border: 0; border-radius: var(--rcet-radius-sm); padding: 10px 20px; cursor: pointer;
+  }
+  button:hover { filter: brightness(1.1); }
+  a { color: var(--rcet-accent); }
+
+  .project-card {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  .project-text {
+    flex: 1 1 300px;
+  }
+  .img-scroll {
+    flex: 1 1 300px;
+    max-height: 280px;
+    overflow-y: hidden;
+    border-radius: var(--rcet-radius);
+  }
+  .img-scroll img {
+    width: 100%;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <rcet-header team="research and development"></rcet-header>
+
+<main id="main">
+  <h1>Emma Zhang</h1>
+  <p>
+    Hi! I'm a second-year student at Rotman Commerce, specializing in Finance and Economics. I'm building an Obsidian dashboard around the "second brain" concept!
+  </p>
+  <button id="hello">Say hi</button>
+  <p id="out" aria-live="polite"></p>
+
+  <!-- Social / contact links -->
+  <div class="rcet-btn-row" style="justify-content:center; margin-bottom:48px;">
+    <a class="rcet-btn rcet-btn--ghost" href="https://www.linkedin.com/in/emma--zhang" target="_blank" rel="noopener">
+      <svg class="rcet-icon"><use href="/shared/assets/icons.svg#external-link"/></svg>
+      LinkedIn
+    </a>
+    <a class="rcet-btn rcet-btn--ghost" href="https://github.com/ez141414" target="_blank" rel="noopener">
+      <svg class="rcet-icon"><use href="/shared/assets/icons.svg#external-link"/></svg>
+      GitHub
+    </a>
+    <a class="rcet-btn rcet-btn--ghost" href="mailto:emmaez.zhang@mail.utoronto.ca">
+      <svg class="rcet-icon"><use href="/shared/assets/icons.svg#mail"/></svg>
+      Email
+    </a>
+  </div>
+
+  <!-- Obsidian project card -->
+  <div class="rcet-card project-card">
+    <div class="project-text">
+      <span class="rcet-tag">Project</span>
+      <h3>My Obsidian "Second Brain"</h3>
+      <p>
+        A personal dashboard built with Dataview, Templater, and Buttons to track
+        assignments, deadlines, and opportunities — all organized by properties
+        and tags instead of folders.
+      </p>
+    </div>
+
+    <div class="img-scroll" id="imgScroll">
+      <img src="./img/dashboard-snapshot.png" alt="Screenshot of my Obsidian dashboard" class="rcet-cinematic">
+    </div>
+  </div>
+
+  <p><a href="/teams/#members">← All member pages</a></p>
+</main>
+
+  <rcet-footer team="research and development"></rcet-footer>
+
+  <script>
+    const lines = ['hiii', 'hello!', 'welcome', 'nice to meet you😊'];
+    document.getElementById('hello').addEventListener('click', () => {
+      document.getElementById('out').textContent =
+        lines[Math.floor(Math.random() * lines.length)];
+    });
+
+    const scrollBox = document.getElementById('imgScroll');
+    let scrollInterval;
+
+    scrollBox.addEventListener('mouseenter', () => {
+      scrollInterval = setInterval(() => {
+        scrollBox.scrollTop += 1;
+        if (scrollBox.scrollTop >= scrollBox.scrollHeight - scrollBox.clientHeight) {
+          clearInterval(scrollInterval);
+        }
+      }, 20);
+    });
+
+    scrollBox.addEventListener('mouseleave', () => {
+      clearInterval(scrollInterval);
+      scrollBox.scrollTop = 0;
+    });
+  </script>
+</body>
+</html>
