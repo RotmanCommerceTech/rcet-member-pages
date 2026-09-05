@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forest Li</title>
+  <meta name="description" content="Forest Li — Founder @ Velox Systems, President @ Rotman Commerce Emerging Technologies, Rotman Commerce, University of Toronto.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" href="/shared/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/rcet.css">
+  <script src="/shared/rcet.js" defer></script>
+
+  <style>
+    /* Hero: text on the left, portrait on the right; stacks under 760px. */
+    .hero-grid {
+      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+      gap: 48px; align-items: center;
+    }
+    .hero-grid h1 { margin-bottom: .35em; }
+    .hero-photo {
+      width: min(100%, 360px); aspect-ratio: 1; object-fit: cover;
+      justify-self: end; border-radius: 24px;
+    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-photo { justify-self: start; width: min(100%, 260px); order: -1; }
+    }
+
+    /* Brand mark: a favicon-sized logo in a soft square. */
+    .brand {
+      flex: none; display: grid; place-items: center; width: 46px; height: 46px;
+      border-radius: 12px; overflow: hidden; background: var(--rcet-pale); color: var(--rcet-navy);
+      font: 700 15px/1 var(--rcet-font-display); letter-spacing: -.02em;
+    }
+    .brand img { width: 100%; height: 100%; object-fit: cover; }
+    .brand--pad img { width: 30px; height: 30px; object-fit: contain; }
+
+    /* "Now" cards. Two cards fill the row. */
+    .now-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+    .now-card { display: grid; gap: 14px; align-content: start; }
+    .now-card h3 { margin: 0; }
+    .now-card p { color: var(--rcet-muted); }
+    .now-card .rcet-mono { font-size: 12px; letter-spacing: .06em; color: var(--rcet-muted); }
+    .card-links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; font-weight: 600; }
+    .card-links a { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
+    .card-links a:hover { text-decoration: underline; }
+
+    /* Highlights: one row per thing, brand mark on the left, hairline between rows. */
+    .highlights { list-style: none; margin: 0; padding: 0; }
+    .highlights > li {
+      display: grid; grid-template-columns: 46px 1fr; gap: 20px;
+      padding: 28px 0; border-top: 1px solid var(--rcet-line);
+    }
+    .highlights > li:last-child { border-bottom: 1px solid var(--rcet-line); }
+    .highlights b { display: block; font-family: var(--rcet-font-display); font-size: 21px; letter-spacing: -.01em; margin: 6px 0 2px; }
+    .highlights .when {
+      display: block; font-family: var(--rcet-font-mono); font-size: 12px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--rcet-accent); margin-bottom: 10px;
+    }
+    .highlights p { margin: 0; color: var(--rcet-muted); max-width: 72ch; }
+    .highlights p + p { margin-top: 8px; }
+    .highlights .awards { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .photos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); margin-top: 20px; max-width: 900px; }
+    .photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); }
+    @media (max-width: 560px) {
+      .highlights > li { grid-template-columns: 1fr; gap: 10px; }
+    }
+
+    /* Closing statement + links. */
+    .statement h2 { font-size: clamp(32px, 5vw, 56px); max-width: 18ch; }
+    .links { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); margin-top: 40px; }
+    .links a {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 18px 20px; border: 1px solid var(--rcet-line); border-radius: var(--rcet-radius);
+      background: var(--rcet-surface); color: inherit; text-decoration: none; font-weight: 600;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+    .links a:hover { border-color: var(--rcet-accent); transform: translateY(-2px); }
+    .links a small { display: block; font-weight: 400; font-family: var(--rcet-font-mono); font-size: 12px; color: var(--rcet-muted); margin-top: 2px; }
+    .links .rcet-icon { color: var(--rcet-accent); }
+  </style>
+</head>
+<body>
+  <rcet-header team="Forest Li"></rcet-header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="rcet-hero">
+      <div class="rcet-container hero-grid">
+        <div>
+          <p class="rcet-eyebrow">RCET · President</p>
+          <h1>Forest Li</h1>
+          <p class="rcet-lede">
+            Founder @ Velox Systems | President @ Rotman Commerce Emerging Technologies | Rotman Commerce, University of Toronto
+          </p>
+          <ul class="hero-meta" aria-label="At a glance">
+            <li><span class="rcet-tag">Toronto, Ontario, Canada</span></li>
+            <li><span class="rcet-tag">BCom '28</span></li>
+          </ul>
+          <div class="rcet-btn-row">
+            <a class="rcet-btn rcet-btn--primary" href="https://www.linkedin.com/in/forestli/" rel="noopener">
+              Connect on LinkedIn
+              <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#arrow-up-right"/></svg>
+            </a>
+            <a class="rcet-btn rcet-btn--ghost" href="https://forestli.me/" rel="noopener">forestli.me</a>
+          </div>
+        </div>
+        <img class="hero-photo rcet-cinematic" src="/shared/assets/people/forest-li.jpg" alt="Portrait of Forest Li" width="600" height="600" data-reveal>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section class="rcet-section rcet-section--alt" id="now">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Now</p><h2>Two things I'm building</h2></div>
+          <p>A company, and a club.</p>
+        </div>
+        <div class="rcet-grid now-grid">
+          <a class="rcet-card now-card" href="https://veloxsystems.ca/" rel="noopener" data-reveal style="--i:0">
+            <span class="brand"><img src="./velox-icon.png" alt="" width="46" height="46"></span>
+            <h3>Velox Systems</h3>
+            <p>ERP and automation solutions for SMBs. Built on the belief that administrative work in Canadian businesses is wildly inefficient, and solvable: Velox helps operators reclaim the hours lost to manual back-office work.</p>
+            <span class="rcet-mono">Founder · veloxsystems.ca ↗</span>
+          </a>
+          <div class="rcet-card now-card" data-reveal style="--i:1">
+            <span class="brand brand--pad"><img src="/shared/assets/brand/logo-256.png" alt="" width="30" height="30"></span>
+            <h3>Rotman Commerce Emerging Technologies</h3>
+            <p>Spearheading the adoption of technical tools and skills on the non-technical, business side of the Rotman Commerce community, so students can make AI their unfair advantage.</p>
+            <div class="card-links">
+              <a href="https://rotmancommercetech.com/" rel="noopener">rotmancommercetech.com</a>
+              <a href="https://www.instagram.com/rotman.tech/" rel="noopener">Instagram</a>
+              <a href="https://www.linkedin.com/company/rcemergingtech/" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="rcet-section" id="highlights">
+      <div class="rcet-container">
+        <div class="rcet-section-head">
+          <div><p class="rcet-eyebrow">Highlights</p><h2>Things I've built and been part of</h2></div>
+        </div>
+        <ul class="highlights">
+
+          <li data-reveal style="--i:0">
+            <span class="brand brand--pad"><img src="/shared/assets/brand/logo-256.png" alt="" width="30" height="30"></span>
+            <div>
+              <b>President, Rotman Commerce Emerging Technologies</b>
+              <span class="when">Jan 2026 – present · Operations Manager since Mar 2025</span>
+              <p>Leading RCET with one central idea: spearhead the adoption of technical tools and technical skills on the non-technical, business side of the community, and empower those students to make AI their unfair advantage. Workshops, builds and partnerships all serve that.</p>
+            </div>
+          </li>
+
+          <li data-reveal style="--i:1">
+            <span class="brand"><img src="./velox-icon.png" alt="" width="46" height="46"></span>
+            <div>
+              <b>Founded Velox Systems</b>
+              <span class="when">Apr 2026 – present</span>
+              <p>ERP and automation solutions for SMBs. Administrative work in Canadian businesses is wildly inefficient and solvable; Velox builds the systems that give operators back the hours currently lost to manual back-office work.</p>
+            </div>
+          </li>
+
+          <li data-reveal style="--i:2">
+            <span class="brand">aU</span>
+            <div>
+              <b>aUToronto design team · SAE AutoDrive Challenge II</b>
+              <span class="when">Year 5 · 2026</span>
+              <p>Joined the University of Toronto's self-driving car team for the final year of the AutoDrive Challenge II, working on the Mobility Innovations sensor-suite MVP and product management. The team placed first overall for the eighth time in nine years.</p>
+              <ul class="awards" aria-label="Awards">
+                <li><span class="rcet-tag">1st place · Mobility Innovation Challenge</span></li>
+                <li><span class="rcet-tag">1st place · Static Events Overall</span></li>
+              </ul>
+              <div class="photos">
+                <img src="./autoronto-team.webp" alt="The aUToronto team standing with the self-driving car at the 2026 AutoDrive Challenge II" loading="lazy" width="1400" height="1050">
+                <img src="./autoronto-awards.webp" alt="The aUToronto team with their AutoDrive Challenge II awards, including first place in the Mobility Innovation Challenge" loading="lazy" width="1400" height="1050">
+              </div>
+            </div>
+          </li>
+
+          <li data-reveal style="--i:3">
+            <span class="brand"><img src="./echoeye-icon.png" alt="" width="46" height="46"></span>
+            <div>
+              <b>Founder &amp; CEO, <a href="https://www.echoeye.ca/" rel="noopener">Echo Eye</a></b>
+              <span class="when">Dec 2024 – Jan 2026</span>
+              <p>Deep-tech hardware: a wearable camera built so no spontaneous moment goes unnoticed, taken from an idea to a working MVP. Led hardware, software and user-experience work across a small team, and the partnerships and early-adopter community around it.</p>
+              <p>Along the way: first place at RCEO's Launch Your Big Idea pitch competition, the Richmond Hill SBEC Summer Company program, and the CLIC 2025 cohort with OCAD University.</p>
+              <p><a href="https://www.echoeye.ca/" rel="noopener">echoeye.ca ↗</a></p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- STATEMENT + LINKS -->
+    <section class="rcet-section rcet-section--dark statement" id="contact">
+      <div class="rcet-container">
+        <p class="rcet-eyebrow">Say hello</p>
+        <h2 data-words>The best way to learn a technology is to ship something with it.</h2>
+        <p class="rcet-lede">If you're a student who wants to build, a company that wants to meet Rotman Commerce students, or a small business tired of spreadsheets, I'd like to hear from you.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/forestli/" rel="noopener">
+            <span>LinkedIn<small>Connect</small></span>
+            <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#arrow-up-right"/></svg>
+          </a>
+          <a href="https://github.com/4list233" rel="noopener">
+            <span>GitHub<small>@4list233</small></span>
+            <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#arrow-up-right"/></svg>
+          </a>
+          <a href="https://veloxsystems.ca/" rel="noopener">
+            <span>Velox Systems<small>veloxsystems.ca</small></span>
+            <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#arrow-up-right"/></svg>
+          </a>
+          <a href="https://forestli.me/" rel="noopener">
+            <span>Personal site<small>forestli.me</small></span>
+            <svg class="rcet-icon" aria-hidden="true"><use href="/shared/assets/icons.svg#arrow-up-right"/></svg>
+          </a>
+        </div>
+        <p style="margin-top: 40px"><a href="/teams/#members">← All member pages</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <rcet-footer></rcet-footer>
+</body>
+</html>
