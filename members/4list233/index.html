@@ -28,14 +28,9 @@
       .hero-photo { justify-self: start; width: min(100%, 260px); order: -1; }
     }
 
-    /* Brand mark: a favicon-sized logo in a soft square. */
-    .brand {
-      flex: none; display: grid; place-items: center; width: 46px; height: 46px;
-      border-radius: 12px; overflow: hidden; background: var(--rcet-pale); color: var(--rcet-navy);
-      font: 700 15px/1 var(--rcet-font-display); letter-spacing: -.02em;
-    }
-    .brand img { width: 100%; height: 100%; object-fit: cover; }
-    .brand--pad img { width: 30px; height: 30px; object-fit: contain; }
+    /* Brand mark: each organisation's own icon, shown clean at 46px. */
+    .brand { flex: none; display: block; width: 46px; height: 46px; }
+    .brand img { width: 46px; height: 46px; object-fit: contain; border-radius: 10px; }
 
     /* "Now" cards. Two cards fill the row. */
     .now-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
@@ -61,9 +56,7 @@
     }
     .highlights p { margin: 0; color: var(--rcet-muted); max-width: 72ch; }
     .highlights p + p { margin-top: 8px; }
-    .highlights .awards { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
-    .photos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); margin-top: 20px; max-width: 900px; }
-    .photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--rcet-radius); box-shadow: var(--rcet-shadow); }
+    .highlights .awards { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 12px; padding: 0; list-style: none; }
     @media (max-width: 560px) {
       .highlights > li { grid-template-columns: 1fr; gap: 10px; }
     }
@@ -127,7 +120,7 @@
             <span class="rcet-mono">Founder · veloxsystems.ca ↗</span>
           </a>
           <div class="rcet-card now-card" data-reveal style="--i:1">
-            <span class="brand brand--pad"><img src="/shared/assets/brand/logo-256.png" alt="" width="30" height="30"></span>
+            <span class="brand"><img src="/shared/assets/brand/logo-256.png" alt="" width="46" height="46"></span>
             <h3>Rotman Commerce Emerging Technologies</h3>
             <p>Spearheading the adoption of technical tools and skills on the non-technical, business side of the Rotman Commerce community, so students can make AI their unfair advantage.</p>
             <div class="card-links">
@@ -149,7 +142,7 @@
         <ul class="highlights">
 
           <li data-reveal style="--i:0">
-            <span class="brand brand--pad"><img src="/shared/assets/brand/logo-256.png" alt="" width="30" height="30"></span>
+            <span class="brand"><img src="/shared/assets/brand/logo-256.png" alt="" width="46" height="46"></span>
             <div>
               <b>President, Rotman Commerce Emerging Technologies</b>
               <span class="when">Jan 2026 – present · Operations Manager since Mar 2025</span>
@@ -167,19 +160,16 @@
           </li>
 
           <li data-reveal style="--i:2">
-            <span class="brand">aU</span>
+            <span class="brand"><img src="./autoronto-icon.png" alt="" width="46" height="46"></span>
             <div>
-              <b>aUToronto design team · SAE AutoDrive Challenge II</b>
+              <b><a href="https://www.autodrive.utoronto.ca/" rel="noopener">aUToronto</a> design team · SAE AutoDrive Challenge II</b>
               <span class="when">Year 5 · 2026</span>
               <p>Joined the University of Toronto's self-driving car team for the final year of the AutoDrive Challenge II, working on the Mobility Innovations sensor-suite MVP and product management. The team placed first overall for the eighth time in nine years.</p>
               <ul class="awards" aria-label="Awards">
                 <li><span class="rcet-tag">1st place · Mobility Innovation Challenge</span></li>
                 <li><span class="rcet-tag">1st place · Static Events Overall</span></li>
               </ul>
-              <div class="photos">
-                <img src="./autoronto-team.webp" alt="The aUToronto team standing with the self-driving car at the 2026 AutoDrive Challenge II" loading="lazy" width="1400" height="1050">
-                <img src="./autoronto-awards.webp" alt="The aUToronto team with their AutoDrive Challenge II awards, including first place in the Mobility Innovation Challenge" loading="lazy" width="1400" height="1050">
-              </div>
+              <p><a href="https://www.autodrive.utoronto.ca/" rel="noopener">autodrive.utoronto.ca ↗</a></p>
             </div>
           </li>
 
